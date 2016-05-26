@@ -1,0 +1,1 @@
+comunidadfusa.ui = comunidadfusa.ui || {};

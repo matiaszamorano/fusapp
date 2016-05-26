@@ -1,0 +1,1 @@
+comunidadfusa.util = comunidadfusa.util || {};

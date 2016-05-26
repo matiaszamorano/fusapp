@@ -1,0 +1,20 @@
+#contenedor {
+    height: 100vh;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+}
+
+#login ul.error_list {
+    list-style: none;
+    padding: 0;
+}
+
+@media (orientation: landscape) {
+    .fusa-bread {
+        margin-top: 0;
+    }
+}
