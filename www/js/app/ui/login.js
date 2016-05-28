@@ -2,6 +2,11 @@ comunidadfusa.ui.login = (function () {
 
     function init() {
         initForm();
+        $(".fusa-js-desplegar-menu").remove();
+        $(".fusa-js-menu-usuario").remove();
+        $("footer").remove();
+        $("a.navbar-brand").attr("href", "#");
+        $("a.navbar-brand").removeAttr("rel");
     }
 
     function initForm() {
