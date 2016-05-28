@@ -13,6 +13,7 @@ comunidadfusa.ui.index = (function () {
         $("#reproductor").removeClass("hide");
         comunidadfusa.util.html5HistoryAPI.cargarPagina("bienvenida.html");
         $(".fusa-js-apodo").text(comunidadfusa.service.usuario.get().apodo);
+        $(".fusa-js-avatar-usuario").attr("src", comunidadfusa.service.usuario.get().avatar);
         $(document).on("click", "#fusa-js-empeza-a-escuchar", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -25,6 +26,14 @@ comunidadfusa.ui.index = (function () {
             comunidadfusa.service.usuario.logout();
             window.location.reload(true);
         });
+        $(document).on("click", "a[rel='ajax']", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("rel ajax");
+            comunidadfusa.util.html5HistoryAPI.cargarPagina($(this).attr("href"));
+            return false;
+        });
+
     }
 
     return {
