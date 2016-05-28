@@ -10,16 +10,24 @@ comunidadfusa.ui.reproductor = (function () {
 
         $(document).on($.jPlayer.event.ended, playlist.cssSelector.jPlayer, function (data) {
             reproduciendo = 0;
+            $('.musicbar').removeClass('animate');
         });
 
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function () {
+            $('.musicbar').addClass('animate');
             $("#spin").addClass("hide");
             reproduciendo = 1;
         });
-
+        
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
+            $('.musicbar').removeClass('animate');
             reproduciendo = 0;
         });
+        
+        $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
+            $('.musicbar').removeClass('animate');
+        });
+        
     }
 
     function inicializarPlaylist() {
