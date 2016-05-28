@@ -3,12 +3,12 @@ comunidadfusa.service.usuario = (function () {
     var storage = window.localStorage;
 
     function get() {
-        usuario = storage.getItem("fusa-usuario");
+        usuario = JSON.parse(storage.getItem("fusa-usuario"));
         return usuario;
     }
 
     function set(fusaUsuario) {
-        storage.setItem("fusa-usuario", fusaUsuario);
+        storage.setItem("fusa-usuario", JSON.stringify(fusaUsuario));
         usuario = fusaUsuario;
     }
 

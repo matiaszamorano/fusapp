@@ -35,6 +35,7 @@ comunidadfusa.ui.login = (function () {
         });
     }
 
+
     function limpiarError() {
         mostrarError("")
         var $error = $("#login_error");
