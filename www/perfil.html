@@ -32,42 +32,6 @@
                                     Este usuario no tiene listas todavía.
                                 </span>
                             </li>
-                            <li class="list-group-item">
-                                <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="">
-                                    <i class="icon-control-play i-2x"></i>
-                                </a>
-                                <span class="pull-right h2 text-muted m-l">1</span>
-                                <span class="clear">
-                                    <span>Nombre lista</span>
-                                    <small class="text-muted clear text-ellipsis">
-                                        10 temas - Mi lista de varios temas
-                                    </small>
-                                </span>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="">
-                                    <i class="icon-control-play i-2x"></i>
-                                </a>
-                                <span class="pull-right h2 text-muted m-l">2</span>
-                                <span class="clear">
-                                    <span>Nombre lista</span>
-                                    <small class="text-muted clear text-ellipsis">
-                                        10 temas - Mi lista de varios temas
-                                    </small>
-                                </span>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="">
-                                    <i class="icon-control-play i-2x"></i>
-                                </a>
-                                <span class="pull-right h2 text-muted m-l">3</span>
-                                <span class="clear">
-                                    <span>Nombre lista</span>
-                                    <small class="text-muted clear text-ellipsis">
-                                        10 temas - Mi lista de varios temas
-                                    </small>
-                                </span>
-                            </li>
                         </ul>
                     </div>
                     <div class="tab-pane" id="escuchadas">
@@ -81,3 +45,25 @@
         </section>
     </aside>
 </section>
+
+<script id="perfil-lista-usuario-tmpl" type="text/html">
+    <li class="list-group-item">
+        <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="${id}">
+            <i class="icon-control-play i-2x"></i>
+        </a>
+        <span class="pull-right h2 text-muted m-l">${orden}</span>
+        <span class="clear">
+            <span>${nombre}</span>
+            <small class="text-muted clear text-ellipsis">
+                ${cantidadTemas} temas - ${descripcion}
+            </small>
+        </span>
+    </li>
+</script>
+
+
+
+<script type="text/javascript" src="js/app/ui/perfil.js"></script>
+<script type="text/javascript">
+                                comunidadfusa.ui.perfil.init();
+</script>
