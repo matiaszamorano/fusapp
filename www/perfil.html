@@ -61,9 +61,24 @@
     </li>
 </script>
 
+<script id="fusa-js-banda-mas-escuchada-tmpl" type="text/html">
+    <li class="list-group-item">
+        <div class="pull-right text-center">
+            <a href="#" class="jp-play-me" data-id="${Id}">
+                <i class="fa fa-play-circle i-2x"></i>
+            </a>
+        </div>
+        <span class="thumb-sm pull-left m-r-sm">
+            <img src="{{if Imagen}}${Imagen}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${Nombre}" class="img-circle">
+        </span>
+        <strong class = "block">${Nombre}</strong>
+        <small class="text-ellipsis">${Reproducciones} reproducciones</small>
+    </li>
+</script>
+
 
 
 <script type="text/javascript" src="js/app/ui/perfil.js"></script>
 <script type="text/javascript">
-                                comunidadfusa.ui.perfil.init();
+                comunidadfusa.ui.perfil.init();
 </script>
