@@ -9,8 +9,8 @@ comunidadfusa.util.html5HistoryAPI = (function() {
             type: 'GET',
             dataType: 'html',
             success: function(data, textStatus) {
-                $('#contenedor').empty();
-                $('#contenedor').html(data);
+                $('#contenedorInfoFusa').empty();
+                $('#contenedorInfoFusa').html(data);
             },
             beforeSend: function(XMLHttpRequest) {
             },

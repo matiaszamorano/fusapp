@@ -31,6 +31,9 @@
         <section class="vbox">
             <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
                 <div class="navbar-header aside bg-black lter nav-xs">
+                    <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+                        <i class="icon-list"></i>
+                    </a>
                     <a href="bienvenida.html" rel="ajax" class="navbar-brand text-lt">
                         <span class="hidden-nav-xs m-l-sm">Comunidad Fusa</span>
                         <span class="musicbar inline m-l-sm" style="width:20px;height:20px">
@@ -63,95 +66,213 @@
                     </ul>
                 </div>
             </header>
-            <section id="contenedor"></section>
-        </section>
-        <section id="reproductor" class="animated fadeInUp hide">
-            <section class="hbox stretch">
-                <section id="content">
-                    <section class="hbox stretch">
-                        <section>
-                            <section class="vbox">
-                                <footer class="footer bg-info dker">
-                                    <div id="jp_container_N">
-                                        <div class="jp-type-playlist">
-                                            <div id="jplayer_N" class="jp-jplayer hide"></div>
-                                            <div class="jp-gui">
-                                                <div class="jp-video-play hide">
-                                                    <a class="jp-video-play-icon">play</a>
-                                                </div>
-                                                <div class="jp-interface">
-                                                    <div class="jp-controls">
-                                                        <div><a id="fusa-js-prev" class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
-                                                        <div>
-                                                            <a id="fusa-js-empeza-a-escuchar" class="jp-play"><i class="icon-control-play i-2x"></i></a>
-                                                            <a  id="fusa-js-pausa" class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
-                                                        </div>
-                                                        <div><a id="fusa-js-next" class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
-                                                        <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
-                                                        <div><a href="escuchando.html" rel="ajax"><i class="icon-list"></i></a></div>
-                                                        <div class="jp-progress hidden-xs">
-                                                            <div class="jp-seek-bar dk">
-                                                                <div class="jp-play-bar bg-info">
-                                                                </div>
-                                                                <div class="jp-title text-lt">
-                                                                    <ul>
-                                                                        <li></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
-                                                        <div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
-                                                        <div class="hidden-xs hidden-sm">
-                                                            <a class="jp-mute" title="mute"><i class="icon-volume-2"></i></a>
-                                                            <a class="jp-unmute hid" title="unmute"><i class="icon-volume-off"></i></a>
-                                                        </div>
-                                                        <div class="hidden-xs hidden-sm jp-volume">
-                                                            <div class="jp-volume-bar dk">
-                                                                <div class="jp-volume-bar-value lter"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <a class="jp-shuffle" title="shuffle"><i class="icon-shuffle text-muted"></i></a>
-                                                            <a class="jp-shuffle-off hid" title="shuffle off"><i class="icon-shuffle text-lt"></i></a>
-                                                        </div>
-                                                        <div>
-                                                            <a class="jp-repeat" title="repeat"><i class="icon-loop text-muted"></i></a>
-                                                            <a class="jp-repeat-off hid" title="repeat off"><i class="icon-loop text-lt"></i></a>
-                                                        </div>
-                                                        <div class="hide">
-                                                            <a class="jp-full-screen" title="full screen"><i class="fa fa-expand"></i></a>
-                                                            <a class="jp-restore-screen" title="restore screen"><i class="fa fa-compress text-lt"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="jp-playlist dropup" id="playlist">
-                                                <ul class="dropdown-menu aside-xl dker">
-                                                    <!-- The method Playlist.displayPlaylist() uses this unordered list -->
-                                                    <li class="list-group-item"></li>
+            <section>
+                <section class="hbox stretch">
+                    <!-- .aside -->
+                    <aside class="bg-black dk aside hidden-print" id="nav">
+                        <section class="vbox">
+                            <section class="w-f-md scrollable">
+                                <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
+                                    <!-- nav -->                 
+                                    <nav class="nav-primary hidden-xs">
+                                        <ul class="nav bg clearfix">
+                                            <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                                                ¿Qué vas a escuchar hoy?
+                                            </li>
+                                            <li>
+                                                <a href="" rel="ajax">
+                                                   <i class="icon-home icon text-success"></i>
+                                                    <span class="font-bold">Inicio</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" rel="ajax">
+                                                    <i class="fa fa-dashboard"></i>
+                                                    <span class="font-bold">Mi perfil</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" rel="ajax">
+                                                    <i class="icon-music-tone-alt icon text-info"></i>
+                                                    <span class="font-bold">Bandas</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-b hidden-nav-xs"></li>
+                                        </ul>
+                                        <ul class="nav" data-ride="collapse">
+                                            <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                                                Listas de reproducción
+                                            </li>
+                                            <li>
+                                                <a href="#" class="auto">
+                                                    <span class="pull-right text-muted">
+                                                        <i class="fa fa-angle-left text"></i>
+                                                        <i class="fa fa-angle-down text-active"></i>
+                                                    </span>
+                                                    <i class="icon-playlist icon text-success-lter">
+                                                    </i>
+                                                    <span>Escuchar</span>
+                                                </a>
+                                                <ul class="nav dk text-sm">
+                                                    <li>
+                                                        <a href="#" class="auto" id="lista-me-gustan">
+                                                            <i class="icon icon-control-play text-xs"></i>
+                                                            <span>Me gustan</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="auto" id="lista-ultimos-me-gustan">
+                                                            <i class="icon icon-control-play text-xs"></i>
+                                                            <span>Últimos "Me gusta"</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="auto" id="lista-mas-escuchadas">
+                                                            <i class="icon icon-control-play text-xs"></i>
+                                                            <span>Más escuchadas</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="auto" id="lista-nunca-escuchadas">
+                                                            <i class="icon icon-control-play text-xs"></i>
+                                                            <span>Nunca escuchadas</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="auto fusa-js-lista-recomendada-popular">
+                                                            <i class="icon icon-control-play text-xs"></i>
+                                                            <span>Populares</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="auto fusa-js-lista-recomendada-nuevas">
+                                                            <i class="icon icon-control-play text-xs"></i>
+                                                            <span>Nuevas</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="auto fusa-js-lista-recomendada-azar">
+                                                            <i class="icon icon-control-play text-xs"></i>
+                                                            <span>Al azar</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
-                                            </div>
-                                            <div class="jp-no-solution hide">
-                                                <span>Update Required</span>
-                                                To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </footer>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </section>
-                        </section>
-                        <!-- side content -->
+                            <footer id="footer-banda-sonando" class="footer hidden-xs no-padder text-center-nav-xs">
+                            </footer>
 
-                        <!-- / side content -->
+                        </section>
+                    </aside>
+                    <!-- /.aside -->
+                    <section id="content">
+                        <section class="hbox stretch">
+                            <section>
+                                <section class="vbox" >
+                                    <section id="contenedorInfoFusa" class="scrollable w-f-md"></section>
+                                    <footer class="footer bg-info dker">
+                                        <section id="reproductor" class="animated fadeInUp hide">
+                                            <section class="hbox stretch">
+                                                <section id="content">
+                                                    <section class="hbox stretch">
+                                                        <section>
+                                                            <section class="vbox">
+                                                                <footer class="footer bg-info dker">
+                                                                    <div id="jp_container_N">
+                                                                        <div class="jp-type-playlist">
+                                                                            <div id="jplayer_N" class="jp-jplayer hide"></div>
+                                                                            <div class="jp-gui">
+                                                                                <div class="jp-video-play hide">
+                                                                                    <a class="jp-video-play-icon">play</a>
+                                                                                </div>
+                                                                                <div class="jp-interface">
+                                                                                    <div class="jp-controls">
+                                                                                        <div><a id="fusa-js-prev" class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
+                                                                                        <div>
+                                                                                            <a id="fusa-js-empeza-a-escuchar" class="jp-play"><i class="icon-control-play i-2x"></i></a>
+                                                                                            <a  id="fusa-js-pausa" class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
+                                                                                        </div>
+                                                                                        <div><a id="fusa-js-next" class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
+                                                                                        <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
+                                                                                        <div><a href="escuchando.html" rel="ajax"><i class="icon-list"></i></a></div>
+                                                                                        <div class="jp-progress hidden-xs">
+                                                                                            <div class="jp-seek-bar dk">
+                                                                                                <div class="jp-play-bar bg-info">
+                                                                                                </div>
+                                                                                                <div class="jp-title text-lt">
+                                                                                                    <ul>
+                                                                                                        <li></li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="hidden-xs hidden-sm jp-current-time text-xs text-muted"></div>
+                                                                                        <div class="hidden-xs hidden-sm jp-duration text-xs text-muted"></div>
+                                                                                        <div class="hidden-xs hidden-sm">
+                                                                                            <a class="jp-mute" title="mute"><i class="icon-volume-2"></i></a>
+                                                                                            <a class="jp-unmute hid" title="unmute"><i class="icon-volume-off"></i></a>
+                                                                                        </div>
+                                                                                        <div class="hidden-xs hidden-sm jp-volume">
+                                                                                            <div class="jp-volume-bar dk">
+                                                                                                <div class="jp-volume-bar-value lter"></div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <a class="jp-shuffle" title="shuffle"><i class="icon-shuffle text-muted"></i></a>
+                                                                                            <a class="jp-shuffle-off hid" title="shuffle off"><i class="icon-shuffle text-lt"></i></a>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <a class="jp-repeat" title="repeat"><i class="icon-loop text-muted"></i></a>
+                                                                                            <a class="jp-repeat-off hid" title="repeat off"><i class="icon-loop text-lt"></i></a>
+                                                                                        </div>
+                                                                                        <div class="hide">
+                                                                                            <a class="jp-full-screen" title="full screen"><i class="fa fa-expand"></i></a>
+                                                                                            <a class="jp-restore-screen" title="restore screen"><i class="fa fa-compress text-lt"></i></a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="jp-playlist dropup" id="playlist">
+                                                                                <ul class="dropdown-menu aside-xl dker">
+                                                                                    <!-- The method Playlist.displayPlaylist() uses this unordered list -->
+                                                                                    <li class="list-group-item"></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                            <div class="jp-no-solution hide">
+                                                                                <span>Update Required</span>
+                                                                                To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </footer>
+                                                            </section>
+                                                        </section>
+                                                        <!-- side content -->
+
+                                                        <!-- / side content -->
+                                                    </section>
+                                                    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+                                                </section>
+                                            </section>
+                                        </section>   
+                                    </footer>
+                                </section>
+                            </section>
+
+                        </section>
+                        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
                     </section>
-                    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
                 </section>
             </section>
-        </section>    
+        </section>
+
 
         <script type="text/javascript" src="js/libs/jquery.history/jquery.history.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/assets/app.js"></script>
         <script type="text/javascript" src="js/app/comunidadfusa.js"></script>
         <script type="text/javascript" src="js/app/util/util.js"></script>
         <script type="text/javascript" src="js/app/util/hashhistory/html5HistoryAPI.js"></script>

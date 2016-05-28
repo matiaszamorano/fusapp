@@ -1,12 +1,7 @@
-#contenedor {
-    height: 100vh;
+#contenedorInfoFusa {
+    height: 80vh;
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    z-index: 1000;
-}
 
 #login ul.error_list {
     list-style: none;
