@@ -29,7 +29,6 @@ comunidadfusa.ui.index = (function () {
         $(document).on("click", "a[rel='ajax']", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log("rel ajax");
             comunidadfusa.util.html5HistoryAPI.cargarPagina($(this).attr("href"));
             return false;
         });
