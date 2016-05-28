@@ -1,4 +1,6 @@
-comunidadfusa.util.html5HistoryAPI = (function() {
+comunidadfusa.util.html5HistoryAPI = (function () {
+
+    var timer;
 
     function supports_history_api() {
         return !!(window.history && history.pushState);
@@ -8,13 +10,13 @@ comunidadfusa.util.html5HistoryAPI = (function() {
         jQuery.ajax({
             type: 'GET',
             dataType: 'html',
-            success: function(data, textStatus) {
+            success: function (data, textStatus) {
                 $('#contenedorInfoFusa').empty();
                 $('#contenedorInfoFusa').html(data);
             },
-            beforeSend: function(XMLHttpRequest) {
+            beforeSend: function (XMLHttpRequest) {
             },
-            complete: function(XMLHttpRequest, textStatus) {
+            complete: function (XMLHttpRequest, textStatus) {
                 setupHistoryClicks();
             },
             url: href
@@ -23,16 +25,17 @@ comunidadfusa.util.html5HistoryAPI = (function() {
     }
 
     function addClicker($link) {
-        $link.on("click", function(e){
+        $link.on("click", function (e) {
             if (cargarPagina($link.attr("href"))) {
                 history.pushState(null, null, $link.attr("href"));
                 e.preventDefault();
             }
         });
     }
-    
+
     function setupHistoryClicks() {
-        $('a[rel=ajax][ready!=1]').each(function() {
+        $('a[rel=ajax][ready!=1]').unbind("click"); //revisar, sino se encadenaban
+        $('a[rel=ajax][ready!=1]').each(function () {
             addClicker($(this));
             $(this).attr("ready", 1);
         });
@@ -43,8 +46,9 @@ comunidadfusa.util.html5HistoryAPI = (function() {
             return;
         }
         setupHistoryClicks();
-        window.setTimeout(function() {
-            window.addEventListener("popstate", function(e) {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(function () {
+            window.addEventListener("popstate", function (e) {
                 cargarPagina(location.pathname);
             }, false);
         }, 1);

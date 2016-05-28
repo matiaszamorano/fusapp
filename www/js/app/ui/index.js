@@ -26,13 +26,7 @@ comunidadfusa.ui.index = (function () {
             comunidadfusa.service.usuario.logout();
             window.location.reload(true);
         });
-        $(document).on("click", "a[rel='ajax']", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            comunidadfusa.util.html5HistoryAPI.cargarPagina($(this).attr("href"));
-            return false;
-        });
-
+        
     }
 
     return {
