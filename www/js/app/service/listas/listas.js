@@ -6,7 +6,6 @@ comunidadfusa.service.listas = (function () {
         var url = comunidadfusa.service.baseURI + "/listaReproduccion/" + idUsuario;
         comunidadfusa.service.get(url)
                 .done(function (data) {
-                    console.log(data);
                     storage.setItem("listas-usuario", JSON.stringify(data));
                 })
                 .fail(function (error) {

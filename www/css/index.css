@@ -8,6 +8,10 @@
     padding: 0;
 }
 
+#escuchando-lista li a img {
+    max-height: 40px;
+}
+
 @media (orientation: landscape) {
     .fusa-bread {
         margin-top: 0;

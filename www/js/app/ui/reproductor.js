@@ -18,16 +18,16 @@ comunidadfusa.ui.reproductor = (function () {
             $("#spin").addClass("hide");
             reproduciendo = 1;
         });
-        
+
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').removeClass('animate');
             reproduciendo = 0;
         });
-        
+
         $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
             $('.musicbar').removeClass('animate');
         });
-        
+
     }
 
     function inicializarPlaylist() {
@@ -90,20 +90,30 @@ comunidadfusa.ui.reproductor = (function () {
     function pausa() {
         playlist.pause();
     }
-    
+
     function next() {
         $("#spin").removeClass("hide");
         playlist.next();
     }
-    
+
     function prev() {
         $("#spin").removeClass("hide");
         playlist.previous();
     }
 
+    function getPlayList() {
+        return playlist;
+    }
+
+    function estaReproduciendo() {
+        return reproduciendo;
+    }
+
     return {
         init: init,
+        getPlayList: getPlayList,
         reproducirListaPorUrl: reproducirListaPorUrl,
+        estaReproduciendo: estaReproduciendo,
         play: play,
         pausa: pausa,
         next: next,
