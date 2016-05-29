@@ -52,16 +52,28 @@ comunidadfusa.ui.reproductor = (function () {
             }
 
             var id = $this.data("id");
-            var dataAudiosLista = {
-                idListaReproduccion: id,
-                success: function (data) {
-                    if (data.length > 0) {
-                        agregarAudios(data);
-                        comunidadfusa.trackEventAnalytics("playLista", "click", "usuario", id);
-                    }
-                }
-            };
-            comunidadfusa.service.listas.getAudiosListasReproduccion(dataAudiosLista)
+            comunidadfusa.service.listas.getAudiosListasReproduccion({idListaReproduccion: id})
+                    .done(function (data) {
+                        if (data.length > 0) {
+                            agregarAudios(data);
+                        }
+                    })
+                    .fail(function (error) {
+                        console.log(error);
+                    });
+            ;
+        });
+
+        $(document).on('click', '.jp-play-me', function (e) {
+            e && e.preventDefault();
+            var $this = $(e.target);
+
+            if (!$this.is('a')) {
+                $this = $this.closest('a');
+            }
+
+            var id = $this.data("id");
+            comunidadfusa.service.audios.getAudiosBanda({idBanda: id})
                     .done(function (data) {
                         if (data.length > 0) {
                             agregarAudios(data);
