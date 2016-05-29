@@ -27,7 +27,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="listas">
                         <ul class="list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
-                            <li class="list-group-item" ng-class="{'show': listasReproduccion.length === 0}">
+                            <li class="list-group-item" ng-class="{
+                                        'show': listasReproduccion.length === 0}">
                                 <span class="clear">
                                     Este usuario no tiene listas todavía.
                                 </span>
@@ -35,10 +36,22 @@
                         </ul>
                     </div>
                     <div class="tab-pane" id="escuchadas">
-                        asd
+                        <ul class="fusa-js-perfil-mas-escuchadas list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    No escuchaste bandas todavía.
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="tab-pane" id="siguiendo">
-                        ads
+                        <ul class="fusa-js-perfil-siguiendo list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    No estas siguiendo bandas todavía.
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -73,6 +86,20 @@
         </span>
         <strong class = "block">${Nombre}</strong>
         <small class="text-ellipsis">${Reproducciones} reproducciones</small>
+    </li>
+</script>
+<script id="fusa-js-banda-siguiendo-tmpl" type="text/html">
+    <li class="list-group-item">
+        <div class="pull-right text-center">
+            <a href="#" class="jp-play-me" data-id="${Id}">
+                <i class="fa fa-play-circle i-2x"></i>
+            </a>
+        </div>
+        <span class="thumb-sm pull-left m-r-sm">
+            <img src="http://www.comunidadfusa.com{{if Imagen}}${Imagen}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${Nombre}" class="img-circle">
+        </span>
+        <strong class = "block">${Nombre}</strong>
+        <small class="text-ellipsis">${Ciudad}</small>
     </li>
 </script>
 

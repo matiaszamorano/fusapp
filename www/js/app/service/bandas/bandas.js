@@ -4,8 +4,13 @@ comunidadfusa.service.bandas = (function () {
         var url = comunidadfusa.service.baseURI + "/mi-musica/masEscuchadas";
         return comunidadfusa.service.get(url, data);
     }
+    function getSiguiendo(data) {
+        var url = comunidadfusa.service.baseURI + "/mi-musica/siguiendo";
+        return comunidadfusa.service.get(url, data);
+    }
 
     return {
-        getBandasMasEscuchadas: getBandasMasEscuchadas
+        getBandasMasEscuchadas: getBandasMasEscuchadas,
+        getSiguiendo: getSiguiendo
     };
 })();
