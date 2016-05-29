@@ -35,15 +35,7 @@ comunidadfusa.ui.escuchando = (function () {
                     }
                 }, 500);
             }
-            $this.parent().animate({
-                opacity: 0,
-                height: "toggle"
-            }, {
-                duration: 500,
-                complete: function () {
-                    $(this).remove();
-                }
-            });
+            $this.parent().remove();
         });
 
         $(document).on($.jPlayer.event.play, jPlaylist.cssSelector.jPlayer, function (data) {
@@ -75,9 +67,6 @@ comunidadfusa.ui.escuchando = (function () {
         var $itemActual = $("#escuchando-lista li[data-index='" + jPlaylist.current + "']");
         $itemActual.addClass("active");
         $itemActual.children("a.jp-play-me-escuchando").addClass("active");
-        $('#contenedorInfoFusa').animate({
-            scrollTop: $("#cancion_" + jPlaylist.current).position().top - 20
-        }, 500);
         $("#fusa-portada-banda-actual").empty().append(
                 $("#fusa-portada-tema-actual-tmpl").tmpl(jPlaylist.playlist[jPlaylist.current])
                 );
