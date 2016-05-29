@@ -3,9 +3,21 @@ comunidadfusa.ui.reproductor = (function () {
     var playlist;
     var reproduciendo;
     var $botonComienzo;
+    
+    function actualizarPosicion() {
+        var altura = $(window).height();  
+        $("#contenedorInfoFusa").css("height", altura - 110)
+    }
 
     function init() {
         inicializarPlaylist();
+        
+        actualizarPosicion();
+
+        $(window).resize(function() {
+            actualizarPosicion();
+        });
+        
         $botonComienzo = $("#fusa-js-empeza-a-escuchar");
 
         $(document).on($.jPlayer.event.ended, playlist.cssSelector.jPlayer, function (data) {
