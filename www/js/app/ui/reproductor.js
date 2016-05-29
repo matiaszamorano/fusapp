@@ -3,21 +3,22 @@ comunidadfusa.ui.reproductor = (function () {
     var playlist;
     var reproduciendo;
     var $botonComienzo;
-    
+
     function actualizarPosicion() {
-        var altura = $(window).height();  
+        var altura = $(window).height();
         $("#contenedorInfoFusa").css("height", altura - 110)
     }
 
     function init() {
         inicializarPlaylist();
-        
+        inicializarEventos();
+
         actualizarPosicion();
 
-        $(window).resize(function() {
+        $(window).resize(function () {
             actualizarPosicion();
         });
-        
+
         $botonComienzo = $("#fusa-js-empeza-a-escuchar");
 
         $(document).on($.jPlayer.event.ended, playlist.cssSelector.jPlayer, function (data) {
@@ -40,6 +41,37 @@ comunidadfusa.ui.reproductor = (function () {
             $('.musicbar').removeClass('animate');
         });
 
+    }
+
+    function inicializarEventos() {
+        $(document).on('click', '.jp-play-me-list', function (e) {
+            e && e.preventDefault();
+            var $this = $(e.target);
+            if (!$this.is('a')) {
+                $this = $this.closest('a');
+            }
+
+            var id = $this.data("id");
+            var dataAudiosLista = {
+                idListaReproduccion: id,
+                success: function (data) {
+                    if (data.length > 0) {
+                        agregarAudios(data);
+                        comunidadfusa.trackEventAnalytics("playLista", "click", "usuario", id);
+                    }
+                }
+            };
+            comunidadfusa.service.listas.getAudiosListasReproduccion(dataAudiosLista)
+                    .done(function (data) {
+                        if (data.length > 0) {
+                            agregarAudios(data);
+                        }
+                    })
+                    .fail(function (error) {
+                        console.log(error);
+                    });
+            ;
+        });
     }
 
     function inicializarPlaylist() {

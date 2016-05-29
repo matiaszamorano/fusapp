@@ -13,12 +13,18 @@ comunidadfusa.service.listas = (function () {
                 });
     }
 
+    function getAudiosListasReproduccion(data) {
+        var url = comunidadfusa.service.baseURI + "/listaReproduccion/" + data.idListaReproduccion + "/audios";
+        return comunidadfusa.service.get(url);
+    }
+
     function getListasUsuario() {
         return JSON.parse(storage.getItem("listas-usuario"));
     }
 
     return {
         getListasUsuario: getListasUsuario,
-        cargar: cargar
+        cargar: cargar,
+        getAudiosListasReproduccion: getAudiosListasReproduccion
     };
 })();
