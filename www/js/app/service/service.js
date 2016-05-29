@@ -1,8 +1,8 @@
 comunidadfusa.service = (function () {
     var BASE_URI = comunidadfusa.baseURI + "servicios";
 
-    function get(uri) {
-        return $.get(uri);
+    function get(uri, data) {
+        return $.get(uri, data);
     }
 
     function post(uri, data) {
