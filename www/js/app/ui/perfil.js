@@ -9,7 +9,9 @@ comunidadfusa.ui.perfil = (function () {
         }
         $(".fusa-js-avatar-usuario").attr("src", usuario.avatar);
         $(".fusa-js-perfil-apodo").text(usuario.apodo);
-        $(".fusa-js-perfil-ciudad").text(usuario.ciudad);
+        if (usuario.ciudad) {
+            $(".fusa-js-perfil-ciudad").text(usuario.ciudad);
+        }
 
         var dataMasEscuchadas = {
             usuario_id: usuario.id,
