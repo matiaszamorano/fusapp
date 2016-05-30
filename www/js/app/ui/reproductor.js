@@ -3,6 +3,7 @@ comunidadfusa.ui.reproductor = (function () {
     var playlist;
     var reproduciendo;
     var $botonComienzo;
+    var usuario;
 
     function actualizarPosicion() {
         var altura = $(window).height();
@@ -12,6 +13,8 @@ comunidadfusa.ui.reproductor = (function () {
     function init() {
         inicializarPlaylist();
         inicializarEventos();
+        inicializarListasRecomendadas();
+        usuario = comunidadfusa.service.usuario.get();
 
         actualizarPosicion();
 
@@ -83,6 +86,64 @@ comunidadfusa.ui.reproductor = (function () {
                         console.log(error);
                     });
             ;
+        });
+    }
+
+    function inicializarListasRecomendadas() {
+        $(document).on("click", ".fusa-js-lista-recomendada-popular", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = comunidadfusa.service.baseURI + "/audios/populares";
+            reproducirListaPorUrl(url);
+            return false;
+        });
+
+        $(document).on("click", ".fusa-js-lista-recomendada-nuevas", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = comunidadfusa.service.baseURI + "/audios/nuevos";
+            reproducirListaPorUrl(url);
+            return false;
+        });
+
+        $(document).on("click", ".fusa-js-lista-recomendada-azar", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = comunidadfusa.service.baseURI + "/audios/random";
+            reproducirListaPorUrl(url);
+            return false;
+        });
+
+        $(document).on("click", "#lista-nunca-escuchadas", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = comunidadfusa.service.baseURI + "/audios/noescuchados/" + usuario.id;
+            reproducirListaPorUrl(url);
+            return false;
+        });
+
+        $(document).on("click", "#lista-mas-escuchadas", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = comunidadfusa.service.baseURI + "/audios/playlist/masescuchados/" + usuario.id;
+            reproducirListaPorUrl(url);
+            return false;
+        });
+
+        $(document).on("click", "#lista-me-gustan", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = comunidadfusa.service.baseURI + "/audios/megustan/" + usuario.id;;
+            reproducirListaPorUrl(url);
+            return false;
+        });
+
+        $(document).on("click", "#lista-ultimos-me-gustan", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var url = comunidadfusa.service.baseURI + "/audios/ultimosmegustan/" + usuario.id;;
+            reproducirListaPorUrl(url);
+            return false;
         });
     }
 
