@@ -26,9 +26,9 @@ comunidadfusa.ui.index = (function () {
             e.preventDefault();
             e.stopPropagation();
             comunidadfusa.service.usuario.logout();
-            window.location.reload(true);
+            document.location.href = "index.html";
         });
-        
+
     }
 
     return {
