@@ -8,7 +8,7 @@ var comunidadfusa = (function () {
     }
 
     function mp3URI() {
-        return "http://audio.comunidadfusa.com/prod/";
+        return "https://storage.googleapis.com/audiosfusa/";
     }
     
     function baseURIHash() {
