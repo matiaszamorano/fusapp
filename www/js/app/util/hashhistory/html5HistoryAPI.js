@@ -13,6 +13,7 @@ comunidadfusa.util.html5HistoryAPI = (function () {
             success: function (data, textStatus) {
                 $('#contenedorInfoFusa').empty();
                 $('#contenedorInfoFusa').html(data);
+                $('#nav').removeClass("nav-off-screen");
             },
             beforeSend: function (XMLHttpRequest) {
             },
