@@ -3,8 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
-
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" href="js/libs/jplayer/jplayer.flat.css" type="text/css" />
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="css/animate.css"/>
@@ -191,6 +190,16 @@
                                                                                         <div><a id="fusa-js-next" class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
                                                                                         <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
                                                                                         <div><a href="escuchando.html" rel="ajax"><i class="icon-list"></i></a></div>
+                                                                                        <div class="btn-group dropup fusa-opciones-reproductor">
+                                                                                            <a class="m-r-sm fusa-js-opciones-audio" href="#" data-toggle="dropdown">
+                                                                                                <i class="fa fa-ellipsis-v"></i>
+                                                                                            </a>
+                                                                                            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                                                                                                <li>
+                                                                                                    <a href="#" class="fusa-js-limpiar-lista-actual">Borrar lista</a>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                        </div>
                                                                                         <div class="jp-progress">
                                                                                             <div class="jp-seek-bar dk">
                                                                                                 <div class="jp-play-bar bg-info">

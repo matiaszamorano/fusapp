@@ -10,7 +10,7 @@ var comunidadfusa = (function () {
     function mp3URI() {
         return "https://storage.googleapis.com/audiosfusa/";
     }
-    
+
     function baseURIHash() {
         if (baseURIHashLayout) {
             return baseURIHashLayout;
@@ -19,9 +19,15 @@ var comunidadfusa = (function () {
         return "";
     }
 
+    function estaEnEscuchando() {
+        var estoyEnEscuchando = window.location.pathname;
+        return estoyEnEscuchando === "/fusapp/escuchando.html";
+    }
+
     return {
         baseURI: BASE_URI,
         baseURIHash: BASE_URI_HASH,
-        MP3_URI: MP3_URI
+        MP3_URI: MP3_URI,
+        estaEnEscuchando: estaEnEscuchando
     };
 })();

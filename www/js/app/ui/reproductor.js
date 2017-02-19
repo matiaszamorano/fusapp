@@ -14,6 +14,7 @@ comunidadfusa.ui.reproductor = (function () {
         inicializarPlaylist();
         inicializarEventos();
         inicializarListasRecomendadas();
+        inicializarOpcionesReproductor();
         usuario = comunidadfusa.service.usuario.get();
 
         actualizarPosicion();
@@ -133,7 +134,8 @@ comunidadfusa.ui.reproductor = (function () {
         $(document).on("click", "#lista-me-gustan", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            var url = comunidadfusa.service.baseURI + "/audios/megustan/" + usuario.id;;
+            var url = comunidadfusa.service.baseURI + "/audios/megustan/" + usuario.id;
+            ;
             reproducirListaPorUrl(url);
             return false;
         });
@@ -141,7 +143,8 @@ comunidadfusa.ui.reproductor = (function () {
         $(document).on("click", "#lista-ultimos-me-gustan", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            var url = comunidadfusa.service.baseURI + "/audios/ultimosmegustan/" + usuario.id;;
+            var url = comunidadfusa.service.baseURI + "/audios/ultimosmegustan/" + usuario.id;
+            ;
             reproducirListaPorUrl(url);
             return false;
         });
@@ -198,6 +201,21 @@ comunidadfusa.ui.reproductor = (function () {
                 url: comunidadfusa.baseURI + "bandas/" + audio.url_fusa
             }, reproducirAhora);
         }
+    }
+
+    function inicializarOpcionesReproductor() {
+        $(document).on("click", ".fusa-js-limpiar-lista-actual", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            playlist.remove();
+            $(".jp-progress .jp-seek-bar .jp-title").html("");
+            $("#footer-banda-sonando").html("");
+            if (comunidadfusa.estaEnEscuchando()) {
+                window.location = "index.html";
+            }
+            return false;
+        });
+
     }
 
     function play() {
