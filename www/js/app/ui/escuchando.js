@@ -4,9 +4,7 @@ comunidadfusa.ui.escuchando = (function () {
     var playlist;
 
     function init() {
-        console.log("escuchando init");
         jPlaylist = comunidadfusa.ui.reproductor.getPlayList();
-        console.log(jPlaylist);
         playlist = jPlaylist.playlist;
         initLista();
 
