@@ -23,6 +23,7 @@ comunidadfusa.ui.perfil = (function () {
                     if (data.length > 0) {
                         $(".fusa-js-perfil-mas-escuchadas").empty();
                         $(".fusa-js-perfil-mas-escuchadas").append($("#fusa-js-banda-mas-escuchada-tmpl").tmpl(data));
+                        comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
                     }
                 })
                 .fail(function (error) {

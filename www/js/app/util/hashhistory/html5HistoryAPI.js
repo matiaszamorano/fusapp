@@ -7,6 +7,7 @@ comunidadfusa.util.html5HistoryAPI = (function () {
     }
 
     function cargarPagina(href) {
+        console.log("cargar pagina" + href);
         jQuery.ajax({
             type: 'GET',
             dataType: 'html',
