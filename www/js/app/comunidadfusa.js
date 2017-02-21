@@ -19,6 +19,21 @@ var comunidadfusa = (function () {
         return "";
     }
 
+    function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    }
+
     function estaEnEscuchando() {
         var estoyEnEscuchando = window.location.pathname;
         return estoyEnEscuchando === "/fusapp/escuchando.html";
@@ -28,6 +43,7 @@ var comunidadfusa = (function () {
         baseURI: BASE_URI,
         baseURIHash: BASE_URI_HASH,
         MP3_URI: MP3_URI,
-        estaEnEscuchando: estaEnEscuchando
+        estaEnEscuchando: estaEnEscuchando,
+        getUrlParameter: getUrlParameter
     };
 })();

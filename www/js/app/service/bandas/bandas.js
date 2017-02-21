@@ -9,8 +9,14 @@ comunidadfusa.service.bandas = (function () {
         return comunidadfusa.service.get(url, data);
     }
 
+    function getBanda(id) {
+        var url = comunidadfusa.service.baseURI + "/bandas/" + id;
+        return comunidadfusa.service.get(url);
+    }
+
     return {
         getBandasMasEscuchadas: getBandasMasEscuchadas,
-        getSiguiendo: getSiguiendo
+        getSiguiendo: getSiguiendo,
+        getBanda: getBanda
     };
 })();
