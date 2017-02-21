@@ -7,7 +7,6 @@ comunidadfusa.util.html5HistoryAPI = (function () {
     }
 
     function cargarPagina(href) {
-        console.log("cargar pagina" + href);
         jQuery.ajax({
             type: 'GET',
             dataType: 'html',
@@ -15,6 +14,7 @@ comunidadfusa.util.html5HistoryAPI = (function () {
                 $('#contenedorInfoFusa').empty();
                 $('#contenedorInfoFusa').html(data);
                 $('#nav').removeClass("nav-off-screen");
+                $('#contenedorInfoFusa').scrollTop(0);
             },
             beforeSend: function (XMLHttpRequest) {
             },
