@@ -8,7 +8,16 @@ comunidadfusa.ui.banda = (function () {
                     $(".fusa-js-ciudad-banda").text(data.ciudad);
                     $imagen = $(".fusa-js-imagen-banda");
                     $imagen.attr("src", "http://www.comunidadfusa.com/" + data.avatar_grande);
+                })
+                .fail(function (error) {
+                    console.log(error);
+                });
+        comunidadfusa.service.bandas.getDiscosBanda(idBanda)
+                .done(function (data) {
                     console.log(data);
+                    $(".fusa-js-lista-discos").empty();
+                    $(".fusa-js-lista-discos").append($("#disco-banda-tmpl").tmpl(data));
+                    comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
                 })
                 .fail(function (error) {
                     console.log(error);

@@ -14,9 +14,15 @@ comunidadfusa.service.bandas = (function () {
         return comunidadfusa.service.get(url);
     }
 
+    function getDiscosBanda(idBanda) {
+        var url = comunidadfusa.service.baseURI + "/bandas/" + idBanda + "/discos";
+        return comunidadfusa.service.get(url);
+    }
+
     return {
         getBandasMasEscuchadas: getBandasMasEscuchadas,
         getSiguiendo: getSiguiendo,
-        getBanda: getBanda
+        getBanda: getBanda,
+        getDiscosBanda: getDiscosBanda
     };
 })();

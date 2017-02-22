@@ -42,3 +42,7 @@
 .fusa-disco .nombre-disco a {
     color: white;
 }
+
+.item.item-disco {
+    min-height: 180px;
+}
