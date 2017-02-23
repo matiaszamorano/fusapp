@@ -23,6 +23,17 @@ comunidadfusa.ui.banda = (function () {
                 .fail(function (error) {
                     console.log(error);
                 });
+
+        comunidadfusa.service.bandas.getBandasRecomendadas(idBanda)
+                .done(function (data) {
+                    console.log(data);
+                    $(".fusa-js-bandas-recomendadas").empty();
+                    $(".fusa-js-bandas-recomendadas").append($("#banda-recomendada-tmpl").tmpl(data));
+                    comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
+                })
+                .fail(function (error) {
+                    console.log(error);
+                });
     }
 
 

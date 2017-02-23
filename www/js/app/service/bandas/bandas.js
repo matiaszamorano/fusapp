@@ -18,11 +18,17 @@ comunidadfusa.service.bandas = (function () {
         var url = comunidadfusa.service.baseURI + "/bandas/" + idBanda + "/discos";
         return comunidadfusa.service.get(url);
     }
+    
+    function getBandasRecomendadas(idBanda) {
+        var url = comunidadfusa.service.baseURI + "/relaciones/banda/" + idBanda;
+        return comunidadfusa.service.get(url);
+    }
 
     return {
         getBandasMasEscuchadas: getBandasMasEscuchadas,
         getSiguiendo: getSiguiendo,
         getBanda: getBanda,
-        getDiscosBanda: getDiscosBanda
+        getDiscosBanda: getDiscosBanda,
+        getBandasRecomendadas: getBandasRecomendadas
     };
 })();
