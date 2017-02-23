@@ -39,6 +39,7 @@ comunidadfusa.ui.perfil = (function () {
                     if (data.length > 0) {
                         $(".fusa-js-perfil-siguiendo").empty();
                         $(".fusa-js-perfil-siguiendo").append($("#fusa-js-banda-siguiendo-tmpl").tmpl(data));
+                        comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
                     }
                 })
                 .fail(function (error) {

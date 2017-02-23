@@ -82,9 +82,9 @@
             </a>
         </div>
         <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${Id}" rel="ajax">
-            <img src="http://www.comunidadfusa.com{{if Imagen}}${Imagen}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${Nombre}" class="img-circle">
+            <img src="http://www.comunidadfusa.com{{if Imagen}}${Imagen}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${Nombre}" class="img-circle"/>
         </a>
-        <strong class = "block">${Nombre}</strong>
+        <a href="banda.html?id=${Id}" rel="ajax"><strong class = "block">${Nombre}</strong></a>
         <small class="text-ellipsis">${Reproducciones} reproducciones</small>
     </li>
 </script>
@@ -95,10 +95,10 @@
                 <i class="fa fa-play-circle i-2x"></i>
             </a>
         </div>
-        <span class="thumb-sm pull-left m-r-sm">
-            <img src="http://www.comunidadfusa.com{{if Imagen}}${Imagen}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${Nombre}" class="img-circle">
-        </span>
-        <strong class = "block">${Nombre}</strong>
+        <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${Id}" rel="ajax">
+            <img src="http://www.comunidadfusa.com{{if Imagen}}${Imagen}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${Nombre}" class="img-circle"/>
+        </a>
+        <a href="banda.html?id=${Id}" rel="ajax"><strong class = "block">${Nombre}</strong></a>
         <small class="text-ellipsis">${Ciudad}</small>
     </li>
 </script>
