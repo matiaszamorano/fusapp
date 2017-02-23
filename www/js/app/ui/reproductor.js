@@ -219,7 +219,7 @@ comunidadfusa.ui.reproductor = (function () {
                 poster: comunidadfusa.baseURI + audio.avatar,
                 opinion: audio.opinion,
                 ciudad: audio.ciudad,
-                url: comunidadfusa.baseURI + "bandas/" + audio.url_fusa
+                idBanda: audio.idBanda
             }, reproducirAhora);
         }
     }

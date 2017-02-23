@@ -23,7 +23,7 @@
             <img src="${poster}" alt="${artist}" /></a>
         <a class="clear jp-play-me-escuchando" href="#">
             <span class="block text-ellipsis">${title}</span>
-            <a href="${url}"><small class="text-muted">por ${artist}</small></a></a>
+            <a href="banda.html?id=${idBanda}"  rel="ajax"><small class="text-muted">por ${artist}</small></a></a>
     </li>
     {{/each}}
 </script>
@@ -39,7 +39,7 @@
         </span>
     </div>
     <div class="bottom gd bg-info wrapper-lg">
-        <a href="${url}" class="h2 font-thin">${artist}</a>
+        <a href="banda.html?id=${idBanda}" class="h2 font-thin" rel="ajax">${artist}</a>
     </div>
     <img class="img-full" src="${poster}" alt="${artist}"  title="${artist}">
 </script>
