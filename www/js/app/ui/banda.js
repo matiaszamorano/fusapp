@@ -15,7 +15,6 @@ comunidadfusa.ui.banda = (function () {
                 });
         comunidadfusa.service.bandas.getDiscosBanda(idBanda)
                 .done(function (data) {
-                    console.log(data);
                     $(".fusa-js-lista-discos").empty();
                     $(".fusa-js-lista-discos").append($("#disco-banda-tmpl").tmpl(data));
                     comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
@@ -26,7 +25,6 @@ comunidadfusa.ui.banda = (function () {
 
         comunidadfusa.service.bandas.getBandasRecomendadas(idBanda)
                 .done(function (data) {
-                    console.log(data);
                     $(".fusa-js-bandas-recomendadas").empty();
                     $(".fusa-js-bandas-recomendadas").append($("#banda-recomendada-tmpl").tmpl(data));
                     comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();

@@ -14,9 +14,15 @@ comunidadfusa.service.audios = (function () {
         return comunidadfusa.service.get(url);
     }
 
+    function getAudio(id) {
+        var url = comunidadfusa.service.baseURI + "/audio/info/" + id;
+        return comunidadfusa.service.get(url);
+    }
+
     return {
         getAudiosPorUrl: getAudiosPorUrl,
         getAudiosBanda: getAudiosBanda,
-        getAudiosDisco: getAudiosDisco
+        getAudiosDisco: getAudiosDisco,
+        getAudio: getAudio
     };
 })();
