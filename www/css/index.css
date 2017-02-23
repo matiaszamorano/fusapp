@@ -46,3 +46,14 @@
 .item.item-disco {
     min-height: 180px;
 }
+
+.item-disco img {
+    min-height: 140px;
+}
+
+.fusa-foto-perfil {
+    display:block;
+    max-height:250px;/*set an height */
+    /*line-height:200px; set the baseline at 100px from top*/
+    overflow:hidden;/* crops/cut off */
+}
