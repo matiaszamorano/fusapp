@@ -6,6 +6,7 @@ comunidadfusa.ui.banda = (function () {
                 .done(function (data) {
                     $(".fusa-js-nombre-banda").text(data.nombre);
                     $(".fusa-js-ciudad-banda").text(data.ciudad);
+                    $(".jp-play-me").data("id", data.id);
                     $imagen = $(".fusa-js-imagen-banda");
                     $imagen.attr("src", "http://www.comunidadfusa.com/" + data.avatar_grande);
                 })

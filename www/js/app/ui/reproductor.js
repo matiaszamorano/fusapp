@@ -69,6 +69,7 @@ comunidadfusa.ui.reproductor = (function () {
         });
 
         $(document).on('click', '.jp-play-me', function (e) {
+            console.log("playhmeee");
             e && e.preventDefault();
             var $this = $(e.target);
 
@@ -81,6 +82,26 @@ comunidadfusa.ui.reproductor = (function () {
                     .done(function (data) {
                         if (data.length > 0) {
                             agregarAudios(data);
+                        }
+                    })
+                    .fail(function (error) {
+                        console.log(error);
+                    });
+            ;
+        });
+
+        $(document).on('click', '.jp-play-me-disc', function (e) {
+            e && e.preventDefault();
+            var $this = $(e.target);
+            if (!$this.is('a')) {
+                $this = $this.closest('a');
+            }
+            var id = $this.data("id");
+            comunidadfusa.service.audios.getAudiosDisco(id)
+                    .done(function (data) {
+                        console.log(data);
+                        if (data && data.canciones.length > 0) {
+                            agregarAudios(data.canciones);
                         }
                     })
                     .fail(function (error) {
