@@ -61,3 +61,24 @@
     /*line-height:200px; set the baseline at 100px from top*/
     overflow:hidden;/* crops/cut off */
 }
+
+.switch span {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    border-radius: 30px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-color: rgba(0,0,0,0.1);
+    display: inline-block;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+}
+
+.switch input:checked + span:after {
+    left: 10px;
+}
+
+.nav-primary ul.nav > li > a.modo-offline {
+    padding-right: 10px;
+}
