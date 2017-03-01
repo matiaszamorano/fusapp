@@ -1,30 +1,17 @@
 comunidadfusa.service.listas = (function () {
 
-    var storage = window.localStorage;
-
-    function cargar(idUsuario) {
-        var url = comunidadfusa.service.baseURI + "/listaReproduccion/" + idUsuario;
-        comunidadfusa.service.get(url)
-                .done(function (data) {
-                    storage.setItem("listas-usuario", JSON.stringify(data));
-                })
-                .fail(function (error) {
-                    console.log(error);
-                });
-    }
-
-    function getAudiosListasReproduccion(data) {
+    function getAudiosListasReproduccion(data, callback) {
         var url = comunidadfusa.service.baseURI + "/listaReproduccion/" + data.idListaReproduccion + "/audios";
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
-    function getListasUsuario() {
-        return JSON.parse(storage.getItem("listas-usuario"));
+    function getListasUsuario(callback) {
+        var url = comunidadfusa.service.baseURI + "/listaReproduccion/" + comunidadfusa.service.usuario.get().id;
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
     return {
         getListasUsuario: getListasUsuario,
-        cargar: cargar,
         getAudiosListasReproduccion: getAudiosListasReproduccion
     };
 })();

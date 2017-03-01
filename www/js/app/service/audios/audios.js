@@ -1,22 +1,22 @@
 comunidadfusa.service.audios = (function () {
 
-    function getAudiosPorUrl(uri) {
-        return comunidadfusa.service.get(uri);
+    function getAudiosPorUrl(uri, callback) {
+        comunidadfusa.service.getFromStorage(uri, callback);
     }
 
-    function getAudiosBanda(data) {
+    function getAudiosBanda(data, callback) {
         var url = comunidadfusa.service.baseURI + "/audio/todos/" + data.idBanda;
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
-    function getAudiosDisco(discoId) {
+    function getAudiosDisco(discoId, callback) {
         var url = comunidadfusa.service.baseURI + "/disco/info/" + discoId;
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
-    function getAudio(id) {
+    function getAudio(id, callback) {
         var url = comunidadfusa.service.baseURI + "/audio/info/" + id;
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
     return {

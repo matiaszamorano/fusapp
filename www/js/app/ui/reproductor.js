@@ -56,16 +56,11 @@ comunidadfusa.ui.reproductor = (function () {
             }
 
             var id = $this.data("id");
-            comunidadfusa.service.listas.getAudiosListasReproduccion({idListaReproduccion: id})
-                    .done(function (data) {
-                        if (data.length > 0) {
-                            agregarAudios(data);
-                        }
-                    })
-                    .fail(function (error) {
-                        console.log(error);
-                    });
-            ;
+            comunidadfusa.service.listas.getAudiosListasReproduccion({idListaReproduccion: id}, function (data) {
+                if (data.length > 0) {
+                    agregarAudios(data);
+                }
+            });
         });
 
         $(document).on('click', '.jp-play-me', function (e) {
@@ -77,16 +72,11 @@ comunidadfusa.ui.reproductor = (function () {
             }
 
             var id = $this.data("id");
-            comunidadfusa.service.audios.getAudiosBanda({idBanda: id})
-                    .done(function (data) {
-                        if (data.length > 0) {
-                            agregarAudios(data);
-                        }
-                    })
-                    .fail(function (error) {
-                        console.log(error);
-                    });
-            ;
+            comunidadfusa.service.audios.getAudiosBanda({idBanda: id}, function (data) {
+                if (data.length > 0) {
+                    agregarAudios(data);
+                }
+            });
         });
 
         $(document).on('click', '.jp-play-me-one', function (e) {
@@ -97,13 +87,9 @@ comunidadfusa.ui.reproductor = (function () {
             }
 
             var id = $this.data("id");
-            comunidadfusa.service.audios.getAudio(id)
-                    .done(function (data) {
-                        agregarAudios([data]);
-                    })
-                    .fail(function (error) {
-                        console.log(error);
-                    });
+            comunidadfusa.service.audios.getAudio(id, function (data) {
+                agregarAudios([data]);
+            });
         });
         $(document).on('click', '.jp-play-me-disc', function (e) {
             e && e.preventDefault();
@@ -112,16 +98,11 @@ comunidadfusa.ui.reproductor = (function () {
                 $this = $this.closest('a');
             }
             var id = $this.data("id");
-            comunidadfusa.service.audios.getAudiosDisco(id)
-                    .done(function (data) {
-                        if (data && data.canciones.length > 0) {
-                            agregarAudios(data.canciones);
-                        }
-                    })
-                    .fail(function (error) {
-                        console.log(error);
-                    });
-            ;
+            comunidadfusa.service.audios.getAudiosDisco(id, function (data) {
+                if (data && data.canciones.length > 0) {
+                    agregarAudios(data.canciones);
+                }
+            });
         });
     }
 
@@ -207,15 +188,11 @@ comunidadfusa.ui.reproductor = (function () {
 
     function reproducirListaPorUrl(url) {
         $("#spin").removeClass("hide");
-        comunidadfusa.service.audios.getAudiosPorUrl(url)
-                .done(function (data) {
-                    if (data.length > 0) {
-                        agregarAudios(data);
-                    }
-                })
-                .fail(function () {
-                    console.log("Error al obtener las canciones");
-                });
+        comunidadfusa.service.audios.getAudiosPorUrl(url, function (data) {
+            if (data.length > 0) {
+                agregarAudios(data);
+            }
+        });
     }
 
     function agregarAudios(audios) {

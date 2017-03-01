@@ -1,12 +1,13 @@
 comunidadfusa.ui.perfil = (function () {
 
     function init() {
-        var listas = comunidadfusa.service.listas.getListasUsuario();
+        comunidadfusa.service.listas.getListasUsuario(function (data) {
+            if (data.length > 0) {
+                $("#listas").empty();
+                $("#listas").append($("#perfil-lista-usuario-tmpl").tmpl(data));
+            }
+        });
         var usuario = comunidadfusa.service.usuario.get();
-        if (listas.length > 0) {
-            $("#listas").empty();
-            $("#listas").append($("#perfil-lista-usuario-tmpl").tmpl(listas));
-        }
         $(".fusa-js-avatar-usuario").attr("src", usuario.avatar);
         $(".fusa-js-perfil-apodo").text(usuario.apodo);
         if (usuario.ciudad) {
@@ -18,33 +19,25 @@ comunidadfusa.ui.perfil = (function () {
             pagina: 1
         };
 
-        comunidadfusa.service.bandas.getBandasMasEscuchadas(dataMasEscuchadas)
-                .done(function (data) {
-                    if (data.length > 0) {
-                        $(".fusa-js-perfil-mas-escuchadas").empty();
-                        $(".fusa-js-perfil-mas-escuchadas").append($("#fusa-js-banda-mas-escuchada-tmpl").tmpl(data));
-                        comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
-                    }
-                })
-                .fail(function (error) {
-                    console.log(error);
-                });
+        comunidadfusa.service.bandas.getBandasMasEscuchadas(dataMasEscuchadas, function (data) {
+            if (data.length > 0) {
+                $(".fusa-js-perfil-mas-escuchadas").empty();
+                $(".fusa-js-perfil-mas-escuchadas").append($("#fusa-js-banda-mas-escuchada-tmpl").tmpl(data));
+                comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
+            }
+        });
 
         var dataSigiuendo = {
             usuario_id: usuario.id
         };
 
-        comunidadfusa.service.bandas.getSiguiendo(dataSigiuendo)
-                .done(function (data) {
-                    if (data.length > 0) {
-                        $(".fusa-js-perfil-siguiendo").empty();
-                        $(".fusa-js-perfil-siguiendo").append($("#fusa-js-banda-siguiendo-tmpl").tmpl(data));
-                        comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
-                    }
-                })
-                .fail(function (error) {
-                    console.log(error);
-                });
+        comunidadfusa.service.bandas.getSiguiendo(dataSigiuendo, function (data) {
+            if (data.length > 0) {
+                $(".fusa-js-perfil-siguiendo").empty();
+                $(".fusa-js-perfil-siguiendo").append($("#fusa-js-banda-siguiendo-tmpl").tmpl(data));
+                comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
+            }
+        });
     }
 
 

@@ -1,8 +1,25 @@
 comunidadfusa.service = (function () {
     var BASE_URI = comunidadfusa.baseURI + "servicios";
 
-    function get(uri, data) {
-        return $.get(uri, data);
+    var storage = window.localStorage;
+
+    function get(uri, callback, data) {
+        $.get(uri, data, function (data) {
+            storage.setItem(uri, JSON.stringify(data));
+            callback(data);
+        });
+    }
+
+    function getFromStorage(uri, callback, data) {
+        console.log(uri);
+        if (localStorage.getItem(uri) === null) {
+            console.log("Server");
+            get(uri, callback, data);
+        } else {
+            console.log("Storage");
+            callback(JSON.parse(storage.getItem(uri)));
+            get(uri, function () {}, data);
+        }
     }
 
     function post(uri, data) {
@@ -31,6 +48,7 @@ comunidadfusa.service = (function () {
     return {
         baseURI: BASE_URI,
         get: get,
-        post: post
+        post: post,
+        getFromStorage: getFromStorage
     };
 })();

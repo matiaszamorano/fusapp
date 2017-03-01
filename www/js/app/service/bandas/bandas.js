@@ -1,27 +1,27 @@
 comunidadfusa.service.bandas = (function () {
 
-    function getBandasMasEscuchadas(data) {
+    function getBandasMasEscuchadas(data, callback) {
         var url = comunidadfusa.service.baseURI + "/mi-musica/masEscuchadas";
-        return comunidadfusa.service.get(url, data);
+        comunidadfusa.service.getFromStorage(url, callback, data);
     }
-    function getSiguiendo(data) {
+    function getSiguiendo(data, callback) {
         var url = comunidadfusa.service.baseURI + "/mi-musica/siguiendo";
-        return comunidadfusa.service.get(url, data);
+        comunidadfusa.service.getFromStorage(url, callback, data);
     }
 
-    function getBanda(id) {
+    function getBanda(id, callback) {
         var url = comunidadfusa.service.baseURI + "/bandas/" + id;
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
-    function getDiscosBanda(idBanda) {
+    function getDiscosBanda(idBanda, callback) {
         var url = comunidadfusa.service.baseURI + "/bandas/" + idBanda + "/discos";
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
-    
-    function getBandasRecomendadas(idBanda) {
+
+    function getBandasRecomendadas(idBanda, callback) {
         var url = comunidadfusa.service.baseURI + "/relaciones/banda/" + idBanda;
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
     return {

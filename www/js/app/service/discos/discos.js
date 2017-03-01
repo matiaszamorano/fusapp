@@ -1,8 +1,8 @@
 comunidadfusa.service.discos = (function () {
 
-    function getDisco(id) {
+    function getDisco(id, callback) {
         var url = comunidadfusa.service.baseURI + "/disco/info/" + id;
-        return comunidadfusa.service.get(url);
+        comunidadfusa.service.getFromStorage(url, callback);
     }
 
     return {
