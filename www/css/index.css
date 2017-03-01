@@ -70,3 +70,7 @@
     width: 18px;
     margin-top: 4px;
 }
+
+.navbar-header.aside.bg-black.lter.nav-xs {
+    height: 50px;
+}
