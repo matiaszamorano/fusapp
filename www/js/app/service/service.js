@@ -11,7 +11,7 @@ comunidadfusa.service = (function () {
     }
 
     function getFromStorage(uri, callback, data) {
-        if (localStorage.getItem(uri) === null) {
+        if (storage.getItem(uri) === null) {
             get(uri, callback, data);
         } else {
             callback(JSON.parse(storage.getItem(uri)));
