@@ -199,8 +199,14 @@ comunidadfusa.ui.reproductor = (function () {
         for (var i = 0; i < audios.length; i++) {
             var audio = audios[i];
             var reproducirAhora = 0;
+            var mp3;
             if ((i === 0) && !reproduciendo) {
                 reproducirAhora = 1;
+            }
+            if (comunidadfusa.service.audios.estaDescargado(audio.id)) {
+                mp3 = comunidadfusa.util.archivos.getPathAudios().nativeURL + audio.archivo;
+            } else {
+                mp3 = comunidadfusa.MP3_URI + audio.archivo;
             }
             playlist.add({
                 id: audio.id,

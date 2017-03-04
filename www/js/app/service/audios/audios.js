@@ -1,5 +1,7 @@
 comunidadfusa.service.audios = (function () {
 
+    var storage = window.localStorage;
+
     function getAudiosPorUrl(uri, callback) {
         comunidadfusa.service.getFromStorage(uri, callback);
     }
@@ -19,10 +21,20 @@ comunidadfusa.service.audios = (function () {
         comunidadfusa.service.getFromStorage(url, callback);
     }
 
+    function audioDescargado(idAudio) {
+        storage.setItem("descargado/" + idAudio, 1);
+    }
+
+    function estaDescargado(idAudio) {
+        storage.getItem("descargado/" + idAudio);
+    }
+
     return {
         getAudiosPorUrl: getAudiosPorUrl,
         getAudiosBanda: getAudiosBanda,
         getAudiosDisco: getAudiosDisco,
-        getAudio: getAudio
+        getAudio: getAudio,
+        audioDescargado: audioDescargado,
+        estaDescargado: estaDescargado
     };
 })();

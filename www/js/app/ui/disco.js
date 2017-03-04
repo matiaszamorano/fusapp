@@ -26,8 +26,8 @@ comunidadfusa.ui.disco = (function () {
             if (!$this.is('a')) {
                 $this = $this.closest('a');
             }
-            var id = $this.data("id");
-            comunidadfusa.service.audios.getAudio(id, function (data) {
+            var idAudio = $this.data("id");
+            comunidadfusa.service.audios.getAudio(idAudio, function (data) {
                 console.log(data);
                 descargarCancion(data.archivo);
             });
@@ -40,36 +40,21 @@ comunidadfusa.ui.disco = (function () {
         alert(fileURL);
         fileTransfer = new FileTransfer();
         try {
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, onFileSystemSuccess, onError);
+            var dir = comunidadfusa.util.archivos.getPathAudios();
+            dir.getFile(filename, {create: true, exclusive: false}, gotFileEntry, errorHandler);
         } catch (err) {
             alert("ER - " + err.message);
         }
     }
 
-    function onFileSystemSuccess(fileSystem) {
-        alert("onFileSystemSuccess");
-        entry = fileSystem;
-        entry.getDirectory("fusa", {create: true, exclusive: false}, onGetDirectorySuccess, onGetDirectoryFail);
-    }
-
-    function onGetDirectorySuccess(dir) {
-        alert("onGetDirectorySuccess");
-        dir.getDirectory("audios", {create: true, exclusive: false}, onGetDirectorySuccess1, onGetDirectoryFail);
-    }
-
-    function onGetDirectorySuccess1(dir) {
-        alert("onGetDirectorySuccess1");
-        cdr = dir;
-        dir.getFile(filename, {create: true, exclusive: false}, gotFileEntry, errorHandler);
-    }
-
     function gotFileEntry(fileEntry) {
         alert("gotFileEntry");
         var uri = encodeURI(fileURL);
-        alert("dest - " + cdr.nativeURL + filename);
-        fileTransfer.download(uri, cdr.nativeURL + filename,
+        alert("dest - " + dir.nativeURL + filename);
+        fileTransfer.download(uri, dir.nativeURL + filename,
                 function (entry) {
                     alert("descargar finalizada");
+                    comunidadfusa.service.audios.audioDescargado(idAudio);
                 },
                 function (error) {
                     alert("download error source " + error.source);
@@ -104,14 +89,6 @@ comunidadfusa.ui.disco = (function () {
         }
         ;
         alert("Msg - " + msg);
-    }
-
-    function onError(e) {
-        alert("onError");
-    }
-
-    function onGetDirectoryFail(error) {
-        alert("onGetDirectoryFail");
     }
 
     return {
