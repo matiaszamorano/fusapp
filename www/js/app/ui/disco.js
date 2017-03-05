@@ -33,22 +33,23 @@ comunidadfusa.ui.disco = (function () {
             var idAudio = $this.data("id");
             $this.find("i").removeClass("icon-arrow-down");
             $this.find("i").addClass("icon-clock");
-            comunidadfusa.service.audios.getAudio(idAudio, function (data) {
-                comunidadfusa.util.descargas.descargarCancion(data.archivo, idAudio, descargaAudioSuccess, descargaAudioError);
+            comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
+                comunidadfusa.util.descargas.descargarCancion(audio, descargaAudioSuccess, descargaAudioError);
             });
         });
     }
 
-    function descargaAudioSuccess(idAudioDescargado) {
-        var $cancion = $("a[data-id='" + idAudioDescargado + "']");
+    function descargaAudioSuccess(audioDescargado) {
+        var $cancion = $("a[data-id='" + audioDescargado.id + "']");
+        comunidadfusa.service.bandas.incrementarAudiosDescargados(audioDescargado.idBanda);
         var $icono = $cancion.find("i.icon-clock");
         $icono.removeClass("icon-clock");
         $icono.addClass("icon-check");
         $icono.addClass("text-success");
     }
 
-    function descargaAudioError(idAudioDescargado) {
-        var $cancion = $("a[data-id='" + idAudioDescargado + "']");
+    function descargaAudioError(audioDescargado) {
+        var $cancion = $("a[data-id='" + audioDescargado.id + "']");
         var $icono = $cancion.find("i.icon-clock");
         $icono.removeClass("icon-clock");
         $icono.addClass("icon-arrow-down");

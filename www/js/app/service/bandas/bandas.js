@@ -1,5 +1,7 @@
 comunidadfusa.service.bandas = (function () {
 
+    var storage = window.localStorage;
+
     function getBandasMasEscuchadas(data, callback) {
         var url = comunidadfusa.service.baseURI + "/mi-musica/masEscuchadas";
         comunidadfusa.service.getFromStorage(url, callback, data);
@@ -24,11 +26,30 @@ comunidadfusa.service.bandas = (function () {
         comunidadfusa.service.getFromStorage(url, callback);
     }
 
+    function incrementarAudiosDescargados(idBanda) {
+        var cantidadAudios = storage.getItem("audiosBandaDescargados" + idBanda);
+        if (cantidadAudios === null) {
+            storage.setItem("audiosBandaDescargados" + idBanda, 1);
+        } else {
+            storage.setItem("audiosBandaDescargados" + idBanda, parseInt(cantidadAudios) + 1);
+        }
+    }
+
+    function getCantidadAudiosDescargados(idBanda) {
+        var cantidadAudios = storage.getItem("audiosBandaDescargados" + idBanda);
+        if (cantidadAudios === null) {
+            return 0;
+        }
+        return parseInt(cantidadAudios);
+    }
+
     return {
         getBandasMasEscuchadas: getBandasMasEscuchadas,
         getSiguiendo: getSiguiendo,
         getBanda: getBanda,
         getDiscosBanda: getDiscosBanda,
-        getBandasRecomendadas: getBandasRecomendadas
+        getBandasRecomendadas: getBandasRecomendadas,
+        incrementarAudiosDescargados: incrementarAudiosDescargados,
+        getCantidadAudiosDescargados: getCantidadAudiosDescargados
     };
 })();

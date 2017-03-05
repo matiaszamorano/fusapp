@@ -1,10 +1,10 @@
 comunidadfusa.util.descargas = (function () {
 
-    function descargarCancion(nombreArchivo, idAudio, successCallback, errorCallback) {
-        var filename = nombreArchivo;
-        var fileURL = comunidadfusa.MP3_URI + nombreArchivo;
+    function descargarCancion(audio, successCallback, errorCallback) {
+        var filename = audio.archivo;
+        var fileURL = comunidadfusa.MP3_URI + audio.archivo;
         var fileTransfer = new FileTransfer();
-        var idAudioDescargado = idAudio;
+        var audioDescargado = audio;
         try {
             window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (fileSystem) {
                 var entry = fileSystem;
@@ -15,11 +15,11 @@ comunidadfusa.util.descargas = (function () {
                             var uri = encodeURI(fileURL);
                             fileTransfer.download(uri, cdr.nativeURL + filename,
                                     function () {
-                                        comunidadfusa.service.audios.audioDescargado(idAudioDescargado, cdr.nativeURL + filename);
-                                        successCallback(idAudioDescargado);
+                                        comunidadfusa.service.audios.audioDescargado(audioDescargado.id, cdr.nativeURL + filename);
+                                        successCallback(audioDescargado);
                                     },
                                     function () {
-                                        errorCallback(idAudioDescargado);
+                                        errorCallback(audioDescargado);
                                     },
                                     true);
                         }, errorHandler);
