@@ -203,10 +203,12 @@ comunidadfusa.ui.reproductor = (function () {
             if ((i === 0) && !reproduciendo) {
                 reproducirAhora = 1;
             }
-            if (comunidadfusa.service.audios.estaDescargado(audio.id)) {
-                mp3 = comunidadfusa.util.archivos.getPathAudios().nativeURL + audio.archivo;
-            } else {
+            var rutaAudioDescargado = comunidadfusa.service.audios.getDescargado(audio.id);
+            alert(rutaAudioDescargado);
+            if (rutaAudioDescargado === null) {
                 mp3 = comunidadfusa.MP3_URI + audio.archivo;
+            } else {
+                mp3 = rutaAudioDescargado;
             }
             playlist.add({
                 id: audio.id,

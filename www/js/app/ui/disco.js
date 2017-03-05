@@ -5,6 +5,7 @@ comunidadfusa.ui.disco = (function () {
     var fileURL = "";
     var imagePath = "";
     var fileTransfer;
+    var idAudio;
 
     function init() {
         var idDisco = comunidadfusa.getUrlParameter("id");
@@ -26,9 +27,8 @@ comunidadfusa.ui.disco = (function () {
             if (!$this.is('a')) {
                 $this = $this.closest('a');
             }
-            var idAudio = $this.data("id");
+            idAudio = $this.data("id");
             comunidadfusa.service.audios.getAudio(idAudio, function (data) {
-                console.log(data);
                 descargarCancion(data.archivo);
             });
         });
@@ -37,24 +37,36 @@ comunidadfusa.ui.disco = (function () {
     function descargarCancion(nombreArchivo) {
         filename = nombreArchivo;
         fileURL = comunidadfusa.MP3_URI + nombreArchivo;
-        alert(fileURL);
         fileTransfer = new FileTransfer();
         try {
-            var dir = comunidadfusa.util.archivos.getPathAudios();
-            dir.getFile(filename, {create: true, exclusive: false}, gotFileEntry, errorHandler);
+            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, onFileSystemSuccess, onError);
         } catch (err) {
             alert("ER - " + err.message);
         }
     }
 
+    function onFileSystemSuccess(fileSystem) {
+        entry = fileSystem;
+        entry.getDirectory("fusa", {create: true, exclusive: false}, onGetDirectorySuccess, onGetDirectoryFail);
+    }
+
+    function onGetDirectorySuccess(dir) {
+        dir.getDirectory("audios", {create: true, exclusive: false}, onGetDirectorySuccess1, onGetDirectoryFail);
+    }
+
+    function onGetDirectorySuccess1(dir) {
+        cdr = dir;
+        dir.getFile(filename, {create: true, exclusive: false}, gotFileEntry, errorHandler);
+    }
+
     function gotFileEntry(fileEntry) {
         alert("gotFileEntry");
         var uri = encodeURI(fileURL);
-        alert("dest - " + dir.nativeURL + filename);
-        fileTransfer.download(uri, dir.nativeURL + filename,
+        alert("dest - " + cdr.nativeURL + filename);
+        fileTransfer.download(uri, cdr.nativeURL + filename,
                 function (entry) {
-                    alert("descargar finalizada");
-                    comunidadfusa.service.audios.audioDescargado(idAudio);
+                    comunidadfusa.service.audios.audioDescargado(idAudio, cdr.nativeURL + filename);
+                    alert("Descarga finalizada");
                 },
                 function (error) {
                     alert("download error source " + error.source);
@@ -89,6 +101,14 @@ comunidadfusa.ui.disco = (function () {
         }
         ;
         alert("Msg - " + msg);
+    }
+
+    function onError(e) {
+        alert("onError");
+    }
+
+    function onGetDirectoryFail(error) {
+        alert("onGetDirectoryFail");
     }
 
     return {

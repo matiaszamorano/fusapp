@@ -21,12 +21,12 @@ comunidadfusa.service.audios = (function () {
         comunidadfusa.service.getFromStorage(url, callback);
     }
 
-    function audioDescargado(idAudio) {
-        storage.setItem("descargado/" + idAudio, 1);
+    function audioDescargado(idAudio, ruta) {
+        storage.setItem("descargado" + idAudio, ruta);
     }
 
-    function estaDescargado(idAudio) {
-        storage.getItem("descargado/" + idAudio);
+    function getDescargado(idAudio) {
+        return storage.getItem("descargado" + idAudio);
     }
 
     return {
@@ -35,6 +35,6 @@ comunidadfusa.service.audios = (function () {
         getAudiosDisco: getAudiosDisco,
         getAudio: getAudio,
         audioDescargado: audioDescargado,
-        estaDescargado: estaDescargado
+        getDescargado: getDescargado
     };
 })();
