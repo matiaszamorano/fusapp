@@ -39,13 +39,21 @@ comunidadfusa.ui.banda = (function () {
                     $botonDescarga.html("<i class='icon-clock'></i> Descargando (0/" + cantidadCanciones + ")");
                     for (var i = 0; i < cantidadCanciones; i++) {
                         var audio = data[i];
-                        comunidadfusa.util.descargas.descargarCancion(audio.archivo, audio.id, function (idAudioDescargado) {
+                        if (comunidadfusa.service.audios.estaDescargado(audio.id)) {
                             itemsProcessed++;
                             $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
                             if (itemsProcessed === cantidadCanciones) {
                                 $botonDescarga.html("<i class='icon-check'></i> Descargado");
                             }
-                        }, function () {});
+                        } else {
+                            comunidadfusa.util.descargas.descargarCancion(audio.archivo, audio.id, function () {
+                                itemsProcessed++;
+                                $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
+                                if (itemsProcessed === cantidadCanciones) {
+                                    $botonDescarga.html("<i class='icon-check'></i> Descargado");
+                                }
+                            }, function () {});
+                        }
                     }
                 }
             });
