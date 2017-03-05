@@ -25,6 +25,13 @@ comunidadfusa.service.audios = (function () {
         storage.setItem("descargado" + idAudio, ruta);
     }
 
+    function estaDescargado(idAudio) {
+        if (storage.getItem("descargado" + idAudio) === null) {
+            return false;
+        }
+        return true;
+    }
+
     function getDescargado(idAudio) {
         return storage.getItem("descargado" + idAudio);
     }
@@ -35,6 +42,7 @@ comunidadfusa.service.audios = (function () {
         getAudiosDisco: getAudiosDisco,
         getAudio: getAudio,
         audioDescargado: audioDescargado,
-        getDescargado: getDescargado
+        getDescargado: getDescargado,
+        estaDescargado: estaDescargado
     };
 })();

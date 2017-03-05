@@ -23,11 +23,19 @@
 <script id="cancion-disco-tmpl" type="text/html">
     <li class="list-group-item">
         <div class="pull-right m-l">
-            <a href="#" class="fusa-js-descargar-cancion m-r-sm"  data-id="${id}"><i class="icon-cloud-download"></i></a>
+            {{if descargado}}
+            <a href="#" class="fusa-js-quitar-descarga-cancion m-r-sm"  data-id="${id}">
+                <i class="icon-check text-success"></i>
+            </a>
+            {{else}} 
+            <a href="#" class="fusa-js-descargar-cancion m-r-sm"  data-id="${id}">
+                <i class=" icon-arrow-down "></i>
+            </a>
+            {{/if}}
         </div>
         <a href="#" class="jp-play-me-one m-r-sm pull-left" data-id="${id}">
             <i class="icon-control-play text"></i>
-            <i class="icon-control-pause text-active"></i>
+            <i class="icon-control-pause text-active"></i>  
         </a>
         <div class="clear text-ellipsis">
             <span>${nombreTema}</span>
@@ -37,5 +45,5 @@
 
 <script type="text/javascript" src="js/app/ui/disco.js"></script>
 <script type="text/javascript">
-    comunidadfusa.ui.disco.init();
+comunidadfusa.ui.disco.init();
 </script>

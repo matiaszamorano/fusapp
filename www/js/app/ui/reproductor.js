@@ -204,7 +204,6 @@ comunidadfusa.ui.reproductor = (function () {
                 reproducirAhora = 1;
             }
             var rutaAudioDescargado = comunidadfusa.service.audios.getDescargado(audio.id);
-            alert(rutaAudioDescargado);
             if (rutaAudioDescargado === null) {
                 mp3 = comunidadfusa.MP3_URI + audio.archivo;
             } else {

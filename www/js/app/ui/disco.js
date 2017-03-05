@@ -16,6 +16,16 @@ comunidadfusa.ui.disco = (function () {
             $imagen = $(".fusa-js-imagen-disco");
             $imagen.attr("src", "http://www.comunidadfusa.com/" + data.avatar);
 
+            data.canciones.forEach(function (cancion) {
+                if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
+                    cancion.descargado = true;
+                } else {
+                    cancion.descargado = false;
+                }
+            });
+
+            console.log(data.canciones);
+
             $(".fusa-js-lista-canciones-disco").empty();
             $(".fusa-js-lista-canciones-disco").append($("#cancion-disco-tmpl").tmpl(data.canciones));
 
@@ -28,6 +38,8 @@ comunidadfusa.ui.disco = (function () {
                 $this = $this.closest('a');
             }
             idAudio = $this.data("id");
+            $this.find("i").removeClass("icon-arrow-down");
+            $this.find("i").addClass("icon-clock");
             comunidadfusa.service.audios.getAudio(idAudio, function (data) {
                 descargarCancion(data.archivo);
             });
@@ -60,15 +72,19 @@ comunidadfusa.ui.disco = (function () {
     }
 
     function gotFileEntry(fileEntry) {
-        alert("gotFileEntry");
         var uri = encodeURI(fileURL);
-        alert("dest - " + cdr.nativeURL + filename);
         fileTransfer.download(uri, cdr.nativeURL + filename,
                 function (entry) {
                     comunidadfusa.service.audios.audioDescargado(idAudio, cdr.nativeURL + filename);
-                    alert("Descarga finalizada");
+                    var $cancion = $("a[data-id='" + idAudio + "']");
+                    var $icono = $cancion.find("i.icon-clock");
+                    $icono.removeClass("icon-clock");
+                    $icono.addClass("icon-check");
+                    $icono.addClass("text-success");
                 },
                 function (error) {
+                    $this.find("i").removeClass("icon-clock");
+                    $this.find("i").addClass("icon-arrow-down");
                     alert("download error source " + error.source);
                     alert("download error target " + error.target);
                     alert("upload error code" + error.code);
