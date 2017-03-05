@@ -5,7 +5,8 @@ comunidadfusa.ui.banda = (function () {
         comunidadfusa.service.bandas.getBanda(idBanda, function (data) {
             $(".fusa-js-nombre-banda").text(data.nombre);
             $(".fusa-js-ciudad-banda").text(data.ciudad);
-            $(".jp-play-me").data("id", data.id);
+            $("a.jp-play-me").data("id", idBanda);
+            $("a.fusa-js-descargar-banda").data("id", idBanda);
             $imagen = $(".fusa-js-imagen-banda");
             $imagen.attr("src", "http://www.comunidadfusa.com/" + data.avatar_grande);
         });
@@ -21,8 +22,35 @@ comunidadfusa.ui.banda = (function () {
             $(".fusa-js-bandas-recomendadas").append($("#banda-recomendada-tmpl").tmpl(data));
             comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
         });
-    }
 
+        $(document).on('click', '.fusa-js-descargar-banda', function (e) {
+            e && e.preventDefault();
+            var $this = $(e.target);
+            if (!$this.is('a')) {
+                $this = $this.closest('a');
+            }
+            var idBanda = $this.data("id");
+
+            comunidadfusa.service.audios.getAudiosBanda({idBanda: idBanda}, function (data) {
+                if (data.length > 0) {
+                    var itemsProcessed = 0;
+                    var cantidadCanciones = data.length;
+                    var $botonDescarga = $this.find("span.text");
+                    $botonDescarga.html("<i class='icon-clock'></i> Descargando (0/" + cantidadCanciones + ")");
+                    for (var i = 0; i < cantidadCanciones; i++) {
+                        var audio = data[i];
+                        comunidadfusa.util.descargas.descargarCancion(audio.archivo, audio.id, function (idAudioDescargado) {
+                            itemsProcessed++;
+                            $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
+                            if (itemsProcessed === cantidadCanciones) {
+                                $botonDescarga.html("<i class='icon-check'></i> Descargado");
+                            }
+                        }, function () {});
+                    }
+                }
+            });
+        });
+    }
 
     return {
         init: init
