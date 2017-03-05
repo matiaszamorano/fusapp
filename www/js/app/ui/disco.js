@@ -1,12 +1,5 @@
 comunidadfusa.ui.disco = (function () {
 
-    var entry, documentname, documentid, referenceID, callLogID, filePath, blob, cdr, fileObject;
-    var filename = "";
-    var fileURL = "";
-    var imagePath = "";
-    var fileTransfer;
-
-
     function init() {
         var idDisco = comunidadfusa.getUrlParameter("id");
 
@@ -47,31 +40,28 @@ comunidadfusa.ui.disco = (function () {
     }
 
     function descargarCancion(nombreArchivo, idAudio) {
-        filename = nombreArchivo;
-        fileURL = comunidadfusa.MP3_URI + nombreArchivo;
-        fileTransfer = new FileTransfer();
+        var filename = nombreArchivo;
+        var fileURL = comunidadfusa.MP3_URI + nombreArchivo;
+        var fileTransfer = new FileTransfer();
+        var idAudioDescargado = idAudio;
         try {
-            var idAudio1 = idAudio;
             window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (fileSystem) {
-                entry = fileSystem;
+                var entry = fileSystem;
                 entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
-                    var idAudio2 = idAudio1;
                     dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
-                        var idAudio3 = idAudio2;
-                        cdr = dir;
+                        var cdr = dir;
                         dir.getFile(filename, {create: true, exclusive: false}, function () {
                             var uri = encodeURI(fileURL);
-                            var idAudio4 = idAudio3;
                             fileTransfer.download(uri, cdr.nativeURL + filename,
-                                    function (entry) {
-                                        comunidadfusa.service.audios.audioDescargado(idAudio4, cdr.nativeURL + filename);
-                                        var $cancion = $("a[data-id='" + idAudio4 + "']");
+                                    function () {
+                                        comunidadfusa.service.audios.audioDescargado(idAudioDescargado, cdr.nativeURL + filename);
+                                        var $cancion = $("a[data-id='" + idAudioDescargado + "']");
                                         var $icono = $cancion.find("i.icon-clock");
                                         $icono.removeClass("icon-clock");
                                         $icono.addClass("icon-check");
                                         $icono.addClass("text-success");
                                     },
-                                    function (error) {
+                                    function () {
                                         $this.find("i").removeClass("icon-clock");
                                         $this.find("i").addClass("icon-arrow-down");
                                         alert("Error al descargar el tema");
