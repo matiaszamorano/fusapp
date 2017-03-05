@@ -213,7 +213,7 @@ comunidadfusa.ui.reproductor = (function () {
                 id: audio.id,
                 title: audio.nombreTema,
                 artist: audio.nombreBanda,
-                mp3: comunidadfusa.MP3_URI + audio.archivo,
+                mp3: mp3,
                 poster: comunidadfusa.baseURI + audio.avatar,
                 opinion: audio.opinion,
                 ciudad: audio.ciudad,
