@@ -74,10 +74,7 @@ comunidadfusa.ui.disco = (function () {
                                     function (error) {
                                         $this.find("i").removeClass("icon-clock");
                                         $this.find("i").addClass("icon-arrow-down");
-                                        alert("download error source " + error.source);
-                                        alert("download error target " + error.target);
-                                        alert("upload error code" + error.code);
-                                        alert("error");
+                                        alert("Error al descargar el tema");
                                     },
                                     true);
                         }, errorHandler);
