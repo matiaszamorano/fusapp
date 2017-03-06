@@ -17,8 +17,6 @@ comunidadfusa.ui.disco = (function () {
                 }
             });
 
-            console.log(data.canciones);
-
             $(".fusa-js-lista-canciones-disco").empty();
             $(".fusa-js-lista-canciones-disco").append($("#cancion-disco-tmpl").tmpl(data.canciones));
 

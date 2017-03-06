@@ -35,6 +35,10 @@ comunidadfusa.service.bandas = (function () {
         }
     }
 
+    function setAudiosDescargados(idBanda, cantidad) {
+        storage.setItem("audiosBandaDescargados" + idBanda, cantidad);
+    }
+
     function getCantidadAudiosDescargados(idBanda) {
         var cantidadAudios = storage.getItem("audiosBandaDescargados" + idBanda);
         if (cantidadAudios === null) {
@@ -50,6 +54,7 @@ comunidadfusa.service.bandas = (function () {
         getDiscosBanda: getDiscosBanda,
         getBandasRecomendadas: getBandasRecomendadas,
         incrementarAudiosDescargados: incrementarAudiosDescargados,
-        getCantidadAudiosDescargados: getCantidadAudiosDescargados
+        getCantidadAudiosDescargados: getCantidadAudiosDescargados,
+        setAudiosDescargados: setAudiosDescargados
     };
 })();
