@@ -31,6 +31,28 @@ comunidadfusa.util.descargas = (function () {
         }
     }
 
+    function eliminarCancionDescargada(audio, successCallback) {
+        var filename = audio.archivo;
+        var audioDescargado = audio;
+        try {
+            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (fileSystem) {
+                var entry = fileSystem;
+                entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
+                    dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
+                        dir.getFile(filename, {create: true, exclusive: false}, function (fileEntry) {
+                            fileEntry.remove();
+                            comunidadfusa.service.audios.eliminarDescargado(audioDescargado.id);
+                            comunidadfusa.service.bandas.decrementarAudiosDescargados(audioDescargado.idBanda);
+                            successCallback(audioDescargado);
+                        }, errorHandler);
+                    }, onGetDirectoryFail);
+                }, onGetDirectoryFail);
+            }, onError);
+        } catch (err) {
+            alert("ER - " + err.message);
+        }
+    }
+
     function  errorHandler(e) {
         var msg = '';
         switch (e.code) {
@@ -66,7 +88,8 @@ comunidadfusa.util.descargas = (function () {
     }
 
     return {
-        descargarCancion: descargarCancion
+        descargarCancion: descargarCancion,
+        eliminarCancionDescargada: eliminarCancionDescargada
     };
 })();
 

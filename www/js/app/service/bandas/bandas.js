@@ -35,6 +35,13 @@ comunidadfusa.service.bandas = (function () {
         }
     }
 
+    function decrementarAudiosDescargados(idBanda) {
+        var cantidadAudios = storage.getItem("audiosBandaDescargados" + idBanda);
+        if (cantidadAudios !== null) {
+            storage.setItem("audiosBandaDescargados" + idBanda, parseInt(cantidadAudios) - 1);
+        }
+    }
+
     function setAudiosDescargados(idBanda, cantidad) {
         storage.setItem("audiosBandaDescargados" + idBanda, cantidad);
     }
@@ -55,6 +62,7 @@ comunidadfusa.service.bandas = (function () {
         getBandasRecomendadas: getBandasRecomendadas,
         incrementarAudiosDescargados: incrementarAudiosDescargados,
         getCantidadAudiosDescargados: getCantidadAudiosDescargados,
-        setAudiosDescargados: setAudiosDescargados
+        setAudiosDescargados: setAudiosDescargados,
+        decrementarAudiosDescargados: decrementarAudiosDescargados
     };
 })();
