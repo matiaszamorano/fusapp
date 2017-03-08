@@ -8,7 +8,7 @@ comunidadfusa.ui.reproductor = (function () {
 
     function actualizarPosicion() {
         var altura = $(window).height();
-        $("#contenedorInfoFusa").css("height", altura - 110)
+        $("#contenedorInfoFusa").css("height", altura - 110);
     }
 
     function init() {
@@ -29,12 +29,14 @@ comunidadfusa.ui.reproductor = (function () {
         $(document).on($.jPlayer.event.ended, playlist.cssSelector.jPlayer, function (data) {
             reproduciendo = 0;
             $('.musicbar').removeClass('animate');
+            storage.setItem("playlistCurrent", 0);
         });
 
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function () {
             $('.musicbar').addClass('animate');
             $("#spin").addClass("hide");
             reproduciendo = 1;
+            storage.setItem("playlistCurrent", playlist.current);
         });
 
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
@@ -168,6 +170,7 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function inicializarPlaylist() {
+
         var playlistOptions = {
             playlistOptions: {
                 enableRemoveControls: true,
@@ -185,12 +188,17 @@ comunidadfusa.ui.reproductor = (function () {
             jPlayer: "#jplayer_N",
             cssSelectorAncestor: "#jp_container_N"
         }, [], playlistOptions);
+
         var playlistStorage = storage.getItem("playlist");
         var audiosGuardados = new Array();
         if (playlistStorage !== null) {
             audiosGuardados = JSON.parse(storage.getItem("playlist"));
         }
         agregarAudiosGuardados(audiosGuardados);
+        var playlistCurrent = storage.getItem("playlistCurrent");
+        if (playlistCurrent !== null) {
+            playlist.select(playlistCurrent);
+        }
     }
 
     function reproducirListaPorUrl(url) {
@@ -263,6 +271,7 @@ comunidadfusa.ui.reproductor = (function () {
                 window.location = "index.html";
             }
             storage.removeItem("playlist");
+            storage.removeItem("playlistCurrent");
             return false;
         });
 
