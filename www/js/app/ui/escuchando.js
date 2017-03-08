@@ -28,6 +28,7 @@ comunidadfusa.ui.escuchando = (function () {
             if (jPlaylist.remove(index)) {
                 setTimeout(function () {
                     initLista();
+                    comunidadfusa.ui.reproductor.actualizarPlaylist();
                     if (index === jPlaylist.current) {
                         jPlaylist.play();
                     }
