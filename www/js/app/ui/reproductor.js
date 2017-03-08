@@ -4,6 +4,7 @@ comunidadfusa.ui.reproductor = (function () {
     var reproduciendo;
     var $botonComienzo;
     var usuario;
+    var storage = window.localStorage;
 
     function actualizarPosicion() {
         var altura = $(window).height();
@@ -184,6 +185,12 @@ comunidadfusa.ui.reproductor = (function () {
             jPlayer: "#jplayer_N",
             cssSelectorAncestor: "#jp_container_N"
         }, [], playlistOptions);
+        var playlistStorage = storage.getItem("playlist");
+        var audiosGuardados = new Array();
+        if (playlistStorage !== null) {
+            audiosGuardados = JSON.parse(storage.getItem("playlist"));
+        }
+        agregarAudiosGuardados(audiosGuardados);
     }
 
     function reproducirListaPorUrl(url) {
@@ -193,6 +200,13 @@ comunidadfusa.ui.reproductor = (function () {
                 agregarAudios(data);
             }
         });
+    }
+
+    function agregarAudiosGuardados(audios) {
+        for (var i = 0; i < audios.length; i++) {
+            var audio = audios[i];
+            playlist.add(audio, 0);
+        }
     }
 
     function agregarAudios(audios) {
@@ -209,7 +223,7 @@ comunidadfusa.ui.reproductor = (function () {
             } else {
                 mp3 = rutaAudioDescargado;
             }
-            playlist.add({
+            var audioAAgregar = {
                 id: audio.id,
                 title: audio.nombreTema,
                 artist: audio.nombreBanda,
@@ -218,8 +232,24 @@ comunidadfusa.ui.reproductor = (function () {
                 opinion: audio.opinion,
                 ciudad: audio.ciudad,
                 idBanda: audio.idBanda
-            }, reproducirAhora);
+            };
+            playlist.add(audioAAgregar, reproducirAhora);
+            agregarAudioAStorage(audioAAgregar);
         }
+    }
+
+    function actualizarPlaylist() {
+        storage.setItem("playlist", JSON.stringify(playlist.playlist));
+    }
+
+    function agregarAudioAStorage(audio) {
+        var playlistStorage = storage.getItem("playlist");
+        var audiosGuardados = new Array();
+        if (playlistStorage !== null) {
+            audiosGuardados = JSON.parse(storage.getItem("playlist"));
+        }
+        audiosGuardados.push(audio);
+        storage.setItem("playlist", JSON.stringify(audiosGuardados));
     }
 
     function inicializarOpcionesReproductor() {
@@ -232,6 +262,7 @@ comunidadfusa.ui.reproductor = (function () {
             if (comunidadfusa.estaEnEscuchando()) {
                 window.location = "index.html";
             }
+            storage.removeItem("playlist");
             return false;
         });
 
@@ -271,7 +302,8 @@ comunidadfusa.ui.reproductor = (function () {
         play: play,
         pausa: pausa,
         next: next,
-        prev: prev
+        prev: prev,
+        actualizarPlaylist: actualizarPlaylist
     };
 
 })();
