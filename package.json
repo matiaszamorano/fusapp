@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "keywords": ["util", "functional", "server", "client", "browser"],
     "author": "Uva",
-    "contributors": [],
+    "contributors": ["jonybuzz"],
     "dependencies": {}
 }

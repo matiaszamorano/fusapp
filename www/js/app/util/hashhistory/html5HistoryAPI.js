@@ -51,7 +51,11 @@ comunidadfusa.util.html5HistoryAPI = (function () {
         window.clearTimeout(timer);
         timer = window.setTimeout(function () {
             window.addEventListener("popstate", function (e) {
-                cargarPagina(location.pathname);
+                if (location.pathname.endsWith("index.html")) {
+                    comunidadfusa.ui.index.init();
+                } else {
+                    cargarPagina(location.pathname);
+                }
             }, false);
         }, 1);
     }
