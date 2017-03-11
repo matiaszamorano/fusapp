@@ -16,6 +16,7 @@ comunidadfusa.util.descargas = (function () {
                             fileTransfer.download(uri, cdr.nativeURL + filename,
                                     function () {
                                         comunidadfusa.service.audios.audioDescargado(audioDescargado.id, cdr.nativeURL + filename);
+                                        comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                                         successCallback(audioDescargado);
                                     },
                                     function () {

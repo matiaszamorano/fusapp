@@ -1,0 +1,34 @@
+<section class="scrollable wrapper-lg">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="m-t">Mis Descargas</h3>
+            <div class="panel wrapper-lg">
+                <div class="row fusa-js-bandas-descargadas">
+                </div>
+            </div>      
+        </div>
+    </div>
+</section>
+
+<script id="banda-descargada-tmpl" type="text/html">
+    <div class="col-xs-6 m-b-sm">     
+        <div class="item item-disco">         
+            <div class="pos-rlt">  
+                <div class="item-overlay opacity r r-2x">                 
+                    <div class="bottom text-right m-r-xs m-b-xs">                     
+                        <a href="#" class="jp-play-me" data-id="${id}"><i class="fa fa-play-circle i-2x"></i></a>                 
+                    </div>             
+                </div> 
+                <a href="banda.html?id=${id}" rel="ajax">                 
+                    <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full">
+                </a>         
+            </div>                     
+            <a href="banda.html?id=${id}" rel="ajax" class="text-ellipsis">${nombre}</a>             
+        </div> 
+    </div> 
+</script>
+
+<script type="text/javascript" src="js/app/ui/misDescargas.js"></script>
+<script type="text/javascript">
+    comunidadfusa.ui.misDescargas.init();
+</script>
