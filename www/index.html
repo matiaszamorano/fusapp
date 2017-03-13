@@ -263,9 +263,13 @@
         <script type="text/javascript" src="js/app/ui/reproductor.js"></script>
         <script type="text/javascript" src="js/app/ui/index.js"></script>
         <script type="text/javascript">
-            comunidadfusa.ui.reproductor.init();
-            comunidadfusa.util.html5HistoryAPI.init();
-            comunidadfusa.ui.index.init();
+            function onReady() {
+                comunidadfusa.ui.reproductor.init();
+                comunidadfusa.util.html5HistoryAPI.init();
+                comunidadfusa.ui.index.init();
+                comunidadfusa.init();
+            }
+            document.addEventListener("deviceready", onReady, false);
         </script>
     </body>
 </html>

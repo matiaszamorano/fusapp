@@ -2,6 +2,7 @@ var comunidadfusa = (function () {
     var BASE_URI = baseURI();
     var MP3_URI = mp3URI();
     var BASE_URI_HASH = baseURIHash();
+    var externalSdCardApplicationStorageDirectory;
 
     function baseURI() {
         return "http://www.comunidadfusa.com/";
@@ -39,11 +40,27 @@ var comunidadfusa = (function () {
         return estoyEnEscuchando === "/fusapp/escuchando.html";
     }
 
+    function getExternalSdCardApplicationStorageDirectory() {
+        return externalSdCardApplicationStorageDirectory;
+    }
+
+    function init() {
+        cordova.plugins.diagnostic.getExternalSdCardDetails(function (details) {
+            details.forEach(function (detail) {
+                externalSdCardApplicationStorageDirectory = detail.filePath;
+            });
+        }, function (error) {
+            console.error(error);
+        });
+    }
+
     return {
         baseURI: BASE_URI,
         baseURIHash: BASE_URI_HASH,
         MP3_URI: MP3_URI,
         estaEnEscuchando: estaEnEscuchando,
-        getUrlParameter: getUrlParameter
+        getUrlParameter: getUrlParameter,
+        init: init,
+        getExternalSdCardApplicationStorageDirectory: getExternalSdCardApplicationStorageDirectory
     };
 })();

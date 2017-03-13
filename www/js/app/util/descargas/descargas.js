@@ -6,7 +6,7 @@ comunidadfusa.util.descargas = (function () {
         var fileTransfer = new FileTransfer();
         var audioDescargado = audio;
         try {
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (fileSystem) {
+            window.resolveLocalFileSystemURL(comunidadfusa.getExternalSdCardApplicationStorageDirectory(), function (fileSystem) {
                 var entry = fileSystem;
                 entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
                     dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
