@@ -15,9 +15,10 @@ comunidadfusa.util.descargas = (function () {
                             var uri = encodeURI(fileURL);
                             fileTransfer.download(uri, cdr.nativeURL + filename,
                                     function () {
+                                        alert("descargo");
                                         comunidadfusa.service.audios.audioDescargado(audioDescargado.id, cdr.nativeURL + filename);
-                                        comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                                         successCallback(audioDescargado);
+                                        comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                                     },
                                     function () {
                                         errorCallback(audioDescargado);
@@ -45,6 +46,7 @@ comunidadfusa.util.descargas = (function () {
                             comunidadfusa.service.audios.eliminarDescargado(audioDescargado.id);
                             comunidadfusa.service.bandas.decrementarAudiosDescargados(audioDescargado.idBanda);
                             successCallback(audioDescargado);
+                            comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                         }, errorHandler);
                     }, onGetDirectoryFail);
                 }, onGetDirectoryFail);

@@ -18,12 +18,14 @@ comunidadfusa.ui.index = (function () {
         comunidadfusa.util.html5HistoryAPI.cargarPagina("bienvenida.html");
         $(".fusa-js-apodo").text(usuario.apodo);
         $(".fusa-js-avatar-usuario").attr("src", comunidadfusa.service.usuario.get().avatar);
+        $(document).off("click", "#fusa-js-empeza-a-escuchar");
         $(document).on("click", "#fusa-js-empeza-a-escuchar", function (e) {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/populares";
             comunidadfusa.ui.reproductor.reproducirListaPorUrl(url);
         });
+        $(document).off("click", "#fusa-js-logout");
         $(document).on("click", "#fusa-js-logout", function (e) {
             e.preventDefault();
             e.stopPropagation();
