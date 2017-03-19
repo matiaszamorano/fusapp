@@ -4,8 +4,7 @@ comunidadfusa.ui = (function () {
         $(document).on("click", ".fusa-js-buscar ", function (data) {
             $(".fusa-js-buscador-inactivo").hide();
             $(".fusa-js-buscador-activo").show();
-//            $(".fusa-js-buscador-activo").attr("style", "display: table-cell;");
-            console.log("Hola");
+            $(".fusa-js-buscador-activo").attr("style", "display: inline-table;");
             return false;
         });
     }
