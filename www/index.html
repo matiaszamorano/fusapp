@@ -32,7 +32,13 @@
                     <a class="fusa-js-desplegar-menu btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
                         <i class="icon-list"></i>
                     </a>
-                    <a href="bienvenida.html" rel="ajax" class="navbar-brand text-lt">
+                    <div class="input-group fusa-buscador fusa-js-buscador-activo">
+                        <input class="form-control input-sm no-border rounded" placeholder="Buscar artistas, canciones..." type="text">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                    <a href="bienvenida.html" rel="ajax" class="navbar-brand text-lt fusa-js-buscador-inactivo">
                         <span class="hidden-nav-xs m-l-sm">Comunidad Fusa</span>
                         <span class="musicbar inline m-l-sm" style="width:20px;height:20px">
                             <span class="bar1 a1 bg-primary lter"></span>
@@ -42,9 +48,10 @@
                             <span class="bar5 a5 bg-danger dker"></span>
                         </span>
                     </a>
-                    <a class="fusa-js-menu-usuario btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
+                    <a class="fusa-js-buscar btn btn-link visible-xs fusa-js-buscador-inactivo" >
                         <i class="fa fa-search"></i>
                     </a>
+
                 </div>  
             </header>
             <section>
@@ -265,10 +272,11 @@
         <script type="text/javascript">
             //Para probar en un chrome local, quitar el evento onready
 //            function onReady() {
-                comunidadfusa.ui.reproductor.init();
-                comunidadfusa.util.html5HistoryAPI.init();
-                comunidadfusa.ui.index.init();
-                comunidadfusa.init();
+            comunidadfusa.ui.reproductor.init();
+            comunidadfusa.util.html5HistoryAPI.init();
+            comunidadfusa.ui.index.init();
+            comunidadfusa.ui.init();
+            comunidadfusa.init();
 //            }
             document.addEventListener("deviceready", onReady, false);
         </script>

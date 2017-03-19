@@ -114,3 +114,15 @@ small,
 .fusa-disco .i-3x {
     font-size: 3em;
 }
+
+.fusa-buscador {
+    width: 80vw;
+    float: right;
+    margin-top: 10px;
+    margin-right: 8px;
+    display: none;
+}
+
+.fusa-buscador .input-group-btn .btn {
+    font-size: 12.5px;
+}
