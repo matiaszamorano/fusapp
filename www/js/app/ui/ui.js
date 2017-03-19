@@ -9,7 +9,6 @@ comunidadfusa.ui = (function () {
         });
     }
 
-
     return {
         init: init
     };
