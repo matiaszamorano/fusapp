@@ -1,0 +1,53 @@
+<section class="hbox stretch">
+    <aside id="fusa-js-musica-perfil-usuario" class="bg-white fusa-solapas-perfil">
+        <section class="vbox">
+            <header class="header bg-light lt">
+                <h3 class="m-t">Resultados</h3>
+                <ul class="nav nav-tabs nav-white">
+                    <li class="active"><a href="#bandas" data-toggle="tab">Bandas</a></li>
+                    <li class=""><a href="#listas" data-toggle="tab">Listas</a></li>
+                    <li class=""><a href="#canciones" data-toggle="tab">Canciones</a></li>
+                </ul>
+            </header>
+            <section class="scrollable">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="bandas">
+                        <ul class="list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    Cargando...
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="listas">
+                        <ul class="fusa-js-busqueda-listas list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    Cargando...
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="canciones">
+                        <ul class="fusa-js-busqueda-canciones list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    Cargando...
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </aside>
+</section>
+
+
+
+
+<script type="text/javascript" src="js/app/ui/busqueda.js"></script>
+<script type="text/javascript">
+    comunidadfusa.ui.busqueda.init();
+</script>
