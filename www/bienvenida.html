@@ -9,7 +9,21 @@
                 <span class="bar4 a4 bg-warning dk"></span>
                 <span class="bar5 a5 bg-danger dker"></span>
             </span>
-            Listas para descubrir
+            Listas fuseras
+            <!--
+            Mix de las mas escuchadas de la semana
+                bandasMasEscuchadas:
+                  url:  /servicios/bandas/masEscuchadas?limite=5&dias=7
+                  param: { module: buscador, action: masEscuchadas }
+                audios_mix_banda:
+                  url:   /servicios/audio/mix/:banda_id
+                  param: { module: fusaAudios, action: mixBanda, banda_id: 0 }
+            
+            SOLO LOGUEADO
+            Mis clásicos
+                audios_mas_escuchados_usuario:
+                  url:   /servicios/audios/playlist/masescuchados/:idUsuario
+            -->
         </h2>
         <div class="js-lista-semanal pos-rlt animated fadeInUpBig">
             <div style="min-height: 200px">
@@ -204,6 +218,10 @@
             </span>
             Por género
         </h2>
+        <!--
+        audios_generos:
+          url: /servicios/audios/genero/:genero_id
+        -->
         <div class="js-lista-generos pos-rlt animated fadeInUpBig">
             <div style="min-height: 200px">
                 <div class="pos-abt" style="width: 130px; height: 200px;">
@@ -392,6 +410,9 @@
 
 <script>
     $(document).ready(function () {
+        
+        
+        
         $('.js-lista-semanal').slick({
             mobileFirst: true,
             arrows: false,
