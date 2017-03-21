@@ -33,16 +33,28 @@ comunidadfusa.service.bandas = (function () {
 
     function actualizarBandasDescargadas(idBanda) {
         var bandasStorage = storage.getItem("bandasGuardadas");
-        var bandasGuardados = new Array();
+        var bandasGuardadas = new Array();
         if (bandasStorage !== null) {
-            bandasGuardados = JSON.parse(storage.getItem("bandasGuardadas"));
+            bandasGuardadas = JSON.parse(storage.getItem("bandasGuardadas"));
         }
-        getBanda(idBanda, function (banda) {
-            if (!existeBandaInArray(banda, bandasGuardados)) {
-                bandasGuardados.push(banda);
-                storage.setItem("bandasGuardadas", JSON.stringify(bandasGuardados));
+        var cantidadAudios = getCantidadAudiosDescargados(idBanda);
+        if (cantidadAudios == 0) {
+            var indiceABorrar;
+            for (var i = 0; i < bandasGuardadas.length; i++) {
+                if (bandasGuardadas[i].id == idBanda)
+                    indiceABorrar = i;
             }
-        });
+            bandasGuardadas.splice(indiceABorrar, 1);
+            storage.setItem("bandasGuardadas", JSON.stringify(bandasGuardadas));
+        } else {
+            getBanda(idBanda, function (banda) {
+                if (!existeBandaInArray(banda, bandasGuardadas)) {
+                    bandasGuardadas.push(banda);
+                    storage.setItem("bandasGuardadas", JSON.stringify(bandasGuardadas));
+                }
+            });
+        }
+
     }
 
     function existeBandaInArray(bandaBuscada, bandas) {

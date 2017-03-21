@@ -21,6 +21,7 @@ comunidadfusa.ui.disco = (function () {
 
         });
 
+        $(document).off('click', '.fusa-js-descargar-cancion');
         $(document).on('click', '.fusa-js-descargar-cancion', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);
@@ -35,6 +36,7 @@ comunidadfusa.ui.disco = (function () {
             });
         });
 
+        $(document).off('click', '.fusa-js-quitar-descarga-cancion');
         $(document).on('click', '.fusa-js-quitar-descarga-cancion', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);

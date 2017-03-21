@@ -37,6 +37,7 @@ comunidadfusa.ui.escuchando = (function () {
             $this.parent().remove();
         });
 
+        $(document).off($.jPlayer.event.play, jPlaylist.cssSelector.jPlayer);
         $(document).on($.jPlayer.event.play, jPlaylist.cssSelector.jPlayer, function (data) {
             if ($("#escuchando-lista li").length == 0) {
                 initLista();
@@ -46,6 +47,7 @@ comunidadfusa.ui.escuchando = (function () {
             activarItemActual();
         });
 
+        $(document).off($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer);
         $(document).on($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer, function (data) {
             $("#escuchando-lista li a.jp-play-me-escuchando").removeClass("active");
         });

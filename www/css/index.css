@@ -1,3 +1,30 @@
+/****Sobrescritura de estilos del tema **/
+
+body {
+    font-size: 18px;    
+}
+
+small,
+.small {
+    font-size: 16px;
+}
+
+.text-sm {
+    font-size: 16px;
+}
+
+.nav-primary.hidden-xs {
+    font-size: 20px;
+}
+
+.fusa-solapas-perfil ul .list-group-item {
+    min-height: 78px;
+}
+
+.btn {
+    font-size: 18px;    
+}
+
 #contenedorInfoFusa {
     height: 80vh;
 }
@@ -77,4 +104,17 @@
 
 .navbar-header.aside.bg-black.lter.nav-xs {
     height: 50px;
+}
+
+.fusa-apodo-perfil {
+    font-size: 22px;
+}
+
+.fusa-disco i,
+.fusa-escuchando i{
+    font-size: 22px;
+}
+
+.fusa-disco .i-3x {
+    font-size: 3em;
 }

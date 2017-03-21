@@ -5,6 +5,7 @@ comunidadfusa.ui.reproductor = (function () {
     var $botonComienzo;
     var usuario;
     var storage = window.localStorage;
+    var tiempoInicioReproduccionTema;
 
     function actualizarPosicion() {
         var altura = $(window).height();
@@ -35,6 +36,8 @@ comunidadfusa.ui.reproductor = (function () {
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function () {
             $('.musicbar').addClass('animate');
             $("#spin").addClass("hide");
+            var d = new Date();
+            tiempoInicioReproduccionTema = d.getTime();
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
         });
@@ -46,6 +49,15 @@ comunidadfusa.ui.reproductor = (function () {
 
         $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
             $('.musicbar').removeClass('animate');
+        });
+
+        $(document).on($.jPlayer.event.timeupdate, playlist.cssSelector.jPlayer, function (data) {
+            var d = new Date();
+            tiempoActual = d.getTime();
+            if (tiempoActual >= tiempoInicioReproduccionTema + 100000) {
+                comunidadfusa.service.reproducciones.incrementarReproduccionesAudio(data.jPlayer.status.media.id);
+                tiempoInicioReproduccionTema = 999999999999999;
+            }
         });
 
     }
