@@ -35,6 +35,10 @@
     background-color: rgba(0,0,0,0);
 }
 
+.item .img-item-banda {
+    background-position: center;
+}
+
 .item-overlay a {
     color: white;
 }

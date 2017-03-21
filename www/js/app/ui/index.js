@@ -12,7 +12,9 @@ comunidadfusa.ui.index = (function () {
     function initBienvenida() {
         var usuario = comunidadfusa.service.usuario.get();
         $("#reproductor").removeClass("hide");
-        comunidadfusa.util.html5HistoryAPI.cargarPagina("bienvenida.html");
+        comunidadfusa.util.html5HistoryAPI.cargarPagina("bienvenida.html", function () {
+            comunidadfusa.ui.bienvenida.init();
+        });
         $(".fusa-js-apodo").text(usuario.apodo);
         $(".fusa-js-avatar-usuario").attr("src", comunidadfusa.service.usuario.get().avatar);
         $(document).on("click", "#fusa-js-empeza-a-escuchar", function (e) {

@@ -16,19 +16,19 @@ comunidadfusa.service.listas = (function () {
     }
 
     function getListasHome(callback) {
-        var bandasMasEscuchadasDeLaSemana;
-        comunidadfusa.service.bandas.getMasEscuchadasDeLaSemana(data, function (data) {
-            bandasMasEscuchadasDeLaSemana = data;
-        });
+        var listas = [];
+        comunidadfusa.service.bandas.getMasEscuchadasDeLaSemana(null, function (bandasMasEscuchadasDeLaSemana) {
 
-        var listasDeHome = [];
-        $.each(bandasMasEscuchadasDeLaSemana, function (el, i) {
-
-//            poner nombre, imagen a la lista
-            getMixFusero(el.id, function (data) {
-                listasDeHome.push(data);
+            $.each(bandasMasEscuchadasDeLaSemana, function (i, banda) {
+                var lista = {
+                    id: banda.Id,
+                    nombre: 'Radio: ' + banda.Nombre,
+                    imagen: banda.Imagen
+                };
+                listas.push(lista);
             });
         });
+        callback(listas);
     }
 
     return {
