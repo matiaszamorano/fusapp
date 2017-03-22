@@ -11,6 +11,11 @@ comunidadfusa.service.audios = (function () {
         comunidadfusa.service.getFromStorage(url, callback);
     }
 
+    function getAudiosMixBanda(idBanda, callback) {
+        var url = comunidadfusa.service.baseURI + "/audio/mix/" + idBanda;
+        comunidadfusa.service.getFromStorage(url, callback);
+    }
+
     function getAudiosDisco(discoId, callback) {
         var url = comunidadfusa.service.baseURI + "/disco/info/" + discoId;
         comunidadfusa.service.getFromStorage(url, callback);
@@ -43,6 +48,7 @@ comunidadfusa.service.audios = (function () {
     return {
         getAudiosPorUrl: getAudiosPorUrl,
         getAudiosBanda: getAudiosBanda,
+        getAudiosMixBanda: getAudiosMixBanda,
         getAudiosDisco: getAudiosDisco,
         getAudio: getAudio,
         audioDescargado: audioDescargado,

@@ -119,6 +119,19 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
         });
+        $(document).on('click', '.jp-play-me-mix', function (e) {
+            e && e.preventDefault();
+            var $this = $(e.target);
+            if (!$this.is('a')) {
+                $this = $this.closest('a');
+            }
+            var id = $this.data("id");
+            comunidadfusa.service.audios.getAudiosMixBanda(id, function (data) {
+                if (data.length > 0) {
+                    agregarAudios(data);
+                }
+            });
+        });
     }
 
     function inicializarListasRecomendadas() {

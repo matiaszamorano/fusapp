@@ -8,6 +8,8 @@ comunidadfusa.ui.bienvenida = (function () {
             inicializarSliders();
 
             setImagenesEnListas();
+            //repetido por el orden del js
+            comunidadfusa.ui.reproductor.init();
         });
 
     }
@@ -22,7 +24,7 @@ comunidadfusa.ui.bienvenida = (function () {
             centerMode: false,
             responsive: [
                 {
-                    breakpoint: 600,
+                    breakpoint: 550,
                     settings: {
                         slidesToShow: 3.5
                     }
@@ -37,7 +39,7 @@ comunidadfusa.ui.bienvenida = (function () {
             swipeToSlide: true,
             responsive: [
                 {
-                    breakpoint: 600,
+                    breakpoint: 550,
                     settings: {
                         slidesToShow: 3.5
                     }
