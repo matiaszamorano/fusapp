@@ -12,7 +12,7 @@
             <section class="scrollable">
                 <div class="tab-content">
                     <div class="tab-pane active" id="bandas">
-                        <ul class="list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                        <ul class="fusa-js-busqueda-bandas list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
                             <li class="list-group-item">
                                 <span class="clear">
                                     Cargando...
@@ -44,10 +44,41 @@
     </aside>
 </section>
 
+<script id="fusa-js-banda-buscador" type="text/html">
+    <li class="list-group-item">
+        <div class="pull-right text-center">
+            <a href="#" class="jp-play-me" data-id="${id}">
+                <i class="fa fa-play-circle i-2x"></i>
+            </a>
+        </div>
+        <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${i}" rel="ajax">
+            <img src="http://www.comunidadfusa.com{{if avatar}}${avatar}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${nombre}" class="img-circle"/>
+        </a>
+        <a href="banda.html?id=${id}" rel="ajax"><strong class = "block">${nombre}</strong></a>
+        <small class="text-ellipsis">${ciudad}</small>
+    </li>
+</script>
+
+<script id="fusa-js-lista-buscador" type="text/html">
+    {{if cantidadTemas > 0}}
+    <li class="list-group-item">
+        <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="${id}">
+            <i class="icon-control-play i-2x"></i>
+        </a>
+        <span class="pull-right h2 text-muted m-l">${orden}</span>
+        <span class="clear">
+            <span>${nombre}</span>
+            <small class="text-muted clear text-ellipsis">
+                ${cantidadTemas} temas {{if descripcion}} - ${descripcion}{{/if}}
+            </small>
+        </span>
+    </li>
+    {{/if}}
+</script>
 
 
 
 <script type="text/javascript" src="js/app/ui/busqueda.js"></script>
 <script type="text/javascript">
-    comunidadfusa.ui.busqueda.init();
+comunidadfusa.ui.busqueda.init();
 </script>
