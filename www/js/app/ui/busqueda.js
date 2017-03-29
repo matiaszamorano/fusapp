@@ -25,7 +25,6 @@ comunidadfusa.ui.busqueda = (function () {
     }
 
     function mostrarListas(listas) {
-        console.log(listas);
         $(".fusa-js-busqueda-listas").empty();
         $(".fusa-js-busqueda-listas").append($("#fusa-js-lista-buscador").tmpl(listas));
     }
