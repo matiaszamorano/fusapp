@@ -13,6 +13,9 @@ comunidadfusa.ui.busqueda = (function () {
                         if (data[i].nombre == "Listas de reproducción") {
                             mostrarListas(data[i].valores);
                         }
+                        if (data[i].nombre == "Canciones") {
+                            mostrarCanciones(data[i].valores);
+                        }
                     }
                     comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
                 });
@@ -28,6 +31,12 @@ comunidadfusa.ui.busqueda = (function () {
         $(".fusa-js-busqueda-listas").empty();
         $(".fusa-js-busqueda-listas").append($("#fusa-js-lista-buscador").tmpl(listas));
     }
+
+    function mostrarCanciones(canciones) {
+        $(".fusa-js-busqueda-canciones").empty();
+        $(".fusa-js-busqueda-canciones").append($("#cancion-disco-tmpl").tmpl(canciones));
+    }
+
 
     return {
         init: init

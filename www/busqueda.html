@@ -51,7 +51,7 @@
                 <i class="fa fa-play-circle i-2x"></i>
             </a>
         </div>
-        <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${i}" rel="ajax">
+        <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${id}" rel="ajax">
             <img src="http://www.comunidadfusa.com{{if avatar}}${avatar}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${nombre}" class="img-circle"/>
         </a>
         <a href="banda.html?id=${id}" rel="ajax"><strong class = "block">${nombre}</strong></a>
@@ -65,7 +65,6 @@
         <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="${id}">
             <i class="icon-control-play i-2x"></i>
         </a>
-        <span class="pull-right h2 text-muted m-l">${orden}</span>
         <span class="clear">
             <span>${nombre}</span>
             <small class="text-muted clear text-ellipsis">
@@ -76,6 +75,20 @@
     {{/if}}
 </script>
 
+<script id="cancion-disco-tmpl" type="text/html">
+    <li class="list-group-item">
+        <a href="#" class="jp-play-me-one m-r-sm pull-left" data-id="${id}">
+            <i class="icon-control-play text"></i>
+            <i class="icon-control-pause text-active"></i>  
+        </a>
+        <span class="clear">
+            <span>${nombreTema}</span>
+            <small class="text-muted clear text-ellipsis">
+                <a href="banda.html?id=${idBanda}"  class="thumb-sm pull-left m-r-sm" rel="ajax">${nombreBanda}</a>
+            </small>
+        </span>
+    </li>
+</script>
 
 
 <script type="text/javascript" src="js/app/ui/busqueda.js"></script>
