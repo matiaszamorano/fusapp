@@ -50,6 +50,7 @@ var comunidadfusa = (function () {
                 externalSdCardApplicationStorageDirectory = detail.filePath;
             });
         }, function (error) {
+            externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
             console.error(error);
         });
     }
