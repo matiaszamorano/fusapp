@@ -6,7 +6,7 @@ comunidadfusa.util.html5HistoryAPI = (function () {
         return !!(window.history && history.pushState);
     }
 
-    function cargarPagina(href) {
+    function cargarPagina(href, onComplete) {
         jQuery.ajax({
             type: 'GET',
             dataType: 'html',
@@ -20,6 +20,7 @@ comunidadfusa.util.html5HistoryAPI = (function () {
             },
             complete: function (XMLHttpRequest, textStatus) {
                 setupHistoryClicks();
+                onComplete();
             },
             url: href
         });
