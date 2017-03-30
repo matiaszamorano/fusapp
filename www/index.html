@@ -34,7 +34,16 @@
                     <a class="fusa-js-desplegar-menu btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
                         <i class="icon-list"></i>
                     </a>
-                    <a href="bienvenida.html" rel="ajax" class="navbar-brand text-lt">
+                    <div class="input-group fusa-buscador fusa-js-buscador-activo">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm bg-white btn-icon fusa-js-salir-busqueda"><i class="fa fa-angle-left"></i></button>
+                        </span>
+                        <input class="form-control input-sm no-border rounded fusa-js-busqueda" placeholder="Buscar artistas, canciones..." type="text">
+                        <span class="input-group-btn">
+                            <a href="busqueda.html"  rel="ajax" class="btn btn-sm bg-white btn-icon fusa-js-ejecutar-busqueda"><i class="fa fa-search"></i></a>
+                        </span>
+                    </div>
+                    <a href="bienvenida.html" rel="ajax" class="navbar-brand text-lt fusa-js-buscador-inactivo">
                         <span class="hidden-nav-xs m-l-sm">Comunidad Fusa</span>
                         <span class="musicbar inline m-l-sm" style="width:20px;height:20px">
                             <span class="bar1 a1 bg-primary lter"></span>
@@ -44,9 +53,10 @@
                             <span class="bar5 a5 bg-danger dker"></span>
                         </span>
                     </a>
-                    <a class="fusa-js-menu-usuario btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
-                        <i class="fa fa-search"></i>
+                    <a class="fusa-js-buscar btn btn-link visible-xs fusa-js-buscador-inactivo" >
+                        <i class="fa fa-search fusa-js-buscador-inactivo"></i>
                     </a>
+
                 </div>  
             </header>
             <section>
@@ -60,7 +70,6 @@
                                     <nav class="nav-primary hidden-xs">
                                         <ul class="nav bg clearfix" data-ride="collapse">
                                             <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
-                                                ¿Qué vas a escuchar hoy?
                                             </li>
                                             <li>
                                                 <a href="bienvenida.html" rel="ajax">
@@ -261,13 +270,21 @@
         <script type="text/javascript" src="js/app/service/listas/listas.js"></script>
         <script type="text/javascript" src="js/app/service/bandas/bandas.js"></script>
         <script type="text/javascript" src="js/app/service/discos/discos.js"></script>
+        <script type="text/javascript" src="js/app/service/busqueda/busqueda.js"></script>
+        <script type="text/javascript" src="js/app/service/reproducciones/reproducciones.js"></script>
         <script type="text/javascript" src="js/app/ui/ui.js"></script>
         <script type="text/javascript" src="js/app/ui/reproductor.js"></script>
         <script type="text/javascript" src="js/app/ui/index.js"></script>
         <script type="text/javascript">
-            comunidadfusa.ui.reproductor.init();
-            comunidadfusa.util.html5HistoryAPI.init();
-            comunidadfusa.ui.index.init();
+            //Para probar en un chrome local, quitar el evento onready
+            function onReady() {
+                comunidadfusa.ui.reproductor.init();
+                comunidadfusa.util.html5HistoryAPI.init();
+                comunidadfusa.ui.index.init();
+                comunidadfusa.ui.init();
+                comunidadfusa.init();
+            }
+            document.addEventListener("deviceready", onReady, false);
         </script>
     </body>
 </html>

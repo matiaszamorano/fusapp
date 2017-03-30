@@ -1,0 +1,97 @@
+<section class="hbox stretch">
+    <aside id="fusa-js-musica-perfil-usuario" class="bg-white fusa-solapas-perfil">
+        <section class="vbox">
+            <header class="header bg-light lt">
+                <h3 class="m-t">Resultados</h3>
+                <ul class="nav nav-tabs nav-white">
+                    <li class="active"><a href="#bandas" data-toggle="tab">Bandas</a></li>
+                    <li class=""><a href="#listas" data-toggle="tab">Listas</a></li>
+                    <li class=""><a href="#canciones" data-toggle="tab">Canciones</a></li>
+                </ul>
+            </header>
+            <section class="scrollable">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="bandas">
+                        <ul class="fusa-js-busqueda-bandas list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    Cargando...
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="listas">
+                        <ul class="fusa-js-busqueda-listas list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    No se encontraron resultados.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="canciones">
+                        <ul class="fusa-js-busqueda-canciones list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <span class="clear">
+                                    No se encontraron resultados.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </aside>
+</section>
+
+<script id="fusa-js-banda-buscador" type="text/html">
+    <li class="list-group-item">
+        <div class="pull-right text-center">
+            <a href="#" class="jp-play-me" data-id="${id}">
+                <i class="fa fa-play-circle i-2x"></i>
+            </a>
+        </div>
+        <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${id}" rel="ajax">
+            <img src="http://www.comunidadfusa.com{{if avatar}}${avatar}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${nombre}" class="img-circle"/>
+        </a>
+        <a href="banda.html?id=${id}" rel="ajax"><strong class = "block">${nombre}</strong></a>
+        <small class="text-ellipsis">${ciudad}</small>
+    </li>
+</script>
+
+<script id="fusa-js-lista-buscador" type="text/html">
+    {{if cantidadTemas > 0}}
+    <li class="list-group-item">
+        <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="${id}">
+            <i class="icon-control-play i-2x"></i>
+        </a>
+        <span class="clear">
+            <span>${nombre}</span>
+            <small class="text-muted clear text-ellipsis">
+                ${cantidadTemas} temas {{if descripcion}} - ${descripcion}{{/if}}
+            </small>
+        </span>
+    </li>
+    {{/if}}
+</script>
+
+<script id="cancion-disco-tmpl" type="text/html">
+    <li class="list-group-item">
+        <a href="#" class="jp-play-me-one m-r-sm pull-left" data-id="${id}">
+            <i class="icon-control-play text"></i>
+            <i class="icon-control-pause text-active"></i>  
+        </a>
+        <span class="clear">
+            <span>${nombreTema}</span>
+            <small class="text-muted clear text-ellipsis">
+                <a href="banda.html?id=${idBanda}"  class="thumb-sm pull-left m-r-sm" rel="ajax">${nombreBanda}</a>
+            </small>
+        </span>
+    </li>
+</script>
+
+
+<script type="text/javascript" src="js/app/ui/busqueda.js"></script>
+<script type="text/javascript">
+comunidadfusa.ui.busqueda.init();
+</script>

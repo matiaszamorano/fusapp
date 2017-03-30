@@ -18,7 +18,12 @@ comunidadfusa.service = (function () {
             get(uri, function () {}, data);
         }
     }
+    
+    function getSinCache(uri) {
+        return $.get(uri);
+    }
 
+    
     function post(uri, data) {
         return $.post(uri, data);
     }
@@ -46,6 +51,7 @@ comunidadfusa.service = (function () {
         baseURI: BASE_URI,
         get: get,
         post: post,
-        getFromStorage: getFromStorage
+        getFromStorage: getFromStorage,
+        getSinCache: getSinCache
     };
 })();

@@ -10,6 +10,7 @@ cordova plugin add cordova-plugin-file
 
 cordova plugin add cordova-plugin-file-transfer
 
+cordova plugin add cordova.plugins.diagnostic
 
 cordova run android
 

@@ -30,6 +30,7 @@ comunidadfusa.ui.banda = (function () {
             comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
         });
 
+        $(document).off('click', '.fusa-js-descargar-banda');
         $(document).on('click', '.fusa-js-descargar-banda', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);

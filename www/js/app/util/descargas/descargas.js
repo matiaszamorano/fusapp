@@ -6,7 +6,7 @@ comunidadfusa.util.descargas = (function () {
         var fileTransfer = new FileTransfer();
         var audioDescargado = audio;
         try {
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (fileSystem) {
+            window.resolveLocalFileSystemURL(comunidadfusa.getExternalSdCardApplicationStorageDirectory(), function (fileSystem) {
                 var entry = fileSystem;
                 entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
                     dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
@@ -16,8 +16,8 @@ comunidadfusa.util.descargas = (function () {
                             fileTransfer.download(uri, cdr.nativeURL + filename,
                                     function () {
                                         comunidadfusa.service.audios.audioDescargado(audioDescargado.id, cdr.nativeURL + filename);
-                                        comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                                         successCallback(audioDescargado);
+                                        comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                                     },
                                     function () {
                                         errorCallback(audioDescargado);
@@ -45,6 +45,7 @@ comunidadfusa.util.descargas = (function () {
                             comunidadfusa.service.audios.eliminarDescargado(audioDescargado.id);
                             comunidadfusa.service.bandas.decrementarAudiosDescargados(audioDescargado.idBanda);
                             successCallback(audioDescargado);
+                            comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                         }, errorHandler);
                     }, onGetDirectoryFail);
                 }, onGetDirectoryFail);
