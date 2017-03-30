@@ -4,11 +4,13 @@ comunidadfusa.ui.busqueda = (function () {
 
     function init() {
         var busqueda = storage.getItem("busqueda");
+        var encontroBandas = false;
         comunidadfusa.service.busqueda.buscar(busqueda)
                 .done(function (data) {
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].nombre == "Bandas") {
                             mostrarBandas(data[i].valores);
+                            encontroBandas = true;
                         }
                         if (data[i].nombre == "Listas de reproducción") {
                             mostrarListas(data[i].valores);
@@ -16,6 +18,10 @@ comunidadfusa.ui.busqueda = (function () {
                         if (data[i].nombre == "Canciones") {
                             mostrarCanciones(data[i].valores);
                         }
+                    }
+                    if (encontroBandas == false) {
+                        $(".fusa-js-busqueda-bandas").empty();
+                        $(".fusa-js-busqueda-bandas").append("<li class='list-group-item'><span class='clear'>No se encontraron resultados.</span></li>");
                     }
                     comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
                 });

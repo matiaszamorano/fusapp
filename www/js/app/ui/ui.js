@@ -7,6 +7,7 @@ comunidadfusa.ui = (function () {
             $(".fusa-js-buscador-inactivo").hide();
             $(".fusa-js-buscador-activo").show();
             $(".fusa-js-buscador-activo").attr("style", "display: inline-table;");
+            $(".fusa-js-busqueda").focus();
             return false;
         });
 
@@ -19,10 +20,10 @@ comunidadfusa.ui = (function () {
         $(document).on("click", ".fusa-js-ejecutar-busqueda ", function (data) {
             var busqueda = $(".fusa-js-busqueda").val();
             storage.setItem("busqueda", busqueda);
-            comunidadfusa.util.html5HistoryAPI.cargarPagina("busqueda.html");
+            $(".fusa-js-buscador-inactivo").show();
+            $(".fusa-js-buscador-activo").hide();
             return false;
         });
-
     }
 
     return {
