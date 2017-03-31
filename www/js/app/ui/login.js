@@ -31,11 +31,11 @@ comunidadfusa.ui.login = (function () {
             comunidadfusa.service.post(url, data)
                     .done(function (data) {
                         comunidadfusa.service.usuario.set(data["usuario"]);
-                        window.location.reload(true);
+                        window.location = "index.html";
                     })
                     .fail(function (error) {
                         $("#spin").addClass("hide");
-                        console.log(error);
+                        mostrarError(error.responseJSON.error);
                     });
             $("#spin").removeClass("hide");
         });
