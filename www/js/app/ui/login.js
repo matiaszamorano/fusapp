@@ -4,6 +4,7 @@ comunidadfusa.ui.login = (function () {
         initForm();
         $(".fusa-js-desplegar-menu").remove();
         $(".fusa-js-menu-usuario").remove();
+        $(".fusa-js-buscar").remove();
         $("footer").remove();
         $("a.navbar-brand").attr("href", "#");
         $("a.navbar-brand").removeAttr("rel");
