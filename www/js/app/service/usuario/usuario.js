@@ -12,13 +12,8 @@ comunidadfusa.service.usuario = (function () {
         usuario = fusaUsuario;
     }
 
-    function logout() {
-        storage.removeItem("fusa-usuario");
-    }
-
     return {
         get: get,
-        set: set,
-        logout: logout
+        set: set
     };
 })();

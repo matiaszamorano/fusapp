@@ -25,13 +25,6 @@ comunidadfusa.ui.index = (function () {
             var url = comunidadfusa.service.baseURI + "/audios/populares";
             comunidadfusa.ui.reproductor.reproducirListaPorUrl(url);
         });
-        $(document).off("click", "#fusa-js-logout");
-        $(document).on("click", "#fusa-js-logout", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            comunidadfusa.service.usuario.logout();
-            document.location.href = "index.html";
-        });
 
     }
 
