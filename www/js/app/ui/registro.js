@@ -1,31 +1,33 @@
-comunidadfusa.ui.login = (function () {
+comunidadfusa.ui.registro = (function () {
 
     function init() {
         initForm();
-        $(".fusa-js-desplegar-menu").remove();
-        $(".fusa-js-menu-usuario").remove();
-        $(".fusa-js-buscar").remove();
-        $("footer").remove();
-        $("a.navbar-brand").attr("href", "#");
-        $("a.navbar-brand").removeAttr("rel");
     }
 
     function initForm() {
-        $("#login").on("submit", "#form_login", function (e) {
+        $("#registro").on("submit", "#form_registro", function (e) {
             e.preventDefault();
             e.stopPropagation();
             var $form = $(this);
             var email = $form.find("#form_email").val().trim();
             var clave = $form.find("#form_clave").val().trim();
+            var claveBis = $form.find("#form_clave_bis").val().trim();
+            var apodo = $form.find("#form_apodo").val();
             limpiarError();
-            if ((email === "") || (clave === "")) {
-                mostrarError("Ingresa un email y clave");
+            if ((email === "") || (clave === "") || (apodo === "")) {
+                mostrarError("Todos los campos son obligatorios");
                 return;
             }
-            var url = comunidadfusa.service.baseURI + "/app/login";
+
+            if (clave != claveBis) {
+                mostrarError("Las claves deben coincidir");
+                return;
+            }
+            var url = comunidadfusa.service.baseURI + "/app/registro";
             var data = {
                 "email": email,
-                "clave": clave
+                "clave": clave,
+                "apodo": apodo
             };
 
             comunidadfusa.service.post(url, data)
@@ -41,13 +43,11 @@ comunidadfusa.ui.login = (function () {
         });
     }
 
-
     function limpiarError() {
         mostrarError("")
         var $error = $("#login_error");
         $error.addClass("hide");
     }
-
     function mostrarError(mensaje) {
         var $error = $("#login_error");
         var $li = $error.find("ul.error_list li");
@@ -55,13 +55,8 @@ comunidadfusa.ui.login = (function () {
         $error.removeClass("hide");
     }
 
-    function getUsuario() {
-        return usuario;
-    }
-
     return {
-        init: init,
-        getUsuario: getUsuario
+        init: init
     };
 
 })();
