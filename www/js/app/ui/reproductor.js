@@ -33,7 +33,11 @@ comunidadfusa.ui.reproductor = (function () {
             storage.setItem("playlistCurrent", 0);
         });
 
-        $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function () {
+        $(document).on($.jPlayer.event.loadstart, playlist.cssSelector.jPlayer, function (data) {
+            checkAudioDescargado(data);
+        });
+
+        $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').addClass('animate');
             $("#spin").addClass("hide");
             var d = new Date();
@@ -41,7 +45,7 @@ comunidadfusa.ui.reproductor = (function () {
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
         });
-
+        
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').removeClass('animate');
             reproduciendo = 0;
@@ -60,6 +64,16 @@ comunidadfusa.ui.reproductor = (function () {
             }
         });
 
+    }
+
+    function checkAudioDescargado(data) {
+        if (comunidadfusa.ui.activoSoloDescargado()) {
+            var archivo = data.jPlayer.status.media.mp3;
+            if (archivo.match("^http")) {
+                playlist.pause();
+                playlist.next();
+            }
+        }
     }
 
     function inicializarEventos() {
@@ -95,7 +109,6 @@ comunidadfusa.ui.reproductor = (function () {
         });
 
         $(document).on('click', '.jp-play-me-one', function (e) {
-            console.log("playme");
             e && e.preventDefault();
             var $this = $(e.target);
             if (!$this.is('a')) {

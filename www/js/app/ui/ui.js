@@ -1,6 +1,11 @@
 comunidadfusa.ui = (function () {
 
     var storage = window.localStorage;
+    var soloDescargado = false;
+
+    function activoSoloDescargado() {
+        return soloDescargado;
+    }
 
     function init() {
         $(document).on("click", ".fusa-js-buscar ", function (data) {
@@ -24,10 +29,25 @@ comunidadfusa.ui = (function () {
             $(".fusa-js-buscador-activo").hide();
             return false;
         });
+
+        $(document).on("click", "#fusa-solo-descargado", function (data) {
+            if ($(this).is(":checked")) {
+                soloDescargado = true;
+            } else {
+                soloDescargado = false;
+            }
+            storage.setItem("solo-descargado", soloDescargado);
+        });
+        if (storage.getItem("solo-descargado") == "true") {
+            $("#fusa-solo-descargado").prop('checked', true);
+            soloDescargado = true;
+        }
+
     }
 
     return {
-        init: init
+        init: init,
+        activoSoloDescargado: activoSoloDescargado
     };
 
 })();
