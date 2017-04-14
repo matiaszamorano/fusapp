@@ -95,6 +95,7 @@ comunidadfusa.ui.reproductor = (function () {
         });
 
         $(document).on('click', '.jp-play-me-one', function (e) {
+            console.log("playme");
             e && e.preventDefault();
             var $this = $(e.target);
             if (!$this.is('a')) {

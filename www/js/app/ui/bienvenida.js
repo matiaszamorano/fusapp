@@ -9,7 +9,7 @@ comunidadfusa.ui.bienvenida = (function () {
 
             setImagenesEnListas();
             //repetido por el orden del js
-            comunidadfusa.ui.reproductor.init();
+//            comunidadfusa.ui.reproductor.init();
         });
 
     }
