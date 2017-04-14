@@ -44,6 +44,7 @@ comunidadfusa.ui.banda = (function () {
                     var itemsProcessed = 0;
                     var cantidadCanciones = data.length;
                     var $botonDescarga = $this.find("span.text");
+                    $botonDescarga.addClass("fusa-descargando-banda");
                     $botonDescarga.html("<i class='icon-clock'></i> Descargando (0/" + cantidadCanciones + ")");
                     for (var i = 0; i < cantidadCanciones; i++) {
                         var audio = data[i];
@@ -60,6 +61,7 @@ comunidadfusa.ui.banda = (function () {
                                 comunidadfusa.service.bandas.setAudiosDescargados(audioDescargado.idBanda, itemsProcessed);
                                 if (itemsProcessed === cantidadCanciones) {
                                     $botonDescarga.html("<i class='icon-check'></i> Descargado");
+                                    $botonDescarga.removeClass("fusa-descargando-banda");
                                 }
 
                             }, function () {});
