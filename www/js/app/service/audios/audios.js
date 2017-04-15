@@ -26,6 +26,11 @@ comunidadfusa.service.audios = (function () {
         comunidadfusa.service.getFromStorage(url, callback);
     }
 
+    function getPorGenero(idGenero, callback) {
+        var url = comunidadfusa.service.baseURI + "/audios/genero/" + idGenero;
+        comunidadfusa.service.getFromStorage(url, callback);
+    }
+
     function audioDescargado(idAudio, ruta) {
         storage.setItem("descargado" + idAudio, ruta);
     }
@@ -54,6 +59,7 @@ comunidadfusa.service.audios = (function () {
         audioDescargado: audioDescargado,
         getDescargado: getDescargado,
         estaDescargado: estaDescargado,
-        eliminarDescargado: eliminarDescargado
+        eliminarDescargado: eliminarDescargado,
+        getPorGenero: getPorGenero
     };
 })();

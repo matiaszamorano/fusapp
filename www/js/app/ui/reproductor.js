@@ -45,7 +45,7 @@ comunidadfusa.ui.reproductor = (function () {
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
         });
-        
+
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').removeClass('animate');
             reproduciendo = 0;
@@ -141,6 +141,17 @@ comunidadfusa.ui.reproductor = (function () {
             }
             var id = $this.data("id");
             comunidadfusa.service.audios.getAudiosMixBanda(id, function (data) {
+                if (data.length > 0) {
+                    agregarAudios(data);
+                }
+            });
+        });
+
+        $(document).on('click', '.fusa-js-lista-por-genero', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var idGenero = $(this).data("id-genero");
+            comunidadfusa.service.audios.getPorGenero(idGenero, function (data) {
                 if (data.length > 0) {
                     agregarAudios(data);
                 }
@@ -244,6 +255,7 @@ comunidadfusa.ui.reproductor = (function () {
         $("#spin").removeClass("hide");
         comunidadfusa.service.audios.getAudiosPorUrl(url, function (data) {
             if (data.length > 0) {
+                borrarListaActual();
                 agregarAudios(data);
             }
         });
@@ -303,17 +315,20 @@ comunidadfusa.ui.reproductor = (function () {
         $(document).on("click", ".fusa-js-limpiar-lista-actual", function (e) {
             e.preventDefault();
             e.stopPropagation();
-            playlist.remove();
-            $(".jp-progress .jp-seek-bar .jp-title").html("");
-            $("#footer-banda-sonando").html("");
-            if (comunidadfusa.estaEnEscuchando()) {
-                window.location = "index.html";
-            }
-            storage.removeItem("playlist");
-            storage.removeItem("playlistCurrent");
+            borrarListaActual();
             return false;
         });
 
+    }
+
+    function borrarListaActual() {
+        playlist.remove();
+        $(".jp-progress .jp-seek-bar .jp-title").html("");
+        if (comunidadfusa.estaEnEscuchando()) {
+            window.location = "index.html";
+        }
+        storage.removeItem("playlist");
+        storage.removeItem("playlistCurrent");
     }
 
     function play() {
