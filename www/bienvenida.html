@@ -1,4 +1,4 @@
-<section class="vbox">
+<section id="fusa-js-listas-home" class="vbox">
     <section class="hbox bg-black dker stretch">
         <aside class="col-sm-12 no-padder" id="sidebar">
             <section class="vbox animated fadeInUp">
@@ -60,3 +60,32 @@
         </aside>
     </section>
 </section>
+
+
+<script id="listaBandaMasEscuchadaTmpl" type="text/html">
+    <section class="hbox bg-black dker stretch">
+        <aside class="col-sm-12 no-padder" id="sidebar">
+            <section class="vbox animated fadeInUp">
+                <section class="scrollable">
+                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                        <div class="bottom gd bg-info wrapper-lg fusa-banda-home-nombre">
+                            <span class="block h3 font-bold text-white text-u-c">${nombre}</span>
+                            <span class="text-muted">Radio de ${nombre}</span>
+                        </div>
+                        <div class="item-overlay opacity r r-2x">                 
+                            <div class="bottom text-right m-r-sm m-b-sm">                     
+                                <a href="#" class="jp-play-me-mix" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></a>                 
+                            </div>             
+                        </div> 
+                        <img class="img-full" src="http://www.comunidadfusa.com${imagen}">
+                    </div>
+                </section>
+            </section>
+        </aside>
+    </section>
+</script>
+
+<script type="text/javascript" src="js/app/ui/bienvenida.js"></script>
+<script type="text/javascript">
+    comunidadfusa.ui.bienvenida.init();
+</script>

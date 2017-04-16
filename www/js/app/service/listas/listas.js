@@ -15,14 +15,14 @@ comunidadfusa.service.listas = (function () {
         comunidadfusa.service.getFromStorage(url, callback);
     }
 
-    function getListasHome(callback) {
+    function getListasBandasMasEscuchadas(callback) {
         var listas = [];
         comunidadfusa.service.bandas.getMasEscuchadasDeLaSemana(null, function (bandasMasEscuchadasDeLaSemana) {
 
             $.each(bandasMasEscuchadasDeLaSemana, function (i, banda) {
                 var lista = {
                     id: banda.Id,
-                    nombre: 'Radio: ' + banda.Nombre,
+                    nombre: banda.Nombre,
                     imagen: banda.Imagen
                 };
                 listas.push(lista);
@@ -35,6 +35,6 @@ comunidadfusa.service.listas = (function () {
         getListasUsuario: getListasUsuario,
         getAudiosListasReproduccion: getAudiosListasReproduccion,
         getMixFusero: getMixFusero,
-        getListasHome: getListasHome
+        getListasBandasMasEscuchadas: getListasBandasMasEscuchadas
     };
 })();
