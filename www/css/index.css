@@ -138,3 +138,7 @@ small,
 .btn .fusa-descargando-banda { 
     font-size: 15px;
 }
+
+.item .gd.fusa-banda-home-nombre {
+    background-image: linear-gradient(rgba(0,0,0,0)1%,rgba(0,0,0,1));
+}

@@ -20,7 +20,7 @@ comunidadfusa.util.html5HistoryAPI = (function () {
             },
             complete: function (XMLHttpRequest, textStatus) {
                 setupHistoryClicks();
-                onComplete();
+//                onComplete();
             },
             url: href
         });

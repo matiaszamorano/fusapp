@@ -1,239 +1,91 @@
-
-<section class="vbox">
-    <section class="scrollable  padder-lg w-f-md">
-        <h2 class="font-thin">
-            <span class="musicbar inline m-l-sm" style="width:20px;height:20px">
-                <span class="bar1 a1 bg-primary lter"></span>
-                <span class="bar2 a2 bg-info lt"></span>
-                <span class="bar3 a3 bg-success"></span>
-                <span class="bar4 a4 bg-warning dk"></span>
-                <span class="bar5 a5 bg-danger dker"></span>
-            </span>
-            Listas fuseras
-            <!--
-            TODO:
-            Mis clásicos
-                audios_mas_escuchados_usuario:
-                  url:   /servicios/audios/playlist/masescuchados/:idUsuario
-            -->
-        </h2>
-        <div class="js-lista-semanal pos-rlt animated fadeInUpBig">
-            
-        </div>
-
-        <h2 class="font-thin">
-            <span class="musicbar inline m-l-sm" style="width:20px;height:20px">
-                <span class="bar1 a1 bg-primary lter"></span>
-                <span class="bar2 a2 bg-info lt"></span>
-                <span class="bar3 a3 bg-success"></span>
-                <span class="bar4 a4 bg-warning dk"></span>
-                <span class="bar5 a5 bg-danger dker"></span>
-            </span>
-            Por género
-        </h2>
-        <!--
-        audios_generos:
-          url: /servicios/audios/genero/:genero_id
-        -->
-        <div class="js-lista-generos pos-rlt animated fadeInUpBig">
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
+<section id="fusa-js-listas-home" class="vbox">
+    <section class="hbox bg-black dker stretch">
+        <aside class="col-sm-12 no-padder" id="sidebar">
+            <section class="vbox animated fadeInUp">
+                <section class="scrollable">
+                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                        <div class="bottom gd bg-info wrapper-lg">
+                            <span class="block h3 font-bold text-info text-u-c">TOP 25</span>
+                            <span class="text-muted">Lo que más se está escuchando</span>
                         </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Rock</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/rock.jpg" alt="" class="img-full r-2x"></a>
+                        <div class="item-overlay opacity r r-2x">                 
+                            <div class="bottom text-right m-r-sm m-b-sm">                     
+                                <a href="#" class="fusa-js-lista-recomendada-popular" data-id=""><i class="fa fa-play-circle i-3x"></i></a>                 
+                            </div>             
+                        </div> 
+                        <img class="img-full" src="images/listas/01.jpg">
                     </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
+                </section>
+            </section>
+        </aside>
+    </section>
+    <section class="hbox bg-black dker stretch">
+        <aside class="col-sm-12 no-padder" id="sidebar">
+            <section class="vbox animated fadeInUp">
+                <section class="scrollable">
+                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                        <div class="bottom gd bg-info wrapper-lg">
+                            <span class="block h3 font-bold text-warning text-u-c">Rock</span>
+                            <span class="text-muted">Los mejores temas para rockearla</span>
                         </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Funk</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/funk.jpg" alt="" class="img-full r-2x"></a>
+                        <div class="item-overlay opacity r r-2x">                 
+                            <div class="bottom text-right m-r-sm m-b-sm">                     
+                                <a href="#" class="fusa-js-lista-por-genero" data-id-genero="361"><i class="fa fa-play-circle i-3x"></i></a>                 
+                            </div>             
+                        </div> 
+                        <img class="img-full" src="images/listas/02.jpg">
                     </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
+                </section>
+            </section>
+        </aside>
+    </section>
+    <section class="hbox bg-black dker stretch">
+        <aside class="col-sm-12 no-padder" id="sidebar">
+            <section class="vbox animated fadeInUp">
+                <section class="scrollable">
+                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                        <div class="bottom gd bg-info wrapper-lg">
+                            <span class="block h3 font-bold text-white text-u-c">Reggae</span>
+                            <span class="text-muted">Sorprendete con estas canciones</span>
                         </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Reggae</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/reggae.jpg" alt="" class="img-full r-2x"></a>
+                        <div class="item-overlay opacity r r-2x">                 
+                            <div class="bottom text-right m-r-sm m-b-sm">                     
+                                <a href="#" class="fusa-js-lista-por-genero" data-id-genero="397"><i class="fa fa-play-circle i-3x"></i></a>                 
+                            </div>             
+                        </div> 
+                        <img class="img-full" src="images/listas/03.jpg">
                     </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Hip Hop</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/hiphop.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Electronica</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/electronica.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Hardrock</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/hardrock.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Alternativo</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/alternativo.png" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Ska</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/ska.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Folclore</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/folclore.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Heavy</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/heavy.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Punk</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/punk.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-            <div style="min-height: 200px">
-                <div class="pos-abt" style="width: 130px; height: 200px;">
-                    <div class="item">
-                        <div class="item-overlay gd animated fadeInUp wrapper bg-info">
-                            <div class="center text-center m-t-n">
-                                <a href="#"><i class="icon-control-play i-2x"></i></a>
-                            </div>
-                        </div>
-                        <div class="bottom gd bg-info wrapper-xs">
-                            <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">Pop</a></div>
-                        </div>
-                        <a href="#"><img src="images/generos/pop.jpg" alt="" class="img-full r-2x"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                </section>
+            </section>
+        </aside>
     </section>
 </section>
-<a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
 
-<script id="listasSemanalesTmpl" type="text/html">
-    <div style="min-height: 200px">
-        <div class="pos-abt" style="width: 130px; height: 200px;">
-            <div class="item">
-                <div class="item-overlay gd animated fadeInUp wrapper bg-info img-item-banda" data-imagen="http://www.comunidadfusa.com${imagen}">
-                    <div class="center text-center m-t-n">
-                        <a href="#" class="jp-play-me-mix" data-id="${id}"><i class="icon-control-play i-2x"></i></a>
+
+<script id="listaBandaMasEscuchadaTmpl" type="text/html">
+    <section class="hbox bg-black dker stretch">
+        <aside class="col-sm-12 no-padder" id="sidebar">
+            <section class="vbox animated fadeInUp">
+                <section class="scrollable">
+                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                        <div class="bottom gd bg-info wrapper-lg fusa-banda-home-nombre">
+                            <span class="block h3 font-bold text-white text-u-c">${nombre}</span>
+                            <span class="text-muted">Radio de ${nombre}</span>
+                        </div>
+                        <div class="item-overlay opacity r r-2x">                 
+                            <div class="bottom text-right m-r-sm m-b-sm">                     
+                                <a href="#" class="jp-play-me-mix" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></a>                 
+                            </div>             
+                        </div> 
+                        <img class="img-full" src="http://www.comunidadfusa.com${imagen}">
                     </div>
-                </div>
-                <div class="bottom gd bg-info wrapper-xs">
-                    <div class="m-t"><a href="#" class="b-info h4 text-u-c text-lt">${nombre}</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </section>
+            </section>
+        </aside>
+    </section>
+</script>
+
+<script type="text/javascript" src="js/app/ui/bienvenida.js"></script>
+<script type="text/javascript">
+    comunidadfusa.ui.bienvenida.init();
 </script>

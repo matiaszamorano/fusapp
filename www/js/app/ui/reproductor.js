@@ -148,6 +148,17 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
         });
+
+        $(document).on('click', '.fusa-js-lista-por-genero', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var idGenero = $(this).data("id-genero");
+            comunidadfusa.service.audios.getPorGenero(idGenero, function (data) {
+                if (data.length > 0) {
+                    reemplazarPlaylist(audios);
+                }
+            });
+        });
     }
 
     function inicializarListasRecomendadas() {
