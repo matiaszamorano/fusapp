@@ -153,8 +153,8 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var idGenero = $(this).data("id-genero");
-            comunidadfusa.service.audios.getPorGenero(idGenero, function (data) {
-                if (data.length > 0) {
+            comunidadfusa.service.audios.getPorGenero(idGenero, function (audios) {
+                if (audios.length > 0) {
                     reemplazarPlaylist(audios);
                 }
             });
