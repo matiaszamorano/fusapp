@@ -317,6 +317,9 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function inicializarOpcionesReproductor() {
+        $(document).on('click', '.fusa-opciones-reproductor .dropdown-menu li a', function (e) {
+            $('.fusa-opciones-reproductor').removeClass('open');
+        });
         $(document).on("click", ".fusa-js-limpiar-lista-actual", function (e) {
             e.preventDefault();
             e.stopPropagation();
