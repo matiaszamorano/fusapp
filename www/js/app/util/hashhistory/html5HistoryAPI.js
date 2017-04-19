@@ -15,12 +15,13 @@ comunidadfusa.util.html5HistoryAPI = (function () {
                 $('#contenedorInfoFusa').html(data);
                 $('#nav').removeClass("nav-off-screen");
                 $('#contenedorInfoFusa').scrollTop(0);
+                ga('set', 'page', '/' + href);
+                ga('send', 'pageview');
             },
             beforeSend: function (XMLHttpRequest) {
             },
             complete: function (XMLHttpRequest, textStatus) {
                 setupHistoryClicks();
-//                onComplete();
             },
             url: href
         });

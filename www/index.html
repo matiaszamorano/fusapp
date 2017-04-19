@@ -269,13 +269,37 @@
         <script type="text/javascript">
             //Para probar en un chrome local, quitar el evento onready
             function onReady() {
-                comunidadfusa.ui.reproductor.init();
-                comunidadfusa.util.html5HistoryAPI.init();
-                comunidadfusa.ui.index.init();
-                comunidadfusa.ui.init();
-                comunidadfusa.init();
+            comunidadfusa.ui.reproductor.init();
+            comunidadfusa.util.html5HistoryAPI.init();
+            comunidadfusa.ui.index.init();
+            comunidadfusa.ui.init();
+            comunidadfusa.init();
             }
             document.addEventListener("deviceready", onReady, false);
+        </script>
+
+        <!-- Google Analytics -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-6024327-16', {
+                'storage': 'none',
+                'clientId': localStorage.getItem('ga:clientId')
+            });
+            ga('set', 'checkProtocolTask', null); //Disables the check for http and https protocol thus allowing file protocol, which is used by Cordova
+            ga(function (tracker) {
+                localStorage.setItem('ga:clientId', tracker.get('clientId'));
+            });
         </script>
     </body>
 </html>
