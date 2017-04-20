@@ -49,6 +49,9 @@ var comunidadfusa = (function () {
             details.forEach(function (detail) {
                 externalSdCardApplicationStorageDirectory = detail.filePath;
             });
+            if (externalSdCardApplicationStorageDirectory === undefined) {
+                externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
+            }
         }, function (error) {
             externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
             console.error(error);
