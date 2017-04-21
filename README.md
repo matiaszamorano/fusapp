@@ -14,3 +14,10 @@ cordova plugin add cordova.plugins.diagnostic
 
 cordova run android
 
+# Run vía wifi
+
+Ir a C:\Users\[user]\AppData\Local\Android\sdk\platform-tools
+
+Correr: adb connect 192.168.0.30:5556
+
+Checkear: adb devices
