@@ -15,8 +15,7 @@ comunidadfusa.util.html5HistoryAPI = (function () {
                 $('#contenedorInfoFusa').html(data);
                 $('#nav').removeClass("nav-off-screen");
                 $('#contenedorInfoFusa').scrollTop(0);
-                ga('set', 'page', '/' + href);
-                ga('send', 'pageview');
+                comunidadfusa.util.analytics.track(href);
             },
             beforeSend: function (XMLHttpRequest) {
             },

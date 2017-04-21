@@ -2,7 +2,6 @@ comunidadfusa.ui.reproductor = (function () {
 
     var playlist;
     var reproduciendo;
-    var $botonComienzo;
     var usuario;
     var storage = window.localStorage;
     var tiempoInicioReproduccionTema;
@@ -25,12 +24,11 @@ comunidadfusa.ui.reproductor = (function () {
             actualizarPosicion();
         });
 
-        $botonComienzo = $("#fusa-js-empeza-a-escuchar");
-
         $(document).on($.jPlayer.event.ended, playlist.cssSelector.jPlayer, function (data) {
             reproduciendo = 0;
             $('.musicbar').removeClass('animate');
             storage.setItem("playlistCurrent", 0);
+            comunidadfusa.util.analytics.trackEvent("reproduccion", "end", data.jPlayer.status.media.id, 1);
         });
 
         $(document).on($.jPlayer.event.loadstart, playlist.cssSelector.jPlayer, function (data) {
@@ -44,6 +42,7 @@ comunidadfusa.ui.reproductor = (function () {
             tiempoInicioReproduccionTema = d.getTime();
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
+            comunidadfusa.util.analytics.trackEvent("reproduccion", "play", data.jPlayer.status.media.id, 1);
         });
 
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
@@ -61,6 +60,7 @@ comunidadfusa.ui.reproductor = (function () {
             if (tiempoActual >= tiempoInicioReproduccionTema + 100000) {
                 comunidadfusa.service.reproducciones.incrementarReproduccionesAudio(data.jPlayer.status.media.id);
                 tiempoInicioReproduccionTema = 999999999999999;
+                comunidadfusa.util.analytics.trackEvent("reproduccion", "playInc", data.jPlayer.status.media.id, 1);
             }
         });
 
@@ -88,6 +88,7 @@ comunidadfusa.ui.reproductor = (function () {
             comunidadfusa.service.listas.getAudiosListasReproduccion({idListaReproduccion: id}, function (data) {
                 if (data.length > 0) {
                     reemplazarPlaylist(data);
+                    comunidadfusa.util.analytics.trackEvent("reproducir", "listaUsuario", id, 1);
                 }
             });
         });
@@ -104,6 +105,7 @@ comunidadfusa.ui.reproductor = (function () {
             comunidadfusa.service.audios.getAudiosBanda({idBanda: id}, function (data) {
                 if (data.length > 0) {
                     reemplazarPlaylist(data);
+                    comunidadfusa.util.analytics.trackEvent("reproducir", "banda", id, 1);
                 }
             });
         });
@@ -118,6 +120,7 @@ comunidadfusa.ui.reproductor = (function () {
             var id = $this.data("id");
             comunidadfusa.service.audios.getAudio(id, function (data) {
                 agregarAudios([data]);
+                comunidadfusa.util.analytics.trackEvent("reproducir", "cancion", id, 1);
             });
         });
 
@@ -131,6 +134,7 @@ comunidadfusa.ui.reproductor = (function () {
             comunidadfusa.service.audios.getAudiosDisco(id, function (data) {
                 if (data && data.canciones.length > 0) {
                     reemplazarPlaylist(data.canciones);
+                    comunidadfusa.util.analytics.trackEvent("reproducir", "disco", id, 1);
                 }
             });
         });
@@ -145,6 +149,7 @@ comunidadfusa.ui.reproductor = (function () {
             comunidadfusa.service.audios.getAudiosMixBanda(id, function (audios) {
                 if (audios.length > 0) {
                     reemplazarPlaylist(audios);
+                    comunidadfusa.util.analytics.trackEvent("reproducir", "mix", id, 1);
                 }
             });
         });
@@ -156,6 +161,7 @@ comunidadfusa.ui.reproductor = (function () {
             comunidadfusa.service.audios.getPorGenero(idGenero, function (audios) {
                 if (audios.length > 0) {
                     reemplazarPlaylist(audios);
+                    comunidadfusa.util.analytics.trackEvent("reproducir", "genero", idGenero, 1);
                 }
             });
         });
@@ -166,7 +172,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/populares";
-            reproducirListaPorUrl(url);
+            reproducirListaPorUrl(url, "populares");
             return false;
         });
 
@@ -174,7 +180,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/nuevos";
-            reproducirListaPorUrl(url);
+            reproducirListaPorUrl(url, "nuevos");
             return false;
         });
 
@@ -182,7 +188,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/random";
-            reproducirListaPorUrl(url);
+            reproducirListaPorUrl(url, "random");
             return false;
         });
 
@@ -190,7 +196,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/noescuchados/" + usuario.id;
-            reproducirListaPorUrl(url);
+            reproducirListaPorUrl(url, "noEscuchados");
             return false;
         });
 
@@ -198,7 +204,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/playlist/masescuchados/" + usuario.id;
-            reproducirListaPorUrl(url);
+            reproducirListaPorUrl(url, "masEscuchados");
             return false;
         });
 
@@ -206,7 +212,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/megustan/" + usuario.id;
-            reproducirListaPorUrl(url);
+            reproducirListaPorUrl(url, "meGustan");
             return false;
         });
 
@@ -214,7 +220,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             var url = comunidadfusa.service.baseURI + "/audios/ultimosmegustan/" + usuario.id;
-            reproducirListaPorUrl(url);
+            reproducirListaPorUrl(url, "ultimosMeGustan");
             return false;
         });
     }
@@ -251,11 +257,12 @@ comunidadfusa.ui.reproductor = (function () {
         }
     }
 
-    function reproducirListaPorUrl(url) {
+    function reproducirListaPorUrl(url, label) {
         $("#spin").removeClass("hide");
         comunidadfusa.service.audios.getAudiosPorUrl(url, function (audios) {
             if (audios.length > 0) {
                 reemplazarPlaylist(audios);
+                comunidadfusa.util.analytics.trackEvent("reproducir", "listaAutomatica", label, 1);
             }
         });
     }
@@ -324,6 +331,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             limpiarListaDeReproduccion();
+            comunidadfusa.util.analytics.trackEvent("accion", "reproductor", "limpiar", 1);
             return false;
         });
     }
