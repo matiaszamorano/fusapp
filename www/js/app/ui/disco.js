@@ -77,7 +77,7 @@ comunidadfusa.ui.disco = (function () {
         var $icono = $cancion.find("i.icon-clock");
         $icono.removeClass("icon-clock");
         $icono.addClass("icon-arrow-down");
-        alert("Error al descargar el tema");
+        comunidadfusa.util.analytics.trackEvent("error", "descarga", audioDescargado.id, 1);
     }
 
     return {

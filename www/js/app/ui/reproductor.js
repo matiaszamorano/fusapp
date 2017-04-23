@@ -46,6 +46,7 @@ comunidadfusa.ui.reproductor = (function () {
         });
 
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
+            console.log("pause");
             $('.musicbar').removeClass('animate');
             reproduciendo = 0;
         });
@@ -332,6 +333,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.stopPropagation();
             limpiarListaDeReproduccion();
             comunidadfusa.util.analytics.trackEvent("accion", "reproductor", "limpiar", 1);
+            $('.musicbar').removeClass('animate');
             return false;
         });
     }

@@ -13,8 +13,10 @@ comunidadfusa.ui.escuchando = (function () {
             var $this = $(this);
             if ($this.hasClass("active")) { /* Pausa */
                 jPlaylist.pause();
+                $('.musicbar').removeClass('animate');
             } else if ($this.parent().hasClass("active")) { /* Play actual */
                 jPlaylist.play();
+                $('.musicbar').addClass('animate');
             } else { /* Play otro tema */
                 var index = $this.parent().data("index");
                 jPlaylist.play(index);

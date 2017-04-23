@@ -53,6 +53,7 @@ comunidadfusa.ui.registro = (function () {
         var $li = $error.find("ul.error_list li");
         $li.text(mensaje);
         $error.removeClass("hide");
+        comunidadfusa.util.analytics.trackEvent("error", "registro", mensaje, 1);
     }
 
     return {

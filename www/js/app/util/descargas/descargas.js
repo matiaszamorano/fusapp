@@ -18,6 +18,8 @@ comunidadfusa.util.descargas = (function () {
                                         comunidadfusa.service.audios.audioDescargado(audioDescargado.id, cdr.nativeURL + filename);
                                         successCallback(audioDescargado);
                                         comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
+                                        comunidadfusa.util.analytics.trackEvent("descarga", "cancion", audioDescargado.id, 1);
+                                        comunidadfusa.util.analytics.trackEvent("descarga", "banda", audioDescargado.idBanda, 1);
                                     },
                                     function () {
                                         errorCallback(audioDescargado);
@@ -28,7 +30,7 @@ comunidadfusa.util.descargas = (function () {
                 }, onGetDirectoryFail);
             }, onError);
         } catch (err) {
-            alert("ER - " + err.message);
+            comunidadfusa.util.analytics.trackEvent("error", "descarga", "ER - " + err.message, 1);
         }
     }
 
@@ -51,7 +53,7 @@ comunidadfusa.util.descargas = (function () {
                 }, onGetDirectoryFail);
             }, onError);
         } catch (err) {
-            alert("ER - " + err.message);
+            comunidadfusa.util.analytics.trackEvent("error", "eliminarDescarga", "ER - " + err.message, 1);
         }
     }
 
@@ -78,15 +80,15 @@ comunidadfusa.util.descargas = (function () {
                 break;
         }
         ;
-        alert("Msg - " + msg);
+        comunidadfusa.util.analytics.trackEvent("error", "descarga", "Msg - " + msg, 1);
     }
 
     function onError(e) {
-        alert("onError");
+        comunidadfusa.util.analytics.trackEvent("error", "descarga", "onError", 1);
     }
 
     function onGetDirectoryFail(error) {
-        alert("onGetDirectoryFail");
+        comunidadfusa.util.analytics.trackEvent("error", "descarga", "onGetDirectoryFail", 1);
     }
 
     return {
