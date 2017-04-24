@@ -111,11 +111,13 @@ small,
 }
 
 .fusa-disco i,
-.fusa-escuchando i{
+.fusa-escuchando i,
+.fusa-lista-usuario i{
     font-size: 22px;
 }
 
-.fusa-disco .i-3x {
+.fusa-disco .i-3x,
+.fusa-lista-usuario .i-3x{
     font-size: 3em;
 }
 
@@ -139,6 +141,7 @@ small,
     font-size: 15px;
 }
 
-.item .gd.fusa-banda-home-nombre {
+.item .gd.fusa-banda-home-nombre,
+.item .gd.nombre-lista-usuario{
     background-image: linear-gradient(rgba(0,0,0,0)1%,rgba(0,0,0,1));
 }

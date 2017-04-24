@@ -1,0 +1,50 @@
+<section class="hbox bg-white stretch fusa-lista-usuario">
+    <aside class="col-sm-12 no-padder" id="sidebar">
+        <section class="vbox animated fadeInUp">
+            <section class="scrollable">
+                <div id="fusa-portada-lista-actual" class="m-t-n-xxs item pos-rlt">
+                    <div class="bottom gd bg-info wrapper-lg nombre-lista-usuario">
+                        <span class="h2 font-thin fusa-js-titulo-lista-usuario"></span><br>
+                    </div>
+                    <div class="item-overlay opacity r r-2x">                 
+                        <div class="bottom text-right m-r-sm m-b-sm">                     
+                            <a href="#" class="jp-play-me-list" data-id=""><i class="fa fa-play-circle i-3x"></i></a>                 
+                        </div>             
+                    </div> 
+                    <img class="img-full fusa-js-imagen-disco" src="images/canstockphoto4735150.jpg" >
+                </div>
+                <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto fusa-js-lista-canciones-lista">
+                </ul>
+            </section>
+        </section>
+    </aside>
+</section>
+
+<script id="lista-usuario-tmpl" type="text/html">
+    <li class="list-group-item">
+        <div class="pull-right m-l">
+            {{if descargado}}
+            <a href="#" class="fusa-js-quitar-descarga-cancion m-r-sm"  data-id="${id}">
+                <i class="icon-check text-success"></i>
+            </a>
+            {{else}} 
+            <a href="#" class="fusa-js-descargar-cancion m-r-sm"  data-id="${id}">
+                <i class=" icon-arrow-down "></i>
+            </a>
+            {{/if}}
+        </div>
+        <a href="#" class="jp-play-me-one m-r-sm pull-left" data-id="${id}">
+            <i class="icon-control-play text"></i>
+            <i class="icon-control-pause text-active"></i>  
+        </a>
+        <div class="clear text-ellipsis">
+            <span>${nombreBanda} - ${nombreTema}</span>
+        </div>
+    </li>
+</script>
+
+
+<script type="text/javascript" src="js/app/ui/listaUsuario.js"></script>
+<script type="text/javascript">
+comunidadfusa.ui.listaUsuario.init();
+</script>

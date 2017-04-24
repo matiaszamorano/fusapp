@@ -65,10 +65,12 @@
         </a>
         <span class="pull-right h2 text-muted m-l">${orden}</span>
         <span class="clear">
-            <span>${nombre}</span>
-            <small class="text-muted clear text-ellipsis">
-                ${cantidadTemas} temas - ${descripcion}
-            </small>
+            <a href="listaUsuario.html?id=${id}" rel="ajax">
+                <span>${nombre}</span>
+                <small class="text-muted clear text-ellipsis">
+                    ${cantidadTemas} temas - ${descripcion}
+                </small>
+            </a>
         </span>
     </li>
 </script>
@@ -106,5 +108,5 @@
 
 <script type="text/javascript" src="js/app/ui/perfil.js"></script>
 <script type="text/javascript">
-                comunidadfusa.ui.perfil.init();
+comunidadfusa.ui.perfil.init();
 </script>
