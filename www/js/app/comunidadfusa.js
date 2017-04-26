@@ -54,7 +54,7 @@ var comunidadfusa = (function () {
             }
         }, function (error) {
             externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
-            console.error(error);
+            comunidadfusa.util.analytics.trackEvent("error", "init", error, 1);
         });
     }
 

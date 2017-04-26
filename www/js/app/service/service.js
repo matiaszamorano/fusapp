@@ -4,17 +4,20 @@ comunidadfusa.service = (function () {
     var storage = window.localStorage;
 
     function get(uri, callback, data) {
-        $.get(uri, data, function (data) {
-            if (typeof data === 'string') {
-                return;
+        $.ajax({
+            url: uri,
+            method: "GET",
+            dataType: "json",
+            data: data,
+            success: function (resultado) {
+                storage.setItem(uri, JSON.stringify(resultado));
+                callback(resultado);
             }
-            storage.setItem(uri, JSON.stringify(data));
-            callback(data);
         });
     }
 
     function getFromStorage(uri, callback, data) {
-        if (storage.getItem(uri) === null) {
+        if (storage.getItem(uri) == null) {
             get(uri, callback, data);
         } else {
             callback(JSON.parse(storage.getItem(uri)));

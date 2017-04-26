@@ -18,7 +18,6 @@ comunidadfusa.service.listas = (function () {
     function getListasBandasMasEscuchadas(callback) {
         var listas = [];
         comunidadfusa.service.bandas.getMasEscuchadasDeLaSemana(null, function (bandasMasEscuchadasDeLaSemana) {
-
             $.each(bandasMasEscuchadasDeLaSemana, function (i, banda) {
                 var lista = {
                     id: banda.Id,
@@ -27,8 +26,8 @@ comunidadfusa.service.listas = (function () {
                 };
                 listas.push(lista);
             });
+            callback(listas);
         });
-        callback(listas);
     }
 
     return {

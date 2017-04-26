@@ -46,7 +46,6 @@ comunidadfusa.ui.reproductor = (function () {
         });
 
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
-            console.log("pause");
             $('.musicbar').removeClass('animate');
             reproduciendo = 0;
         });
