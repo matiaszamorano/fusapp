@@ -5,6 +5,9 @@ comunidadfusa.service = (function () {
 
     function get(uri, callback, data) {
         $.get(uri, data, function (data) {
+            if (typeof data === 'string') {
+                return;
+            }
             storage.setItem(uri, JSON.stringify(data));
             callback(data);
         });
@@ -18,12 +21,12 @@ comunidadfusa.service = (function () {
             get(uri, function () {}, data);
         }
     }
-    
+
     function getSinCache(uri) {
         return $.get(uri);
     }
 
-    
+
     function post(uri, data) {
         return $.post(uri, data);
     }
