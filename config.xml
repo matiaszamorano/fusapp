@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.comunidadfusa.app" version="1.0.9">
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.comunidadfusa.app" version="1.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Fusa</name>
     <description>
         La aplicación Android de Comunidad Fusa. En Comunidad Fusa vas a conocer a tu próxima banda favorita.
@@ -7,27 +7,23 @@
     <author email="info@comunidadfusa.com" href="http://www.comunidadfusa.com">
         Comunidad Fusa
     </author>
-    <content src="index.html"/>
-    <plugin name="cordova-plugin-whitelist" spec="1"/>
-    <plugin name="cordova-plugin-device"/>
-    <plugin name="cordova-plugin-file"/>
-    <plugin name="cordova-plugin-file-transfer"/>
-    <plugin name="cordova.plugins.diagnostic"/>
-    
-    <access origin="*"/>
-    <allow-intent href="http://*/*"/>
-    <allow-intent href="https://*/*"/>
-    <allow-intent href="tel:*"/>
-    <allow-intent href="sms:*"/>
-    <allow-intent href="mailto:*"/>
-    <allow-intent href="geo:*"/>
-    <preference name="Orientation" value="portrait"/>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-device" />
+    <plugin name="cordova-plugin-file" />
+    <plugin name="cordova-plugin-file-transfer" />
+    <plugin name="cordova.plugins.diagnostic" />
+    <plugin name="cordova-plugin-music-controls" spec="https://github.com/homerours/cordova-music-controls-plugin" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="Orientation" value="portrait" />
     <platform name="android">
-        <allow-intent href="market:*"/>
+        <allow-intent href="market:*" />
         <icon src="www/images/Fusa-Icon-Android-drawable.png" />
-    </platform>
-    <platform name="ios">
-        <allow-intent href="itms:*"/>
-        <allow-intent href="itms-apps:*"/>
     </platform>
 </widget>

@@ -5,7 +5,6 @@ comunidadfusa.ui.reproductor = (function () {
     var usuario;
     var storage = window.localStorage;
     var tiempoInicioReproduccionTema;
-
     function actualizarPosicion() {
         var altura = $(window).height();
         $("#contenedorInfoFusa").css("height", altura - 110);
@@ -17,24 +16,19 @@ comunidadfusa.ui.reproductor = (function () {
         inicializarListasRecomendadas();
         inicializarOpcionesReproductor();
         usuario = comunidadfusa.service.usuario.get();
-
         actualizarPosicion();
-
         $(window).resize(function () {
             actualizarPosicion();
         });
-
         $(document).on($.jPlayer.event.ended, playlist.cssSelector.jPlayer, function (data) {
             reproduciendo = 0;
             $('.musicbar').removeClass('animate');
             storage.setItem("playlistCurrent", 0);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "end", data.jPlayer.status.media.id, 1);
         });
-
         $(document).on($.jPlayer.event.loadstart, playlist.cssSelector.jPlayer, function (data) {
             checkAudioDescargado(data);
         });
-
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').addClass('animate');
             $("#spin").addClass("hide");
@@ -44,16 +38,13 @@ comunidadfusa.ui.reproductor = (function () {
             storage.setItem("playlistCurrent", playlist.current);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "play", data.jPlayer.status.media.id, 1);
         });
-
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').removeClass('animate');
             reproduciendo = 0;
         });
-
         $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
             $('.musicbar').removeClass('animate');
         });
-
         $(document).on($.jPlayer.event.timeupdate, playlist.cssSelector.jPlayer, function (data) {
             var d = new Date();
             tiempoActual = d.getTime();
@@ -63,7 +54,6 @@ comunidadfusa.ui.reproductor = (function () {
                 comunidadfusa.util.analytics.trackEvent("reproduccion", "playInc", data.jPlayer.status.media.id, 1);
             }
         });
-
     }
 
     function checkAudioDescargado(data) {
@@ -92,11 +82,9 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
         });
-
         $(document).on('click', '.jp-play-me', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);
-
             if (!$this.is('a')) {
                 $this = $this.closest('a');
             }
@@ -109,7 +97,6 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
         });
-
         $(document).on('click', '.jp-play-me-one', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);
@@ -123,7 +110,6 @@ comunidadfusa.ui.reproductor = (function () {
                 comunidadfusa.util.analytics.trackEvent("reproducir", "cancion", id, 1);
             });
         });
-
         $(document).on('click', '.jp-play-me-disc', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);
@@ -138,7 +124,6 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
         });
-
         $(document).on('click', '.jp-play-me-mix', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);
@@ -153,7 +138,6 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
         });
-
         $(document).on('click', '.fusa-js-lista-por-genero', function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -175,7 +159,6 @@ comunidadfusa.ui.reproductor = (function () {
             reproducirListaPorUrl(url, "populares");
             return false;
         });
-
         $(document).on("click", ".fusa-js-lista-recomendada-nuevas", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -183,7 +166,6 @@ comunidadfusa.ui.reproductor = (function () {
             reproducirListaPorUrl(url, "nuevos");
             return false;
         });
-
         $(document).on("click", ".fusa-js-lista-recomendada-azar", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -191,7 +173,6 @@ comunidadfusa.ui.reproductor = (function () {
             reproducirListaPorUrl(url, "random");
             return false;
         });
-
         $(document).on("click", "#lista-nunca-escuchadas", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -199,7 +180,6 @@ comunidadfusa.ui.reproductor = (function () {
             reproducirListaPorUrl(url, "noEscuchados");
             return false;
         });
-
         $(document).on("click", "#lista-mas-escuchadas", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -207,7 +187,6 @@ comunidadfusa.ui.reproductor = (function () {
             reproducirListaPorUrl(url, "masEscuchados");
             return false;
         });
-
         $(document).on("click", "#lista-me-gustan", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -215,7 +194,6 @@ comunidadfusa.ui.reproductor = (function () {
             reproducirListaPorUrl(url, "meGustan");
             return false;
         });
-
         $(document).on("click", "#lista-ultimos-me-gustan", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -226,7 +204,7 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function inicializarPlaylist() {
-
+        
         var playlistOptions = {
             playlistOptions: {
                 enableRemoveControls: true,
@@ -239,12 +217,10 @@ comunidadfusa.ui.reproductor = (function () {
             audioFullScreen: false,
             solution: ("html, flash")
         };
-
         playlist = new jPlayerPlaylist({
             jPlayer: "#jplayer_N",
             cssSelectorAncestor: "#jp_container_N"
         }, [], playlistOptions);
-
         var playlistStorage = storage.getItem("playlist");
         var audiosGuardados = new Array();
         if (playlistStorage !== null) {
@@ -255,6 +231,8 @@ comunidadfusa.ui.reproductor = (function () {
         if (playlistCurrent !== null) {
             playlist.select(playlistCurrent);
         }
+        
+        inicializarControlesDeLaBarra();
     }
 
     function reproducirListaPorUrl(url, label) {
@@ -374,6 +352,46 @@ comunidadfusa.ui.reproductor = (function () {
         return reproduciendo;
     }
 
+    function inicializarControlesDeLaBarra() {
+        MusicControls.create({
+            track: 'Time is Running Out',
+            artist: 'Muse',
+            cover: 'images/listas/02.jpg', // optional, default : nothing
+            // cover can be a local path (use fullpath 'file:///storage/emulated/...)', or only 'my_image.jpg'
+            isPlaying: true, // optional, default : true
+            dismissable: false, // optional, default : false
+            hasPrev: true, // show previous button, optional, default: true
+            hasNext: true, // show next button, optional, default: true
+            hasClose: false, // show close button, optional, default: false
+            album: 'Absolution', // optional, default: ''
+            duration: 60, // optional, default: 0
+            elapsed: 10 // optional, default: 0
+        });
+        function events(action) {
+            switch (action) {
+                case 'music-controls-next':
+                    playlist.next();
+                    break;
+                case 'music-controls-previous':
+                    playlist.previous();
+                    break;
+                case 'music-controls-pause':
+                    playlist.pause();
+                    break;
+                case 'music-controls-play':
+                    playlist.play();
+                    break;
+            }
+        }
+
+        // Register callback        
+        MusicControls.subscribe(events);
+
+        // Start listening for events
+        // The plugin will run the events function each time an event is fired
+        MusicControls.listen();
+    }
+
     return {
         init: init,
         getPlayList: getPlayList,
@@ -385,5 +403,4 @@ comunidadfusa.ui.reproductor = (function () {
         prev: prev,
         actualizarPlaylist: actualizarPlaylist
     };
-
 })();
