@@ -37,7 +37,7 @@ var comunidadfusa = (function () {
 
     function estaEnEscuchando() {
         var estoyEnEscuchando = window.location.pathname;
-        return estoyEnEscuchando === "/fusapp/escuchando.html";
+        return estoyEnEscuchando.endsWith("escuchando.html");
     }
 
     function getExternalSdCardApplicationStorageDirectory() {
