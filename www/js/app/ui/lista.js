@@ -1,10 +1,13 @@
 comunidadfusa.ui.lista = (function () {
 
     function init() {
-        var idLista = comunidadfusa.getUrlParameter("id");
         var tipo = comunidadfusa.getUrlParameter("tipo");
         if (tipo === "usuario") {
+            var idLista = comunidadfusa.getUrlParameter("id");
             listaUsuario(idLista);
+        } else if (tipo === "top25") {
+            var url = comunidadfusa.service.baseURI + "/audios/populares";
+            listaAutomatica(url, "Top 25", "images/listas/01.jpg");
         }
 
         $(document).off('click', '.fusa-js-descargar-cancion');
@@ -36,6 +39,24 @@ comunidadfusa.ui.lista = (function () {
             comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
                 comunidadfusa.util.descargas.eliminarCancionDescargada(audio, eliminarAudioSuccess);
             });
+        });
+    }
+
+    function listaAutomatica(url, titulo, imagen) {
+        $(".fusa-js-imagen-lista").attr("src", imagen);
+        $(".fusa-js-titulo-lista-usuario").text(titulo);
+        comunidadfusa.service.audios.getAudiosPorUrl(url, function (audios) {
+            if (audios.length > 0) {
+                audios.forEach(function (cancion) {
+                    if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
+                        audios.descargado = true;
+                    } else {
+                        audios.descargado = false;
+                    }
+                });
+                $(".fusa-js-lista-canciones-lista").empty();
+                $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
+            }
         });
     }
 
