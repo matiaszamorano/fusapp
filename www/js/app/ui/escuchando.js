@@ -52,6 +52,7 @@ comunidadfusa.ui.escuchando = (function () {
         $(document).off($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer);
         $(document).on($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer, function (data) {
             $("#escuchando-lista li a.jp-play-me-escuchando").removeClass("active");
+            $('.musicbar').removeClass('animate');
         });
     }
 

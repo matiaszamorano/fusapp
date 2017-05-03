@@ -326,10 +326,12 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function play() {
+        $('.musicbar').addClass('animate');
         playlist.play();
     }
 
     function pausa() {
+        $('.musicbar').removeClass('animate');
         playlist.pause();
     }
 
