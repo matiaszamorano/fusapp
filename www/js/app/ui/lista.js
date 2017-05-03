@@ -20,6 +20,9 @@ comunidadfusa.ui.lista = (function () {
             listaMixBanda(idBanda, titulo, imagen);
         }
 
+    }
+
+    function resolverDescargas() {
         $(document).off('click', '.fusa-js-descargar-cancion');
         $(document).on('click', '.fusa-js-descargar-cancion', function (e) {
             e && e.preventDefault();
@@ -61,13 +64,14 @@ comunidadfusa.ui.lista = (function () {
             if (audios.length > 0) {
                 audios.forEach(function (cancion) {
                     if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
-                        audios.descargado = true;
+                        cancion.descargado = true;
                     } else {
-                        audios.descargado = false;
+                        cancion.descargado = false;
                     }
                 });
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
+                resolverDescargas();
             }
         });
     }
@@ -81,13 +85,14 @@ comunidadfusa.ui.lista = (function () {
             if (audios.length > 0) {
                 audios.forEach(function (cancion) {
                     if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
-                        audios.descargado = true;
+                        cancion.descargado = true;
                     } else {
-                        audios.descargado = false;
+                        cancion.descargado = false;
                     }
                 });
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
+                resolverDescargas();
             }
         });
     }
@@ -100,13 +105,14 @@ comunidadfusa.ui.lista = (function () {
             if (audios.length > 0) {
                 audios.forEach(function (cancion) {
                     if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
-                        audios.descargado = true;
+                        cancion.descargado = true;
                     } else {
-                        audios.descargado = false;
+                        cancion.descargado = false;
                     }
                 });
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
+                resolverDescargas();
             }
         });
     }
@@ -133,6 +139,7 @@ comunidadfusa.ui.lista = (function () {
                 });
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(data));
+                resolverDescargas();
             }
         });
     }
