@@ -53,6 +53,8 @@ comunidadfusa.ui.lista = (function () {
     }
 
     function listaMixBanda(idBanda, titulo, imagen) {
+        $(".jp-play-configure").addClass("jp-play-me-mix");
+        $(".jp-play-configure").data("id", idBanda);
         $(".fusa-js-imagen-lista").attr("src", imagen);
         $(".fusa-js-titulo-lista-usuario").text(titulo);
         comunidadfusa.service.audios.getAudiosMixBanda(idBanda, function (audios) {
@@ -71,6 +73,8 @@ comunidadfusa.ui.lista = (function () {
     }
 
     function listaGeneros(idGenero, titulo, imagen) {
+        $(".jp-play-configure").addClass("fusa-js-lista-por-genero");
+        $(".jp-play-configure").data("id-genero", idGenero);
         $(".fusa-js-imagen-lista").attr("src", imagen);
         $(".fusa-js-titulo-lista-usuario").text(titulo);
         comunidadfusa.service.audios.getPorGenero(idGenero, function (audios) {
@@ -89,6 +93,7 @@ comunidadfusa.ui.lista = (function () {
     }
 
     function listaAutomatica(url, titulo, imagen) {
+        $(".jp-play-configure").addClass("fusa-js-lista-recomendada-popular");
         $(".fusa-js-imagen-lista").attr("src", imagen);
         $(".fusa-js-titulo-lista-usuario").text(titulo);
         comunidadfusa.service.audios.getAudiosPorUrl(url, function (audios) {
@@ -107,6 +112,7 @@ comunidadfusa.ui.lista = (function () {
     }
 
     function listaUsuario(idLista) {
+        $(".jp-play-configure").addClass("jp-play-me-list");
         comunidadfusa.service.listas.getListasUsuario(function (data) {
             data.forEach(function (lista) {
                 if (lista.id == idLista) {
