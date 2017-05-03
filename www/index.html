@@ -276,6 +276,9 @@
                 comunidadfusa.ui.init();
                 comunidadfusa.init();
             }
+            if (typeof cordova === 'undefined') {
+                onReady();
+            }
             document.addEventListener("deviceready", onReady, false);
         </script>
 
