@@ -83,7 +83,8 @@ small,
     background-position: center;
 }
 
-.item-overlay a {
+.item-overlay a,
+.item-overlay span{
     color: white;
 }
 
