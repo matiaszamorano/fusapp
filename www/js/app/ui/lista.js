@@ -1,4 +1,4 @@
-comunidadfusa.ui.listaUsuario = (function () {
+comunidadfusa.ui.lista = (function () {
 
     function init() {
         var idLista = comunidadfusa.getUrlParameter("id");
