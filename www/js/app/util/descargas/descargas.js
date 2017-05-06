@@ -139,7 +139,7 @@ comunidadfusa.util.descargas = (function () {
             $this.find("i").removeClass("icon-arrow-down");
             $this.find("i").addClass("icon-clock");
             comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
-                comunidadfusa.util.descargas.descargarCancion(audio, descargaAudioSuccess, descargaAudioError);
+                descargarCancion(audio, descargaAudioSuccess, descargaAudioError);
             });
         });
 
@@ -155,7 +155,7 @@ comunidadfusa.util.descargas = (function () {
             $this.find("i").removeClass("text-success");
             $this.find("i").addClass("icon-clock");
             comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
-                comunidadfusa.util.descargas.eliminarCancionDescargada(audio, eliminarAudioSuccess);
+                eliminarCancionDescargada(audio, eliminarAudioSuccess);
             });
         });
     }

@@ -23,7 +23,7 @@ comunidadfusa.ui.disco = (function () {
             canciones = data.canciones;
             $(".fusa-js-lista-canciones-disco").empty();
             $(".fusa-js-lista-canciones-disco").append($("#cancion-disco-tmpl").tmpl(data.canciones));
-            $(".fusa-js-descargar-disco").addClass("descarga-activa")
+            $(".fusa-js-descargar-disco").addClass("descarga-activa");
             if (data.canciones.length <= cantidadAudiosDescargados) {
                 $(".fusa-js-descargar-disco span.text").html("<i class='icon-check'></i> Descargado");
             }
@@ -33,8 +33,8 @@ comunidadfusa.ui.disco = (function () {
     }
 
     function activarDescargaDisco() {
-        $(document).off('click', '.fusa-js-descargar-disco');
-        $(document).on('click', '.fusa-js-descargar-disco', function (e) {
+        $(document).off('click', '.descarga-activa');
+        $(document).on('click', '.descarga-activa', function (e) {
             e && e.preventDefault();
             var $this = $(this);
             var $iconosDescarga = $(".fusa-js-lista-canciones-disco i.icon-arrow-down");
