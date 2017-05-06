@@ -43,11 +43,14 @@ comunidadfusa.util.descargas = (function () {
                 entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
                     dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
                         dir.getFile(filename, {create: true, exclusive: false}, function (fileEntry) {
-                            fileEntry.remove();
-                            comunidadfusa.service.audios.eliminarDescargado(audioDescargado.id);
-                            comunidadfusa.service.bandas.decrementarAudiosDescargados(audioDescargado.idBanda);
-                            successCallback(audioDescargado);
-                            comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
+                            fileEntry.remove(function () {
+                                comunidadfusa.service.audios.eliminarDescargado(audioDescargado.id);
+                                comunidadfusa.service.bandas.decrementarAudiosDescargados(audioDescargado.idBanda);
+                                successCallback(audioDescargado);
+                                comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
+                            }, function (error) {
+                                comunidadfusa.util.analytics.trackEvent("error", "eliminarDescarga", "Remove - " + error, 1);
+                            });
                         }, errorHandler);
                     }, onGetDirectoryFail);
                 }, onGetDirectoryFail);
@@ -88,7 +91,7 @@ comunidadfusa.util.descargas = (function () {
     }
 
     function onGetDirectoryFail(error) {
-        comunidadfusa.util.analytics.trackEvent("error", "descarga", "onGetDirectoryFail", 1);
+        comunidadfusa.util.analytics.trackEvent("error", "descarga", "onGetDirectoryFail + " + error, 1);
     }
 
     function descargarListaCanciones(canciones, $this, $iconosDescarga) {
