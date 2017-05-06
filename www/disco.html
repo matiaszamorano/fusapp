@@ -1,24 +1,40 @@
-<section class="hbox bg-white stretch fusa-disco">
+<section class="hbox bg-black dker stretch">
     <aside class="col-sm-12 no-padder" id="sidebar">
-        <section id="escuchando" class="vbox animated fadeInUp">
+        <section class="vbox animated fadeInUp">
             <section class="scrollable">
-                <div id="fusa-portada-banda-actual" class="m-t-n-xxs item pos-rlt">
-                    <div class="bottom gd bg-info wrapper-lg nombre-disco">
-                        <span class="h2 font-thin fusa-js-titulo-disco"></span>
+                <div id="fusa-portada-disco-actual" class="m-t-n-xxs item pos-rlt">
+                    <div class="bottom gd bg-info wrapper-lg nombre-lista-usuario">
+                        <span class="h2 font-thin fusa-js-titulo-disco"></span><br>
                     </div>
-                    <div class="item-overlay opacity r r-2x">                 
-                        <div class="bottom text-right m-r-sm m-b-sm">                     
-                            <a href="#" class="jp-play-me-disc" data-id=""><i class="fa fa-play-circle i-3x"></i></a>                 
-                        </div>             
-                    </div> 
-                    <img class="img-full fusa-js-imagen-disco" src="" >
+                    <img class="img-full fusa-js-imagen-disco" src="images/canstockphoto4735150.jpg" >
                 </div>
-                <ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto fusa-js-lista-canciones-disco">
-                </ul>
             </section>
         </section>
     </aside>
 </section>
+<section class="scrollable wrapper-lg">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12 thumb-btn text-center">
+                    <div class="btn-group btn-group-justified">
+                        <a href="#" data-id="" class="btn btn-success btn-rounded fusa-js-descargar-lista">
+                            <span class="text">
+                                <i class="fa fa-download"></i> Descargar
+                            </span>
+                        </a>
+                        <a class="btn btn-info btn-rounded jp-play-me-disc" href="#" data-id="">
+                            <i class="icon-control-play text"></i> 
+                            <i class="icon-control-pause text-active"></i>
+                            Reproducir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<ul class="list-group list-group-lg no-radius no-border no-bg m-t-n-xxs m-b-none auto fusa-js-lista-canciones-disco">
+</ul>
 
 <script id="cancion-disco-tmpl" type="text/html">
     <li class="list-group-item">
