@@ -91,9 +91,46 @@ comunidadfusa.util.descargas = (function () {
         comunidadfusa.util.analytics.trackEvent("error", "descarga", "onGetDirectoryFail", 1);
     }
 
+    function descargarListaCanciones(canciones, $this, $iconosDescarga) {
+        if (canciones.length > 0) {
+            var itemsProcessed = 0;
+            var cantidadCanciones = canciones.length;
+            var $botonDescarga = $this.find("span.text");
+            $botonDescarga.addClass("fusa-descargando-banda");
+            $botonDescarga.html("<i class='icon-clock'></i> Descargando (0/" + cantidadCanciones + ")");
+            $iconosDescarga.removeClass("icon-arrow-down");
+            $iconosDescarga.addClass("icon-clock");
+            for (var i = 0; i < cantidadCanciones; i++) {
+                var audio = canciones[i];
+                if (comunidadfusa.service.audios.estaDescargado(audio.id)) {
+                    itemsProcessed++;
+                    $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
+                    if (itemsProcessed === cantidadCanciones) {
+                        $botonDescarga.html("<i class='icon-check'></i> Descargado");
+                    }
+                } else {
+                    descargarCancion(audio, function (audioDescargado) {
+                        itemsProcessed++;
+                        $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
+                        comunidadfusa.service.bandas.setAudiosDescargados(audioDescargado.idBanda, itemsProcessed);
+                        if (itemsProcessed === cantidadCanciones) {
+                            $botonDescarga.html("<i class='icon-check'></i> Descargado");
+                            $botonDescarga.removeClass("fusa-descargando-banda");
+                            $iconosDescarga.removeClass("icon-clock");
+                            $iconosDescarga.addClass("icon-check");
+                            $iconosDescarga.addClass("text-success");
+                        }
+
+                    }, function () {});
+                }
+            }
+        }
+    }
+
     return {
         descargarCancion: descargarCancion,
-        eliminarCancionDescargada: eliminarCancionDescargada
+        eliminarCancionDescargada: eliminarCancionDescargada,
+        descargarListaCanciones: descargarListaCanciones
     };
 })();
 
