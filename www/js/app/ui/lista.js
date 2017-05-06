@@ -1,5 +1,7 @@
 comunidadfusa.ui.lista = (function () {
 
+    var canciones;
+
     function init() {
         var tipo = comunidadfusa.getUrlParameter("tipo");
         if (tipo === "usuario") {
@@ -22,39 +24,6 @@ comunidadfusa.ui.lista = (function () {
 
     }
 
-    function resolverDescargas() {
-        $(document).off('click', '.fusa-js-descargar-cancion');
-        $(document).on('click', '.fusa-js-descargar-cancion', function (e) {
-            e && e.preventDefault();
-            var $this = $(e.target);
-            if (!$this.is('a')) {
-                $this = $this.closest('a');
-            }
-            var idAudio = $this.data("id");
-            $this.find("i").removeClass("icon-arrow-down");
-            $this.find("i").addClass("icon-clock");
-            comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
-                comunidadfusa.util.descargas.descargarCancion(audio, descargaAudioSuccess, descargaAudioError);
-            });
-        });
-
-        $(document).off('click', '.fusa-js-quitar-descarga-cancion');
-        $(document).on('click', '.fusa-js-quitar-descarga-cancion', function (e) {
-            e && e.preventDefault();
-            var $this = $(e.target);
-            if (!$this.is('a')) {
-                $this = $this.closest('a');
-            }
-            var idAudio = $this.data("id");
-            $this.find("i").removeClass("icon-check");
-            $this.find("i").removeClass("text-success");
-            $this.find("i").addClass("icon-clock");
-            comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
-                comunidadfusa.util.descargas.eliminarCancionDescargada(audio, eliminarAudioSuccess);
-            });
-        });
-    }
-
     function listaMixBanda(idBanda, titulo, imagen) {
         $(".jp-play-configure").addClass("jp-play-me-mix");
         $(".jp-play-configure").data("id", idBanda);
@@ -69,9 +38,12 @@ comunidadfusa.ui.lista = (function () {
                         cancion.descargado = false;
                     }
                 });
+                canciones = audios;
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
-                resolverDescargas();
+                $(".fusa-js-descargar-lista").addClass("descarga-activa");
+                comunidadfusa.util.descargas.activarDescargaCanciones();
+                activarDescargaTodos();
             }
         });
     }
@@ -90,9 +62,12 @@ comunidadfusa.ui.lista = (function () {
                         cancion.descargado = false;
                     }
                 });
+                canciones = audios;
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
-                resolverDescargas();
+                $(".fusa-js-descargar-lista").addClass("descarga-activa");
+                comunidadfusa.util.descargas.activarDescargaCanciones();
+                activarDescargaTodos();
             }
         });
     }
@@ -110,9 +85,12 @@ comunidadfusa.ui.lista = (function () {
                         cancion.descargado = false;
                     }
                 });
+                canciones = audios;
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
-                resolverDescargas();
+                $(".fusa-js-descargar-lista").addClass("descarga-activa");
+                comunidadfusa.util.descargas.activarDescargaCanciones();
+                activarDescargaTodos();
             }
         });
     }
@@ -137,39 +115,26 @@ comunidadfusa.ui.lista = (function () {
                         cancion.descargado = false;
                     }
                 });
+                canciones = data;
                 $(".fusa-js-lista-canciones-lista").empty();
                 $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(data));
-                resolverDescargas();
+                $(".fusa-js-descargar-lista").addClass("descarga-activa");
+                comunidadfusa.util.descargas.activarDescargaCanciones();
+                activarDescargaTodos();
             }
         });
     }
 
-    function eliminarAudioSuccess(audioDescargado) {
-        var $cancion = $("a[data-id='" + audioDescargado.id + "']");
-        var $icono = $cancion.find("i.icon-clock");
-        $icono.removeClass("icon-clock");
-        $icono.addClass("icon-arrow-down");
-        $cancion.removeClass("fusa-js-quitar-descarga-cancion");
+    function activarDescargaTodos() {
+        $(document).off('click', '.descarga-activa');
+        $(document).on('click', '.descarga-activa', function (e) {
+            e && e.preventDefault();
+            var $this = $(this);
+            var $iconosDescarga = $(".fusa-js-lista-canciones-lista i.icon-arrow-down");
+            comunidadfusa.util.descargas.descargarListaCanciones(canciones, $this, $iconosDescarga);
+        });
     }
 
-    function descargaAudioSuccess(audioDescargado) {
-        var $cancion = $("a[data-id='" + audioDescargado.id + "']");
-        comunidadfusa.service.bandas.incrementarAudiosDescargados(audioDescargado.idBanda);
-        var $icono = $cancion.find("i.icon-clock");
-        $icono.removeClass("icon-clock");
-        $icono.addClass("icon-check");
-        $icono.addClass("text-success");
-        $cancion.removeClass("fusa-js-descargar-cancion");
-        $cancion.addClass("fusa-js-quitar-descarga-cancion");
-    }
-
-    function descargaAudioError(audioDescargado) {
-        var $cancion = $("a[data-id='" + audioDescargado.id + "']");
-        var $icono = $cancion.find("i.icon-clock");
-        $icono.removeClass("icon-clock");
-        $icono.addClass("icon-arrow-down");
-        comunidadfusa.util.analytics.trackEvent("error", "descarga", audioDescargado.id, 1);
-    }
 
     return {
         init: init
