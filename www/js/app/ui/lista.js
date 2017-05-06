@@ -1,9 +1,11 @@
 comunidadfusa.ui.lista = (function () {
 
     var canciones;
+    var cantidadAudiosDescargados = 0;
 
     function init() {
         var tipo = comunidadfusa.getUrlParameter("tipo");
+        cantidadAudiosDescargados = 0;
         if (tipo === "usuario") {
             var idLista = comunidadfusa.getUrlParameter("id");
             listaUsuario(idLista);
@@ -34,6 +36,7 @@ comunidadfusa.ui.lista = (function () {
                 audios.forEach(function (cancion) {
                     if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
                         cancion.descargado = true;
+                        cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
                     }
@@ -58,6 +61,7 @@ comunidadfusa.ui.lista = (function () {
                 audios.forEach(function (cancion) {
                     if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
                         cancion.descargado = true;
+                        cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
                     }
@@ -81,6 +85,7 @@ comunidadfusa.ui.lista = (function () {
                 audios.forEach(function (cancion) {
                     if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
                         cancion.descargado = true;
+                        cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
                     }
@@ -111,6 +116,7 @@ comunidadfusa.ui.lista = (function () {
                 data.forEach(function (cancion) {
                     if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
                         cancion.descargado = true;
+                        cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
                     }
@@ -126,6 +132,9 @@ comunidadfusa.ui.lista = (function () {
     }
 
     function activarDescargaTodos() {
+        if (canciones.length <= cantidadAudiosDescargados) {
+            $(".fusa-js-descargar-lista span.text").html("<i class='icon-check'></i> Descargado");
+        }
         $(document).off('click', '.descarga-activa');
         $(document).on('click', '.descarga-activa', function (e) {
             e && e.preventDefault();
