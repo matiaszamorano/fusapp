@@ -1,3 +1,5 @@
+/* global comunidadfusa */
+
 comunidadfusa.ui.reproductor = (function () {
 
     var playlist;
@@ -25,9 +27,11 @@ comunidadfusa.ui.reproductor = (function () {
             $('.musicbar').removeClass('animate');
             storage.setItem("playlistCurrent", 0);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "end", data.jPlayer.status.media.id, 1);
+            actualizarControlesDeLaBarra();
         });
         $(document).on($.jPlayer.event.loadstart, playlist.cssSelector.jPlayer, function (data) {
             checkAudioDescargado(data);
+            actualizarControlesDeLaBarra();
         });
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').addClass('animate');
@@ -37,6 +41,7 @@ comunidadfusa.ui.reproductor = (function () {
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "play", data.jPlayer.status.media.id, 1);
+            actualizarControlesDeLaBarra();
         });
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').removeClass('animate');
@@ -204,7 +209,7 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function inicializarPlaylist() {
-        
+
         var playlistOptions = {
             playlistOptions: {
                 enableRemoveControls: true,
@@ -231,8 +236,8 @@ comunidadfusa.ui.reproductor = (function () {
         if (playlistCurrent !== null) {
             playlist.select(playlistCurrent);
         }
-        
-        inicializarControlesDeLaBarra();
+
+        actualizarControlesDeLaBarra();
     }
 
     function reproducirListaPorUrl(url, label) {
@@ -352,44 +357,48 @@ comunidadfusa.ui.reproductor = (function () {
         return reproduciendo;
     }
 
-    function inicializarControlesDeLaBarra() {
-        MusicControls.create({
-            track: 'Time is Running Out',
-            artist: 'Muse',
-            cover: 'images/listas/02.jpg', // optional, default : nothing
-            // cover can be a local path (use fullpath 'file:///storage/emulated/...)', or only 'my_image.jpg'
-            isPlaying: true, // optional, default : true
-            dismissable: false, // optional, default : false
-            hasPrev: true, // show previous button, optional, default: true
-            hasNext: true, // show next button, optional, default: true
-            hasClose: false, // show close button, optional, default: false
-            album: 'Absolution', // optional, default: ''
-            duration: 60, // optional, default: 0
-            elapsed: 10 // optional, default: 0
-        });
+    function actualizarControlesDeLaBarra() {
+
+        MusicControls.create(obtenerDataTemaActual());
         function events(action) {
             switch (action) {
                 case 'music-controls-next':
                     playlist.next();
+                    actualizarControlesDeLaBarra();
                     break;
                 case 'music-controls-previous':
                     playlist.previous();
+                    actualizarControlesDeLaBarra();
                     break;
                 case 'music-controls-pause':
                     playlist.pause();
+                    MusicControls.updateIsPlaying(false);
                     break;
                 case 'music-controls-play':
                     playlist.play();
+                    MusicControls.updateIsPlaying(true);
                     break;
             }
         }
 
-        // Register callback        
         MusicControls.subscribe(events);
-
-        // Start listening for events
         // The plugin will run the events function each time an event is fired
         MusicControls.listen();
+    }
+
+    function obtenerDataTemaActual() {
+        var playlist = JSON.parse(storage.getItem("playlist"));
+        var numTemaActual = storage.getItem("playlistCurrent");
+        var temaData = {
+            track: playlist[numTemaActual].title,
+            artist: playlist[numTemaActual].artist,
+            cover: playlist[numTemaActual].poster,
+            hasPrev: (numTemaActual != 0),
+            hasNext: (numTemaActual != playlist.length),
+            //duration : 100,
+            //elapsed : 40,
+        };
+        return temaData;
     }
 
     return {
