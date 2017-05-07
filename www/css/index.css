@@ -1,7 +1,24 @@
 /****Sobrescritura de estilos del tema **/
 
 body {
-    font-size: 18px;    
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;   
+    color: #788188;
+    background-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.40;
+}
+
+header .navbar-header {
+    font-family: "Raleway-Thin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+header .navbar-header.bg-black .text-lt {
+    color: #fff !important;
+}
+
+.navbar-header .btn-link .fa {
+    color: #fff;
 }
 
 small,
@@ -66,7 +83,8 @@ small,
     background-position: center;
 }
 
-.item-overlay a {
+.item-overlay a,
+.item-overlay span{
     color: white;
 }
 

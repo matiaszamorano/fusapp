@@ -52,6 +52,7 @@ comunidadfusa.ui.escuchando = (function () {
         $(document).off($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer);
         $(document).on($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer, function (data) {
             $("#escuchando-lista li a.jp-play-me-escuchando").removeClass("active");
+            $('.musicbar').removeClass('animate');
         });
     }
 
@@ -71,7 +72,7 @@ comunidadfusa.ui.escuchando = (function () {
         var $itemActual = $("#escuchando-lista li[data-index='" + jPlaylist.current + "']");
         $itemActual.addClass("active");
         $itemActual.children("a.jp-play-me-escuchando").addClass("active");
-        $("#fusa-portada-banda-actual").empty().append($("#fusa-portada-tema-actual-tmpl").tmpl(jPlaylist.playlist[jPlaylist.current]));
+        $("#fusa-portada-banda-actual-escuchando").empty().append($("#fusa-portada-tema-actual-tmpl").tmpl(jPlaylist.playlist[jPlaylist.current]));
         comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
     }
 

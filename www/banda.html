@@ -52,19 +52,20 @@
 
 <script id="disco-banda-tmpl" type="text/html">
     <div class="col-xs-6 m-b-sm">     
-        <div class="item item-disco box-shadow">         
-            <div class="pos-rlt">             
-                <div class="item-overlay opacity r r-2x">                 
-                    <div class="bottom text-right m-r-xs m-b-xs">                     
-                        <a href="#" class="jp-play-me-disc" data-id="${id}"><i class="fa fa-play-circle i-2x"></i></a>                 
+        <a href="disco.html?id=${id}" rel="ajax">    
+            <div class="item item-disco box-shadow">         
+                <div class="pos-rlt">             
+                    <div class="item-overlay opacity r r-2x">                 
+                        <div class="bottom text-right m-r-xs m-b-xs">                     
+                            <span class="jp-play-me-disc" data-id="${id}"><i class="fa fa-play-circle i-2x"></i></span>                 
+                        </div>             
                     </div>             
-                </div>             
-                <a href="disco.html?id=${id}" rel="ajax">                 
-                    <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full"></a>         
-            </div>                     
-            <a href="disco.html?id=${id}" rel="ajax" class="text-ellipsis">${nombre}</a>             
-            <a href="disco.html?id=${id}" rel="ajax" class="fusa-ciudad-banda text-ellipsis text-xs text-muted">${ano}</a>              
-        </div> 
+                    <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full">        
+                </div>                     
+                <a href="disco.html?id=${id}" rel="ajax" class="text-ellipsis">${nombre}</a>             
+                <a href="disco.html?id=${id}" rel="ajax" class="fusa-ciudad-banda text-ellipsis text-xs text-muted">${ano}</a>              
+            </div> 
+        </a> 
     </div> 
 </script>
 

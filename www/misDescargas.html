@@ -12,19 +12,19 @@
 
 <script id="banda-descargada-tmpl" type="text/html">
     <div class="col-xs-6 m-b-sm">     
-        <div class="item item-disco">         
-            <div class="pos-rlt">  
-                <div class="item-overlay opacity r r-2x">                 
-                    <div class="bottom text-right m-r-xs m-b-xs">                     
-                        <a href="#" class="jp-play-me" data-id="${id}"><i class="fa fa-play-circle i-2x"></i></a>                 
-                    </div>             
-                </div> 
-                <a href="banda.html?id=${id}" rel="ajax">                 
+        <a href="banda.html?id=${id}" rel="ajax">                 
+            <div class="item item-disco">         
+                <div class="pos-rlt">  
+                    <div class="item-overlay opacity r r-2x">                 
+                        <div class="bottom text-right m-r-xs m-b-xs">                     
+                            <span class="jp-play-me" data-id="${id}"><i class="fa fa-play-circle i-2x"></i></span>                 
+                        </div>             
+                    </div> 
                     <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full">
-                </a>         
-            </div>                     
-            <a href="banda.html?id=${id}" rel="ajax" class="text-ellipsis">${nombre}</a>             
-        </div> 
+                </div>                     
+                <span class="text-ellipsis">${nombre}</span>             
+            </div> 
+        </a>         
     </div> 
 </script>
 

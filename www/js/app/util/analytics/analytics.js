@@ -1,12 +1,16 @@
 comunidadfusa.util.analytics = (function () {
 
     function track(url) {
-        ga('set', 'page', '/' + url);
-        ga('send', 'pageview');
+        if (typeof ga !== 'undefined') {
+            ga('set', 'page', '/' + url);
+            ga('send', 'pageview');
+        }
     }
 
     function trackEvent(category, tipo, label, value) {
-        ga('send', 'event', category, tipo, label, value);
+        if (typeof ga !== 'undefined') {
+            ga('send', 'event', category, tipo, label, value);
+        }
     }
 
     return {

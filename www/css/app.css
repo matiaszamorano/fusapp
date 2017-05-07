@@ -1007,7 +1007,7 @@ body.container {
     z-index: 1100;
   }
   .navbar-fixed-top-xs + * {
-    padding-top: 50px !important;
+    padding-top: 40px !important;
   }
   .nav-bar-fixed-bottom {
     position: fixed;

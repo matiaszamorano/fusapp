@@ -3,18 +3,20 @@
         <aside class="col-sm-12 no-padder" id="sidebar">
             <section class="vbox animated fadeInUp">
                 <section class="scrollable">
-                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
-                        <div class="bottom gd bg-info wrapper-lg">
-                            <span class="block h3 font-bold text-info text-u-c">TOP 25</span>
-                            <span class="text-muted">Lo que más se está escuchando</span>
+                    <a href="lista.html?tipo=top25" rel="ajax">
+                        <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                            <div class="bottom gd bg-info wrapper-lg">
+                                <span class="block h3 text-info text-u-c">TOP 25</span>
+                                <span class="text-muted">Lo que más se está escuchando</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x">                 
+                                <div class="bottom text-right m-r-sm m-b-sm">                     
+                                    <span class="fusa-js-lista-recomendada-popular" data-id=""><i class="fa fa-play-circle i-3x"></i></span>                 
+                                </div>             
+                            </div> 
+                            <img class="img-full" src="images/listas/01.jpg">
                         </div>
-                        <div class="item-overlay opacity r r-2x">                 
-                            <div class="bottom text-right m-r-sm m-b-sm">                     
-                                <a href="#" class="fusa-js-lista-recomendada-popular" data-id=""><i class="fa fa-play-circle i-3x"></i></a>                 
-                            </div>             
-                        </div> 
-                        <img class="img-full" src="images/listas/01.jpg">
-                    </div>
+                    </a>
                 </section>
             </section>
         </aside>
@@ -23,18 +25,20 @@
         <aside class="col-sm-12 no-padder" id="sidebar">
             <section class="vbox animated fadeInUp">
                 <section class="scrollable">
-                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
-                        <div class="bottom gd bg-info wrapper-lg">
-                            <span class="block h3 font-bold text-warning text-u-c">Rock</span>
-                            <span class="text-muted">Los mejores temas para rockearla</span>
+                    <a href="lista.html?id=361&tipo=genero&titulo=Rock&imagen=images/listas/02.jpg" rel="ajax">
+                        <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                            <div class="bottom gd bg-info wrapper-lg">
+                                <span class="block h3 text-warning text-u-c">Rock</span>
+                                <span class="text-muted">Los mejores temas para rockearla</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x">                 
+                                <div class="bottom text-right m-r-sm m-b-sm">                     
+                                    <span class="fusa-js-lista-por-genero" data-id-genero="361"><i class="fa fa-play-circle i-3x"></i></span>                 
+                                </div>             
+                            </div> 
+                            <img class="img-full" src="images/listas/02.jpg">
                         </div>
-                        <div class="item-overlay opacity r r-2x">                 
-                            <div class="bottom text-right m-r-sm m-b-sm">                     
-                                <a href="#" class="fusa-js-lista-por-genero" data-id-genero="361"><i class="fa fa-play-circle i-3x"></i></a>                 
-                            </div>             
-                        </div> 
-                        <img class="img-full" src="images/listas/02.jpg">
-                    </div>
+                    </a>
                 </section>
             </section>
         </aside>
@@ -43,18 +47,20 @@
         <aside class="col-sm-12 no-padder" id="sidebar">
             <section class="vbox animated fadeInUp">
                 <section class="scrollable">
-                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
-                        <div class="bottom gd bg-info wrapper-lg">
-                            <span class="block h3 font-bold text-white text-u-c">Reggae</span>
-                            <span class="text-muted">Sorprendete con estas canciones</span>
+                    <a href="lista.html?id=397&tipo=genero&titulo=Reggae&imagen=images/listas/03.jpg" rel="ajax">
+                        <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                            <div class="bottom gd bg-info wrapper-lg">
+                                <span class="block h3 text-white text-u-c">Reggae</span>
+                                <span class="text-muted">Sorprendete con estas canciones</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x">                 
+                                <div class="bottom text-right m-r-sm m-b-sm">                     
+                                    <span class="fusa-js-lista-por-genero" data-id-genero="397"><i class="fa fa-play-circle i-3x"></i></span>                 
+                                </div>             
+                            </div> 
+                            <img class="img-full" src="images/listas/03.jpg">
                         </div>
-                        <div class="item-overlay opacity r r-2x">                 
-                            <div class="bottom text-right m-r-sm m-b-sm">                     
-                                <a href="#" class="fusa-js-lista-por-genero" data-id-genero="397"><i class="fa fa-play-circle i-3x"></i></a>                 
-                            </div>             
-                        </div> 
-                        <img class="img-full" src="images/listas/03.jpg">
-                    </div>
+                    </a>
                 </section>
             </section>
         </aside>
@@ -67,18 +73,20 @@
         <aside class="col-sm-12 no-padder" id="sidebar">
             <section class="vbox animated fadeInUp">
                 <section class="scrollable">
-                    <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
-                        <div class="bottom gd bg-info wrapper-lg fusa-banda-home-nombre">
-                            <span class="block h3 font-bold text-white text-u-c">${nombre}</span>
-                            <span class="text-muted">Radio de ${nombre}</span>
+                    <a href="lista.html?id=${id}&tipo=mixBanda&titulo=Radio de ${nombre}&imagen=http://www.comunidadfusa.com${imagen}" rel="ajax">
+                        <div class="m-t-n-xxs item pos-rlt fusa-foto-perfil">
+                            <div class="bottom gd bg-info wrapper-lg fusa-banda-home-nombre">
+                                <span class="block h3 text-white text-u-c">${nombre}</span>
+                                <span class="text-muted">Radio de ${nombre}</span>
+                            </div>
+                            <div class="item-overlay opacity r r-2x">                 
+                                <div class="bottom text-right m-r-sm m-b-sm">                     
+                                    <span class="jp-play-me-mix" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></span>                 
+                                </div>             
+                            </div> 
+                            <img class="img-full" src="http://www.comunidadfusa.com${imagen}">
                         </div>
-                        <div class="item-overlay opacity r r-2x">                 
-                            <div class="bottom text-right m-r-sm m-b-sm">                     
-                                <a href="#" class="jp-play-me-mix" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></a>                 
-                            </div>             
-                        </div> 
-                        <img class="img-full" src="http://www.comunidadfusa.com${imagen}">
-                    </div>
+                    </a>
                 </section>
             </section>
         </aside>

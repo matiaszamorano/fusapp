@@ -32,7 +32,7 @@
             <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
                 <div class="navbar-header aside bg-black lter nav-xs">
                     <a class="fusa-js-desplegar-menu btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
-                        <i class="icon-list"></i>
+                        <i class="fa fa-bars"></i>
                     </a>
                     <div class="input-group fusa-buscador fusa-js-buscador-activo">
                         <span class="input-group-btn">
@@ -74,25 +74,25 @@
                                             <li>
                                                 <a href="bienvenida.html" rel="ajax">
                                                     <i class="icon-home icon text-success"></i>
-                                                    <span class="font-bold">Inicio</span>
+                                                    <span>Inicio</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="perfil.html" rel="ajax">
                                                     <i class="fa fa-dashboard"></i>
-                                                    <span class="font-bold">Mi perfil</span>
+                                                    <span>Mi perfil</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="misDescargas.html" rel="ajax">
                                                     <i class="icon icon-folder-alt text-success"></i>
-                                                    <span class="font-bold">Mis Descargas</span>
+                                                    <span>Mis Descargas</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a class="modo-offline">
                                                     <i class="icon-cloud-download"></i>
-                                                    <span class="font-bold">Solo descargado</span>
+                                                    <span>Solo descargado</span>
                                                     <span class="pull-right">
                                                         <label>
                                                             <input id="fusa-solo-descargado" type="checkbox">
@@ -189,7 +189,7 @@
                                                                                         <div><a id="fusa-js-prev" class="jp-previous"><i class="icon-control-rewind i-lg"></i></a></div>
                                                                                         <div>
                                                                                             <a class="jp-play"><i class="icon-control-play i-2x"></i></a>
-                                                                                            <a  id="fusa-js-pausa" class="jp-pause hid"><i class="icon-control-pause i-2x"></i></a>
+                                                                                            <a class="jp-pause"><i class="icon-control-pause i-2x"></i></a>
                                                                                         </div>
                                                                                         <div><a id="fusa-js-next" class="jp-next"><i class="icon-control-forward i-lg"></i></a></div>
                                                                                         <div class="hide"><a class="jp-stop"><i class="fa fa-stop"></i></a></div>
@@ -276,31 +276,36 @@
                 comunidadfusa.ui.init();
                 comunidadfusa.init();
             }
+            if (typeof cordova === 'undefined') {
+                onReady();
+            }
             document.addEventListener("deviceready", onReady, false);
         </script>
 
         <!-- Google Analytics -->
         <script>
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                        m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            if (typeof cordova !== 'undefined') {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-            ga('create', 'UA-6024327-16', {
-                'storage': 'none',
-                'clientId': localStorage.getItem('ga:clientId')
-            });
-            ga('set', 'checkProtocolTask', null); //Disables the check for http and https protocol thus allowing file protocol, which is used by Cordova
-            ga(function (tracker) {
-                localStorage.setItem('ga:clientId', tracker.get('clientId'));
-            });
+                ga('create', 'UA-6024327-16', {
+                    'storage': 'none',
+                    'clientId': localStorage.getItem('ga:clientId')
+                });
+                ga('set', 'checkProtocolTask', null); //Disables the check for http and https protocol thus allowing file protocol, which is used by Cordova
+                ga(function (tracker) {
+                    localStorage.setItem('ga:clientId', tracker.get('clientId'));
+                });
+            }
         </script>
     </body>
 </html>
