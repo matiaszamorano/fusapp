@@ -1,4 +1,4 @@
-/* global comunidadfusa */
+/* global comunidadfusa, MusicControls */
 
 comunidadfusa.ui.reproductor = (function () {
 
@@ -41,14 +41,15 @@ comunidadfusa.ui.reproductor = (function () {
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "play", data.jPlayer.status.media.id, 1);
-            actualizarControlesDeLaBarra();
         });
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').removeClass('animate');
             reproduciendo = 0;
+            MusicControls.updateIsPlaying(false);
         });
         $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
             $('.musicbar').removeClass('animate');
+            MusicControls.updateIsPlaying(false);
         });
         $(document).on($.jPlayer.event.timeupdate, playlist.cssSelector.jPlayer, function (data) {
             var d = new Date();
@@ -207,7 +208,7 @@ comunidadfusa.ui.reproductor = (function () {
         var playlistStorage = storage.getItem("playlist");
         var audiosGuardados = new Array();
         if (playlistStorage !== null) {
-            audiosGuardados = JSON.parse(storage.getItem("playlist"));
+            audiosGuardados = JSON.parse(playlistStorage);
         }
         agregarAudiosGuardados(audiosGuardados);
         var playlistCurrent = storage.getItem("playlistCurrent");
@@ -338,7 +339,6 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function actualizarControlesDeLaBarra() {
-
         MusicControls.create(obtenerDataTemaActual());
         function events(action) {
             switch (action) {
@@ -360,21 +360,20 @@ comunidadfusa.ui.reproductor = (function () {
                     break;
             }
         }
-
         MusicControls.subscribe(events);
         // The plugin will run the events function each time an event is fired
         MusicControls.listen();
     }
 
     function obtenerDataTemaActual() {
-        var playlist = JSON.parse(storage.getItem("playlist"));
-        var numTemaActual = storage.getItem("playlistCurrent");
+        var storagePlaylist = JSON.parse(storage.getItem("playlist"));
+        var numTemaActual = parseInt(storage.getItem("playlistCurrent"));
         var temaData = {
-            track: playlist[numTemaActual].title,
-            artist: playlist[numTemaActual].artist,
-            cover: playlist[numTemaActual].poster,
-            hasPrev: (numTemaActual != 0),
-            hasNext: (numTemaActual != playlist.length),
+            track: storagePlaylist[numTemaActual].title,
+            artist: storagePlaylist[numTemaActual].artist,
+            cover: storagePlaylist[numTemaActual].poster,
+            hasPrev: (numTemaActual !== 0),
+            hasNext: (numTemaActual !== storagePlaylist.length)
             //duration : 100,
             //elapsed : 40,
         };
