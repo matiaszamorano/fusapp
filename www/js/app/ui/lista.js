@@ -39,6 +39,11 @@ comunidadfusa.ui.lista = (function () {
                         cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
+                        if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
+                            cancion.descargando = true;
+                        } else {
+                            cancion.descargando = false;
+                        }
                     }
                 });
                 canciones = audios;
@@ -64,6 +69,11 @@ comunidadfusa.ui.lista = (function () {
                         cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
+                        if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
+                            cancion.descargando = true;
+                        } else {
+                            cancion.descargando = false;
+                        }
                     }
                 });
                 canciones = audios;
@@ -88,6 +98,11 @@ comunidadfusa.ui.lista = (function () {
                         cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
+                        if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
+                            cancion.descargando = true;
+                        } else {
+                            cancion.descargando = false;
+                        }
                     }
                 });
                 canciones = audios;
@@ -119,6 +134,11 @@ comunidadfusa.ui.lista = (function () {
                         cantidadAudiosDescargados++;
                     } else {
                         cancion.descargado = false;
+                        if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
+                            cancion.descargando = true;
+                        } else {
+                            cancion.descargando = false;
+                        }
                     }
                 });
                 canciones = data;
