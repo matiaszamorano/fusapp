@@ -7,6 +7,7 @@ comunidadfusa.ui.disco = (function () {
         var cantidadAudiosDescargados = 0;
 
         comunidadfusa.service.discos.getDisco(idDisco, function (data) {
+            var algunoDescargando = false;
             $(".fusa-js-titulo-disco").text(data.nombre);
             $(".jp-play-me-disc").data("id", idDisco);
             $imagen = $(".fusa-js-imagen-disco");
@@ -21,15 +22,23 @@ comunidadfusa.ui.disco = (function () {
                     cancion.descargado = false;
                     if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
                         cancion.descargando = true;
+                        algunoDescargando = true;
                     } else {
                         cancion.descargando = false;
                     }
                 }
             });
+
             canciones = data.canciones;
             $(".fusa-js-lista-canciones-disco").empty();
             $(".fusa-js-lista-canciones-disco").append($("#cancion-disco-tmpl").tmpl(data.canciones));
-            $(".fusa-js-descargar-disco").addClass("descarga-activa");
+            if (algunoDescargando) {
+                var $botonDescarga = $(".fusa-js-descargar-disco span.text");
+                $botonDescarga.addClass("fusa-descargando-banda");
+                $botonDescarga.html("<i class='icon-clock'></i> Descargando...");
+            } else {
+                $(".fusa-js-descargar-disco").addClass("descarga-activa");
+            }
             if (data.canciones.length <= cantidadAudiosDescargados) {
                 $(".fusa-js-descargar-disco span.text").html("<i class='icon-check'></i> Descargado");
             }
