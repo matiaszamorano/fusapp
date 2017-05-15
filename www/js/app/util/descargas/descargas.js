@@ -104,6 +104,9 @@ comunidadfusa.util.descargas = (function () {
             $botonDescarga.html("<i class='icon-clock'></i> Descargando (0/" + cantidadCanciones + ")");
             $iconosDescarga.removeClass("icon-arrow-down");
             $iconosDescarga.addClass("icon-clock");
+            cancionesADescargar.forEach(function (cancion) {
+                comunidadfusa.service.audios.audioEnDescargaEnProceso(cancion.id);
+            });
             enviarADescargarAudio(cancionesADescargar.shift(), cancionesADescargar, itemsProcessed, cantidadCanciones, $botonDescarga, $iconosDescarga);
         }
     }
