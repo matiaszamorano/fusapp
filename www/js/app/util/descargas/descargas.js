@@ -148,6 +148,7 @@ comunidadfusa.util.descargas = (function () {
             $this.find("i").removeClass("icon-arrow-down");
             $this.find("i").addClass("icon-clock");
             comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
+                comunidadfusa.service.audios.audioEnDescargaEnProceso(idAudio);
                 descargarCancion(audio, descargaAudioSuccess, descargaAudioError);
             });
         });
@@ -186,6 +187,7 @@ comunidadfusa.util.descargas = (function () {
         $icono.addClass("text-success");
         $cancion.removeClass("fusa-js-descargar-cancion");
         $cancion.addClass("fusa-js-quitar-descarga-cancion");
+        comunidadfusa.service.audios.eliminarAudioEnDescargaEnProceso(audioDescargado.id);
     }
 
     function descargaAudioError(audioDescargado) {
@@ -193,6 +195,7 @@ comunidadfusa.util.descargas = (function () {
         var $icono = $cancion.find("i.icon-clock");
         $icono.removeClass("icon-clock");
         $icono.addClass("icon-arrow-down");
+        comunidadfusa.service.audios.eliminarAudioEnDescargaEnProceso(audioDescargado.id);
         comunidadfusa.util.analytics.trackEvent("error", "descarga", audioDescargado.id, 1);
     }
 

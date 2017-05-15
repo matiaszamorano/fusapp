@@ -15,9 +15,15 @@ comunidadfusa.ui.disco = (function () {
             data.canciones.forEach(function (cancion) {
                 if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
                     cancion.descargado = true;
+                    cancion.enDescarga = false;
                     cantidadAudiosDescargados++;
                 } else {
                     cancion.descargado = false;
+                    if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
+                        cancion.descargando = true;
+                    } else {
+                        cancion.descargando = false;
+                    }
                 }
             });
             canciones = data.canciones;
