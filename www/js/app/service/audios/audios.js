@@ -35,6 +35,21 @@ comunidadfusa.service.audios = (function () {
         storage.setItem("descargado" + idAudio, ruta);
     }
 
+    function audioEnDescargaEnProceso(idAudio) {
+        storage.setItem("descargandoAudio" + idAudio, 1);
+    }
+
+    function eliminarAudioEnDescargaEnProceso(idAudio) {
+        storage.removeItem("descargandoAudio" + idAudio);
+    }
+
+    function estaEnDescargaEnProceso(idAudio) {
+        if (storage.getItem("descargandoAudio" + idAudio) === null) {
+            return false;
+        }
+        return true;
+    }
+
     function eliminarDescargado(idAudio) {
         storage.removeItem("descargado" + idAudio);
     }
@@ -60,6 +75,9 @@ comunidadfusa.service.audios = (function () {
         getDescargado: getDescargado,
         estaDescargado: estaDescargado,
         eliminarDescargado: eliminarDescargado,
-        getPorGenero: getPorGenero
+        getPorGenero: getPorGenero,
+        audioEnDescargaEnProceso: audioEnDescargaEnProceso,
+        eliminarAudioEnDescargaEnProceso: eliminarAudioEnDescargaEnProceso,
+        estaEnDescargaEnProceso: estaEnDescargaEnProceso
     };
 })();

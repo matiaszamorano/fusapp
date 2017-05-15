@@ -3,6 +3,7 @@ var comunidadfusa = (function () {
     var MP3_URI = mp3URI();
     var BASE_URI_HASH = baseURIHash();
     var externalSdCardApplicationStorageDirectory;
+    var storage = window.localStorage;
 
     function baseURI() {
         return "http://www.comunidadfusa.com/";
@@ -44,6 +45,14 @@ var comunidadfusa = (function () {
         return externalSdCardApplicationStorageDirectory;
     }
 
+    function eliminarDescargasEnProgreso() {
+        $.each(storage, function (key, value) {
+            if (key.match("^descargandoAudio")) {
+                storage.removeItem(key);
+            }
+        });
+    }
+
     function init() {
         cordova.plugins.diagnostic.getExternalSdCardDetails(function (details) {
             details.forEach(function (detail) {
@@ -56,6 +65,7 @@ var comunidadfusa = (function () {
             externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
             comunidadfusa.util.analytics.trackEvent("error", "init", error, 1);
         });
+        eliminarDescargasEnProgreso();
     }
 
     return {

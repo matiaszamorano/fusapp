@@ -3,6 +3,7 @@ comunidadfusa.ui.banda = (function () {
     function init() {
         var idBanda = comunidadfusa.getUrlParameter("id");
         comunidadfusa.service.bandas.getBanda(idBanda, function (data) {
+            $(document).off('click', '.fusa-js-descargar-banda');
             $(".fusa-js-nombre-banda").text(data.nombre);
             $(".fusa-js-ciudad-banda").text(data.ciudad);
             $("a.jp-play-me").data("id", idBanda);
@@ -14,6 +15,20 @@ comunidadfusa.ui.banda = (function () {
                 var cantidadAudiosBanda = data.length;
                 if (cantidadAudiosBanda <= cantidadAudiosDescargados) {
                     $(".fusa-js-descargar-banda span.text").html("<i class='icon-check'></i> Descargado");
+                } else {
+                    var algunoDescargando = false;
+                    data.forEach(function (cancion) {
+                        if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
+                            algunoDescargando = true;
+                        }
+                    });
+                    if (algunoDescargando) {
+                        $botonDescargar = $(".fusa-js-descargar-banda span.text");
+                        $botonDescargar.html("<i class='icon-clock'></i> Descargando...");
+                        $botonDescargar.removeClass("fusa-js-descargar-banda");
+                    } else {
+                        activarDescarga();
+                    }
                 }
             });
         });
@@ -30,7 +45,9 @@ comunidadfusa.ui.banda = (function () {
             comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
         });
 
-        $(document).off('click', '.fusa-js-descargar-banda');
+    }
+
+    function activarDescarga() {
         $(document).on('click', '.fusa-js-descargar-banda', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);
@@ -55,6 +72,7 @@ comunidadfusa.ui.banda = (function () {
                                 $botonDescarga.html("<i class='icon-check'></i> Descargado");
                             }
                         } else {
+                            comunidadfusa.service.audios.audioEnDescargaEnProceso(audio.id);
                             comunidadfusa.util.descargas.descargarCancion(audio, function (audioDescargado) {
                                 itemsProcessed++;
                                 $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
