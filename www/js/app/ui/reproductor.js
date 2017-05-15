@@ -27,11 +27,10 @@ comunidadfusa.ui.reproductor = (function () {
             $('.musicbar').removeClass('animate');
             storage.setItem("playlistCurrent", 0);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "end", data.jPlayer.status.media.id, 1);
-            actualizarControlesDeLaBarra();
+            MusicControls.destroy();
         });
         $(document).on($.jPlayer.event.loadstart, playlist.cssSelector.jPlayer, function (data) {
             checkAudioDescargado(data);
-            actualizarControlesDeLaBarra();
         });
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').addClass('animate');
@@ -41,6 +40,7 @@ comunidadfusa.ui.reproductor = (function () {
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "play", data.jPlayer.status.media.id, 1);
+            actualizarControlesDeLaBarra(data.jPlayer.status);
         });
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.musicbar').removeClass('animate');
@@ -216,7 +216,6 @@ comunidadfusa.ui.reproductor = (function () {
             playlist.select(playlistCurrent);
         }
 
-        actualizarControlesDeLaBarra();
     }
 
     function reproducirListaPorUrl(url, label) {
@@ -338,17 +337,15 @@ comunidadfusa.ui.reproductor = (function () {
         return reproduciendo;
     }
 
-    function actualizarControlesDeLaBarra() {
-        MusicControls.create(obtenerDataTemaActual());
+    function actualizarControlesDeLaBarra(status) {
+        MusicControls.create(obtenerDataTemaActual(status));
         function events(action) {
             switch (action) {
                 case 'music-controls-next':
                     playlist.next();
-                    actualizarControlesDeLaBarra();
                     break;
                 case 'music-controls-previous':
                     playlist.previous();
-                    actualizarControlesDeLaBarra();
                     break;
                 case 'music-controls-pause':
                     playlist.pause();
@@ -365,17 +362,15 @@ comunidadfusa.ui.reproductor = (function () {
         MusicControls.listen();
     }
 
-    function obtenerDataTemaActual() {
+    function obtenerDataTemaActual(status) {
         var storagePlaylist = JSON.parse(storage.getItem("playlist"));
         var numTemaActual = parseInt(storage.getItem("playlistCurrent"));
         var temaData = {
-            track: storagePlaylist[numTemaActual].title,
-            artist: storagePlaylist[numTemaActual].artist,
-            cover: storagePlaylist[numTemaActual].poster,
+            track: status.media.title,
+            artist: status.media.artist,
+            cover: status.media.poster,
             hasPrev: (numTemaActual !== 0),
             hasNext: (numTemaActual !== storagePlaylist.length)
-            //duration : 100,
-            //elapsed : 40,
         };
         return temaData;
     }
