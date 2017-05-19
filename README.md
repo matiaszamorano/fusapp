@@ -12,6 +12,8 @@ cordova plugin add cordova-plugin-file-transfer
 
 cordova plugin add cordova.plugins.diagnostic
 
+cordova plugin add cordova-plugin-music-controls
+
 cordova run android
 
 # Run vía wifi
