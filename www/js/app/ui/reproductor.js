@@ -133,6 +133,25 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
         });
+
+        $(document).on('click', '.jp-play-shuffle-descargado', function (e) {
+            var audiosIdDescargados = [];
+            var audiosAReproducir = [];
+            $.each(storage, function (key, value) {
+                if (key.match("^descargado")) {
+                    audiosIdDescargados.push(key.substr(10));
+                }
+            });
+            audiosIdDescargados = shuffle(audiosIdDescargados);
+
+            $.each(audiosIdDescargados, function (key, value) {
+                comunidadfusa.service.audios.getAudio(value, function (data) {
+                    audiosAReproducir.push(data)
+                });
+            });
+            reemplazarPlaylist(audiosAReproducir);
+            comunidadfusa.util.analytics.trackEvent("reproducir", "descargados", "shuffle", 1);
+        });
     }
 
     function inicializarListasRecomendadas() {
@@ -373,6 +392,25 @@ comunidadfusa.ui.reproductor = (function () {
             hasNext: (numTemaActual !== storagePlaylist.length)
         };
         return temaData;
+    }
+
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
 
     return {
