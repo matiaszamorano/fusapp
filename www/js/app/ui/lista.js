@@ -12,64 +12,20 @@ comunidadfusa.ui.lista = (function () {
         } else if (tipo === "top25") {
             var url = comunidadfusa.service.baseURI + "/audios/populares";
             listaAutomatica(url, "Top 25", "images/listas/01.jpg");
-        } else if (tipo === "genero") {
-            var idGenero = comunidadfusa.getUrlParameter("id");
+        } else if (tipo === "recomendada") {
+            var idLista = comunidadfusa.getUrlParameter("id");
             var imagen = comunidadfusa.getUrlParameter("imagen");
             var titulo = comunidadfusa.getUrlParameter("titulo");
-            listaGeneros(idGenero, titulo, imagen);
-        } else if (tipo === "mixBanda") {
-            var idBanda = comunidadfusa.getUrlParameter("id");
-            var imagen = comunidadfusa.getUrlParameter("imagen");
-            var titulo = comunidadfusa.getUrlParameter("titulo");
-            listaMixBanda(idBanda, titulo, imagen);
+            listaGeneros(idLista, titulo, imagen);
         }
-
     }
 
-    function listaMixBanda(idBanda, titulo, imagen) {
-        $(".jp-play-configure").addClass("jp-play-me-mix");
-        $(".jp-play-configure").data("id", idBanda);
+    function listaGeneros(idLista, titulo, imagen) {
+        $(".jp-play-configure").addClass("jp-play-me-list");
+        $(".jp-play-configure").data("id", idLista);
         $(".fusa-js-imagen-lista").attr("src", imagen);
         $(".fusa-js-titulo-lista-usuario").text(titulo);
-        comunidadfusa.service.audios.getAudiosMixBanda(idBanda, function (audios) {
-            if (audios.length > 0) {
-                var algunoDescargando = false;
-                audios.forEach(function (cancion) {
-                    if (comunidadfusa.service.audios.estaDescargado(cancion.id)) {
-                        cancion.descargado = true;
-                        cantidadAudiosDescargados++;
-                    } else {
-                        cancion.descargado = false;
-                        if (comunidadfusa.service.audios.estaEnDescargaEnProceso(cancion.id)) {
-                            cancion.descargando = true;
-                            algunoDescargando = true;
-                        } else {
-                            cancion.descargando = false;
-                        }
-                    }
-                });
-                canciones = audios;
-                $(".fusa-js-lista-canciones-lista").empty();
-                $(".fusa-js-lista-canciones-lista").append($("#lista-usuario-tmpl").tmpl(audios));
-                if (algunoDescargando) {
-                    var $botonDescarga = $(".fusa-js-descargar-lista span.text");
-                    $botonDescarga.addClass("fusa-descargando-banda");
-                    $botonDescarga.html("<i class='icon-clock'></i> Descargando...");
-                } else {
-                    $(".fusa-js-descargar-lista").addClass("descarga-activa");
-                }
-                comunidadfusa.util.descargas.activarDescargaCanciones();
-                activarDescargaTodos();
-            }
-        });
-    }
-
-    function listaGeneros(idGenero, titulo, imagen) {
-        $(".jp-play-configure").addClass("fusa-js-lista-por-genero");
-        $(".jp-play-configure").data("id-genero", idGenero);
-        $(".fusa-js-imagen-lista").attr("src", imagen);
-        $(".fusa-js-titulo-lista-usuario").text(titulo);
-        comunidadfusa.service.audios.getPorGenero(idGenero, function (audios) {
+        comunidadfusa.service.listas.getAudiosListasReproduccion({idListaReproduccion: idLista}, function (audios) {
             if (audios.length > 0) {
                 var algunoDescargando = false;
                 audios.forEach(function (cancion) {
