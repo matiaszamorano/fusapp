@@ -17,8 +17,6 @@ comunidadfusa.util.descargas = (function () {
                 var entry = fileSystem;
                 entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
                     dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
-                        descargasActivas++;
-                        console.log(descargasActivas);
                         var cdr = dir;
                         dir.getFile(filename, {create: true, exclusive: false}, function () {
                             var uri = encodeURI(fileURL);
@@ -30,8 +28,6 @@ comunidadfusa.util.descargas = (function () {
                                         comunidadfusa.util.analytics.trackEvent("descarga", "cancion", audioDescargado.id, 1);
                                         comunidadfusa.util.analytics.trackEvent("descarga", "banda", audioDescargado.idBanda, 1);
                                         descargasActivas--;
-                                        console.log(descargasActivas);
-
                                     },
                                     function () {
                                         errorCallback(audioDescargado);
@@ -117,6 +113,7 @@ comunidadfusa.util.descargas = (function () {
             $iconosDescarga.removeClass("icon-arrow-down");
             $iconosDescarga.addClass("icon-clock");
             cancionesADescargar.forEach(function (cancion) {
+                descargasActivas++;
                 comunidadfusa.service.audios.audioEnDescargaEnProceso(cancion.id);
             });
             enviarADescargarAudio(cancionesADescargar.shift(), cancionesADescargar, itemsProcessed, cantidadCanciones, $botonDescarga, $iconosDescarga);
@@ -127,6 +124,7 @@ comunidadfusa.util.descargas = (function () {
         if (audio !== undefined) {
             if (comunidadfusa.service.audios.estaDescargado(audio.id)) {
                 itemsProcessed++;
+                descargasActivas--;
                 $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
                 if (itemsProcessed === cantidadCanciones) {
                     $botonDescarga.html("<i class='icon-check'></i> Descargado");
@@ -162,6 +160,7 @@ comunidadfusa.util.descargas = (function () {
             var idAudio = $this.data("id");
             $this.find("i").removeClass("icon-arrow-down");
             $this.find("i").addClass("icon-clock");
+            descargasActivas++;
             comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
                 comunidadfusa.service.audios.audioEnDescargaEnProceso(idAudio);
                 descargarCancion(audio, descargaAudioSuccess, descargaAudioError);

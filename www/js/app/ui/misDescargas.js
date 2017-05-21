@@ -30,10 +30,13 @@ comunidadfusa.ui.misDescargas = (function () {
                 $progress.attr("style", "width: " + porcentaje + "%");
                 if (porcentaje === 100) {
                     $progress.attr("style", "width: 100%");
-                    $(".fusa-js-descargas-activas h4").text("Descargas finalizadas")
+                    $(".fusa-js-descargas-activas h4").text("Descargas finalizadas");
+                    $(".fusa-js-descargas-activas .progress").removeClass("active");
+                    $progress.removeClass("bg-info");
+                    $progress.addClass("bg-warning");
                     clearInterval(myVar);
                 }
-            }, 5000);
+            }, 2000);
         }
 
 
