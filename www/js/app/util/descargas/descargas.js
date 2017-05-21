@@ -1,5 +1,12 @@
 comunidadfusa.util.descargas = (function () {
 
+    var descargasActivas = 0;
+
+
+    function getDescargasActivas() {
+        return descargasActivas;
+    }
+
     function descargarCancion(audio, successCallback, errorCallback) {
         var filename = audio.archivo;
         var fileURL = comunidadfusa.MP3_URI + audio.archivo;
@@ -10,6 +17,8 @@ comunidadfusa.util.descargas = (function () {
                 var entry = fileSystem;
                 entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
                     dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
+                        descargasActivas++;
+                        console.log(descargasActivas);
                         var cdr = dir;
                         dir.getFile(filename, {create: true, exclusive: false}, function () {
                             var uri = encodeURI(fileURL);
@@ -20,6 +29,9 @@ comunidadfusa.util.descargas = (function () {
                                         comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                                         comunidadfusa.util.analytics.trackEvent("descarga", "cancion", audioDescargado.id, 1);
                                         comunidadfusa.util.analytics.trackEvent("descarga", "banda", audioDescargado.idBanda, 1);
+                                        descargasActivas--;
+                                        console.log(descargasActivas);
+
                                     },
                                     function () {
                                         errorCallback(audioDescargado);
@@ -206,7 +218,8 @@ comunidadfusa.util.descargas = (function () {
         descargarCancion: descargarCancion,
         eliminarCancionDescargada: eliminarCancionDescargada,
         descargarListaCanciones: descargarListaCanciones,
-        activarDescargaCanciones: activarDescargaCanciones
+        activarDescargaCanciones: activarDescargaCanciones,
+        getDescargasActivas: getDescargasActivas
     };
 })();
 
