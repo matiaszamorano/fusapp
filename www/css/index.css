@@ -93,7 +93,8 @@ small,
 }
 
 .fusa-ciudad-banda {
-    margin-top: 12px;
+    margin-top: 4px;
+    padding-bottom: 6px; 
 }
 
 .item.item-disco {
@@ -162,4 +163,8 @@ small,
 .item .gd.fusa-banda-home-nombre,
 .item .gd.nombre-lista-usuario{
     background-image: linear-gradient(rgba(0,0,0,0)1%,rgba(0,0,0,1));
+}
+
+.box-shadow {
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1), 0 1px 0 rgba(0,0,0,0.1);
 }
