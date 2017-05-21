@@ -23,11 +23,14 @@ comunidadfusa.ui = (function () {
         });
 
         $(document).on("click", ".fusa-js-ejecutar-busqueda ", function (data) {
-            var busqueda = $(".fusa-js-busqueda").val();
-            storage.setItem("busqueda", busqueda);
-            $(".fusa-js-buscador-inactivo").show();
-            $(".fusa-js-buscador-activo").hide();
-            return false;
+            ejecutarBusqueda();
+        });
+
+        $('.fusa-js-busqueda').keyup(function (e) {
+            if (e.keyCode == 13) {
+                ejecutarBusqueda();
+                $(".fusa-js-ejecutar-busqueda").trigger("click");
+            }
         });
 
         $(document).on("click", "#fusa-solo-descargado", function (data) {
@@ -43,6 +46,14 @@ comunidadfusa.ui = (function () {
             soloDescargado = true;
         }
 
+    }
+
+    function ejecutarBusqueda() {
+        var busqueda = $(".fusa-js-busqueda").val();
+        storage.setItem("busqueda", busqueda);
+        $(".fusa-js-buscador-inactivo").show();
+        $(".fusa-js-buscador-activo").hide();
+        return false;
     }
 
     return {

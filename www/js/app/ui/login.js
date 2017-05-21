@@ -17,7 +17,6 @@ comunidadfusa.ui.login = (function () {
             var $form = $(this);
             var email = $form.find("#form_email").val().trim();
             var clave = $form.find("#form_clave").val().trim();
-            limpiarError();
             if ((email === "") || (clave === "")) {
                 mostrarError("Ingresa un email y clave");
                 return;
@@ -42,18 +41,10 @@ comunidadfusa.ui.login = (function () {
     }
 
 
-    function limpiarError() {
-        mostrarError("")
-        var $error = $("#login_error");
-        $error.addClass("hide");
-    }
-
     function mostrarError(mensaje) {
-        var $error = $("#login_error");
-        var $li = $error.find("ul.error_list li");
-        $li.text(mensaje);
-        $error.removeClass("hide");
-        comunidadfusa.util.analytics.trackEvent("error", "login", mensaje, 1);
+        navigator.notification.alert(mensaje, function () {
+            comunidadfusa.util.analytics.trackEvent("error", "login", mensaje, 1);
+        }, "Error");
     }
 
     function getUsuario() {

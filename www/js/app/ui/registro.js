@@ -13,7 +13,6 @@ comunidadfusa.ui.registro = (function () {
             var clave = $form.find("#form_clave").val().trim();
             var claveBis = $form.find("#form_clave_bis").val().trim();
             var apodo = $form.find("#form_apodo").val();
-            limpiarError();
             if ((email === "") || (clave === "") || (apodo === "")) {
                 mostrarError("Todos los campos son obligatorios");
                 return;
@@ -43,17 +42,10 @@ comunidadfusa.ui.registro = (function () {
         });
     }
 
-    function limpiarError() {
-        mostrarError("")
-        var $error = $("#login_error");
-        $error.addClass("hide");
-    }
     function mostrarError(mensaje) {
-        var $error = $("#login_error");
-        var $li = $error.find("ul.error_list li");
-        $li.text(mensaje);
-        $error.removeClass("hide");
-        comunidadfusa.util.analytics.trackEvent("error", "registro", mensaje, 1);
+        navigator.notification.alert(mensaje, function () {
+            comunidadfusa.util.analytics.trackEvent("error", "registro", mensaje, 1);
+        }, "Error");
     }
 
     return {

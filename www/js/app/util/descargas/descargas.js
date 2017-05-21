@@ -1,5 +1,12 @@
 comunidadfusa.util.descargas = (function () {
 
+    var descargasActivas = 0;
+
+
+    function getDescargasActivas() {
+        return descargasActivas;
+    }
+
     function descargarCancion(audio, successCallback, errorCallback) {
         var filename = audio.archivo;
         var fileURL = comunidadfusa.MP3_URI + audio.archivo;
@@ -20,6 +27,7 @@ comunidadfusa.util.descargas = (function () {
                                         comunidadfusa.service.bandas.actualizarBandasDescargadas(audioDescargado.idBanda);
                                         comunidadfusa.util.analytics.trackEvent("descarga", "cancion", audioDescargado.id, 1);
                                         comunidadfusa.util.analytics.trackEvent("descarga", "banda", audioDescargado.idBanda, 1);
+                                        descargasActivas--;
                                     },
                                     function () {
                                         errorCallback(audioDescargado);
@@ -38,7 +46,7 @@ comunidadfusa.util.descargas = (function () {
         var filename = audio.archivo;
         var audioDescargado = audio;
         try {
-            window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function (fileSystem) {
+            window.resolveLocalFileSystemURL(comunidadfusa.getExternalSdCardApplicationStorageDirectory(), function (fileSystem) {
                 var entry = fileSystem;
                 entry.getDirectory("fusa", {create: true, exclusive: false}, function (dir) {
                     dir.getDirectory("audios", {create: true, exclusive: false}, function (dir) {
@@ -105,6 +113,7 @@ comunidadfusa.util.descargas = (function () {
             $iconosDescarga.removeClass("icon-arrow-down");
             $iconosDescarga.addClass("icon-clock");
             cancionesADescargar.forEach(function (cancion) {
+                descargasActivas++;
                 comunidadfusa.service.audios.audioEnDescargaEnProceso(cancion.id);
             });
             enviarADescargarAudio(cancionesADescargar.shift(), cancionesADescargar, itemsProcessed, cantidadCanciones, $botonDescarga, $iconosDescarga);
@@ -115,6 +124,7 @@ comunidadfusa.util.descargas = (function () {
         if (audio !== undefined) {
             if (comunidadfusa.service.audios.estaDescargado(audio.id)) {
                 itemsProcessed++;
+                descargasActivas--;
                 $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
                 if (itemsProcessed === cantidadCanciones) {
                     $botonDescarga.html("<i class='icon-check'></i> Descargado");
@@ -150,6 +160,7 @@ comunidadfusa.util.descargas = (function () {
             var idAudio = $this.data("id");
             $this.find("i").removeClass("icon-arrow-down");
             $this.find("i").addClass("icon-clock");
+            descargasActivas++;
             comunidadfusa.service.audios.getAudio(idAudio, function (audio) {
                 comunidadfusa.service.audios.audioEnDescargaEnProceso(idAudio);
                 descargarCancion(audio, descargaAudioSuccess, descargaAudioError);
@@ -206,7 +217,8 @@ comunidadfusa.util.descargas = (function () {
         descargarCancion: descargarCancion,
         eliminarCancionDescargada: eliminarCancionDescargada,
         descargarListaCanciones: descargarListaCanciones,
-        activarDescargaCanciones: activarDescargaCanciones
+        activarDescargaCanciones: activarDescargaCanciones,
+        getDescargasActivas: getDescargasActivas
     };
 })();
 

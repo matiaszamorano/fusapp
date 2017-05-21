@@ -7,6 +7,11 @@ comunidadfusa.util.html5HistoryAPI = (function () {
     }
 
     function cargarPagina(href, onComplete) {
+        if (href === "escuchando.html") {
+            if (comunidadfusa.estaEnEscuchando()) {
+                return false;
+            }
+        }
         jQuery.ajax({
             type: 'GET',
             dataType: 'html',
