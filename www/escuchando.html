@@ -20,7 +20,7 @@
             <i class="icon-control-play text"></i>
             <i class="icon-control-pause text-active"></i></a>
         <a href="#" class="pull-left thumb-sm m-r jp-play-me-escuchando" >
-            <img src="${poster}" alt="${artist}" /></a>
+            <img src="${poster}" alt="${artist}" onerror="this.src='images/default-thumbnail-1x1.jpg'"/></a>
         <a class="clear jp-play-me-escuchando" href="#">
             <span class="block text-ellipsis">${title}</span>
             <a href="banda.html?id=${idBanda}"  rel="ajax"><small class="text-muted text-ellipsis">por ${artist}</small></a></a>
@@ -32,7 +32,7 @@
     <div class="bottom gd bg-info wrapper-lg">
         <a href="banda.html?id=${idBanda}" class="h2 font-thin" rel="ajax">${artist}</a>
     </div>
-    <img class="img-full" src="${poster}" alt="${artist}"  title="${artist}">
+    <img class="img-full" src="${poster}" alt="${artist}" title="${artist}" onerror="this.src='images/default-thumbnail.jpg'">
 </script>
 
 <script type="text/javascript" src="js/app/ui/escuchando.js"></script>

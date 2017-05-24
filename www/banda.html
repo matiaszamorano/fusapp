@@ -55,7 +55,7 @@
                             <span class="jp-play-me-disc" data-id="${id}"><i class="fa fa-play-circle i-2x"></i></span>                 
                         </div>             
                     </div>             
-                    <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full">        
+                    <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full" onerror="this.src='images/default-thumbnail-1x1.jpg'">
                 </div>                     
                 <a href="disco.html?id=${id}" rel="ajax" class="text-ellipsis m-l-xs">${nombre}</a>             
                 <a href="disco.html?id=${id}" rel="ajax" class="fusa-ciudad-banda text-ellipsis text-xs text-muted m-l-xs">${ano}</a>              
@@ -69,7 +69,7 @@
         <div class="item item-disco box-shadow">         
             <div class="pos-rlt">             
                 <a href="banda.html?id=${id}" rel="ajax">                 
-                    <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full">
+                    <img src="http://www.comunidadfusa.com/${avatar}" class="r r-2x img-full" onerror="this.src='images/default-thumbnail-1x1.jpg'">
                 </a>         
             </div>                     
             <a href="banda.html?id=${id}" rel="ajax" class="text-ellipsis m-l-xs">${nombre}</a>             

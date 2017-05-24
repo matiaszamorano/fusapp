@@ -15,7 +15,7 @@ comunidadfusa.ui = (function () {
             $(".fusa-js-busqueda").focus();
             return false;
         });
-
+        
         $(document).on("click", ".fusa-js-salir-busqueda ", function (data) {
             $(".fusa-js-buscador-inactivo").show();
             $(".fusa-js-buscador-activo").hide();
