@@ -44,8 +44,12 @@ small,
 
 #contenedorInfoFusa {
     height: 80vh;
+    min-height: 80vh;
 }
 
+a:focus {
+  outline:none;
+}
 
 #login ul.error_list {
     list-style: none;
