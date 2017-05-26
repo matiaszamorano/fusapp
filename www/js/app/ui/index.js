@@ -1,6 +1,6 @@
 comunidadfusa.ui.index = (function () {
 
-    
+
 
     function init() {
         if (!comunidadfusa.service.usuario.get()) {

@@ -15,7 +15,7 @@ comunidadfusa.ui = (function () {
             $(".fusa-js-busqueda").focus();
             return false;
         });
-        
+
         $(document).on("click", ".fusa-js-salir-busqueda ", function (data) {
             $(".fusa-js-buscador-inactivo").show();
             $(".fusa-js-buscador-activo").hide();
@@ -46,6 +46,7 @@ comunidadfusa.ui = (function () {
             soloDescargado = true;
         }
 
+        deshabilitarScrollHorizontal();
     }
 
     function ejecutarBusqueda() {
@@ -54,6 +55,14 @@ comunidadfusa.ui = (function () {
         $(".fusa-js-buscador-inactivo").show();
         $(".fusa-js-buscador-activo").hide();
         return false;
+    }
+
+    function deshabilitarScrollHorizontal() {
+        $(document).bind('scroll', function () {
+            if ($(document).scrollLeft() !== 0) {
+                $(document).scrollLeft(0);
+            }
+        });
     }
 
     return {
