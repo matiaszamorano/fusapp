@@ -13,7 +13,7 @@ comunidadfusa.ui.banda = (function () {
             comunidadfusa.service.audios.getAudiosBanda({idBanda: idBanda}, function (data) {
                 var cantidadAudiosDescargados = comunidadfusa.service.bandas.getCantidadAudiosDescargados(idBanda);
                 var cantidadAudiosBanda = data.length;
-                if (cantidadAudiosBanda <= cantidadAudiosDescargados) {
+                if (cantidadAudiosBanda == cantidadAudiosDescargados) {
                     $(".fusa-js-descargar-banda span.text").html("<i class='icon-check'></i> Descargado");
                 } else {
                     var algunoDescargando = false;

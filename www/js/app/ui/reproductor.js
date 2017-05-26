@@ -143,14 +143,11 @@ comunidadfusa.ui.reproductor = (function () {
                 }
             });
             audiosIdDescargados = shuffle(audiosIdDescargados);
-            var cantidad = 0;
-            $.each(audiosIdDescargados, function (key, value) {
+            var recorteDescargas = audiosIdDescargados.slice(0, 50);
+            $.each(recorteDescargas, function (key, value) {
                 comunidadfusa.service.audios.getAudio(value, function (data) {
                     audiosAReproducir.push(data);
                 });
-                if (cantidad++ >= 50) {
-                    return false;
-                }
             });
             reemplazarPlaylist(audiosAReproducir);
             comunidadfusa.util.analytics.trackEvent("reproducir", "descargados", "shuffle", 1);
