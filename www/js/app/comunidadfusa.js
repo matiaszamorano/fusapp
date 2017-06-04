@@ -53,6 +53,21 @@ var comunidadfusa = (function () {
         });
     }
 
+    function ordenar(field, reverse, primer) {
+
+        var key = primer ?
+                function (x) {
+                    return primer(x[field])
+                } :
+                function (x) {
+                    return x[field]
+                };
+        reverse = !reverse ? 1 : -1;
+        return function (a, b) {
+            return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+        }
+    }
+
     function init() {
         cordova.plugins.diagnostic.getExternalSdCardDetails(function (details) {
             details.forEach(function (detail) {
@@ -75,6 +90,7 @@ var comunidadfusa = (function () {
         estaEnEscuchando: estaEnEscuchando,
         getUrlParameter: getUrlParameter,
         init: init,
-        getExternalSdCardApplicationStorageDirectory: getExternalSdCardApplicationStorageDirectory
+        getExternalSdCardApplicationStorageDirectory: getExternalSdCardApplicationStorageDirectory,
+        ordenar: ordenar
     };
 })();
