@@ -17,6 +17,7 @@ comunidadfusa.ui.login = (function () {
             var $form = $(this);
             var email = $form.find("#form_email").val().trim();
             var clave = $form.find("#form_clave").val().trim();
+            var mobile = $form.find("#form_mobile").val().trim();
             if ((email === "") || (clave === "")) {
                 mostrarError("Ingresa un email y clave");
                 return;
@@ -24,7 +25,8 @@ comunidadfusa.ui.login = (function () {
             var url = comunidadfusa.service.baseURI + "/app/login";
             var data = {
                 "email": email,
-                "clave": clave
+                "clave": clave,
+                "mobile": mobile
             };
 
             comunidadfusa.service.post(url, data)

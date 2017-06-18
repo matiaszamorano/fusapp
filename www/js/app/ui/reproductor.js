@@ -389,7 +389,8 @@ comunidadfusa.ui.reproductor = (function () {
             artist: status.media.artist,
             cover: status.media.poster,
             hasPrev: (numTemaActual !== 0),
-            hasNext: (numTemaActual !== storagePlaylist.length)
+            hasNext: (numTemaActual !== storagePlaylist.length),
+            dismissable : true
         };
         return temaData;
     }
