@@ -5,9 +5,11 @@ comunidadfusa.ui.misDescargas = (function () {
 
     function init() {
         var bandasStorage = JSON.parse(storage.getItem("bandasGuardadas"));
-        bandasStorage.sort(comunidadfusa.ordenar('nombre', false, function (a) {
-            return a.toUpperCase()
-        }));
+        if (bandasStorage !== null) {
+            bandasStorage.sort(comunidadfusa.ordenar('nombre', false, function (a) {
+                return a.toUpperCase()
+            }));
+        }
         $(".fusa-js-bandas-descargadas").empty();
         if (bandasStorage) {
             $(".fusa-js-bandas-descargadas").append($("#banda-descargada-tmpl").tmpl(bandasStorage));

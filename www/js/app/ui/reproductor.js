@@ -134,25 +134,34 @@ comunidadfusa.ui.reproductor = (function () {
             });
         });
 
-        $(document).on('click', '.jp-play-shuffle-descargado', function (e) {
-            var audiosIdDescargados = [];
-            var audiosAReproducir = [];
-            $.each(storage, function (key, value) {
-                if (key.match("^descargado")) {
-                    audiosIdDescargados.push(key.substr(10));
-                }
-            });
-            audiosIdDescargados = shuffle(audiosIdDescargados);
-            var recorteDescargas = audiosIdDescargados.slice(0, 50);
-            $.each(recorteDescargas, function (key, value) {
-                comunidadfusa.service.audios.getAudio(value, function (data) {
-                    audiosAReproducir.push(data);
-                });
-            });
-            reemplazarPlaylist(audiosAReproducir);
-            comunidadfusa.util.analytics.trackEvent("reproducir", "descargados", "shuffle", 1);
-        });
+        $(document).on('click', '.jp-play-shuffle-descargado', reproducirAleatoreamente);
     }
+
+    async function reproducirAleatoreamente() {
+        var audiosIdDescargados = [];
+        var audiosAReproducir = [];
+        $.each(storage, function (key, value) {
+            if (key.match("^descargado")) {
+                audiosIdDescargados.push(key.substr(10));
+            }
+        });
+        audiosIdDescargados = shuffle(audiosIdDescargados);
+        var recorteDescargas = audiosIdDescargados.slice(0, 50);
+        $.each(recorteDescargas, function (key, value) {
+            comunidadfusa.service.audios.getAudio(value, function (data) {
+                audiosAReproducir.push(data);
+            });
+        });
+        var $iconoReproducir = $(this).find("i.icon-control-play");
+        $iconoReproducir.removeClass("icon-control-play");
+        $iconoReproducir.addClass("icon-refresh");
+        await comunidadfusa.util.sleep(1500);
+        reemplazarPlaylist(audiosAReproducir);
+        $iconoReproducir.removeClass("icon-refresh");
+        $iconoReproducir.addClass("icon-control-play");
+        comunidadfusa.util.analytics.trackEvent("reproducir", "descargados", "shuffle", 1);
+    }
+
 
     function inicializarListasRecomendadas() {
         $(document).on("click", ".fusa-js-lista-recomendada-popular", function (e) {
@@ -390,7 +399,7 @@ comunidadfusa.ui.reproductor = (function () {
             cover: status.media.poster,
             hasPrev: (numTemaActual !== 0),
             hasNext: (numTemaActual !== storagePlaylist.length),
-            dismissable : true
+            dismissable: true
         };
         return temaData;
     }
