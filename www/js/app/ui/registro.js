@@ -13,7 +13,6 @@ comunidadfusa.ui.registro = (function () {
             var clave = $form.find("#form_clave").val().trim();
             var claveBis = $form.find("#form_clave_bis").val().trim();
             var apodo = $form.find("#form_apodo").val();
-            var mobile = $form.find("#form_mobile").val().trim();
             if ((email === "") || (clave === "") || (apodo === "")) {
                 mostrarError("Todos los campos son obligatorios");
                 return;
@@ -28,7 +27,7 @@ comunidadfusa.ui.registro = (function () {
                 "email": email,
                 "clave": clave,
                 "apodo": apodo,
-                "mobile": mobile
+                "mobile": true
             };
 
             comunidadfusa.service.post(url, data)
