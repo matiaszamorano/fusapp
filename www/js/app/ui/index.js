@@ -7,6 +7,7 @@ comunidadfusa.ui.index = (function () {
             comunidadfusa.util.html5HistoryAPI.cargarPagina("login.html");
         } else {
             initBienvenida();
+            comunidadfusa.util.parches.init();
         }
 
     }

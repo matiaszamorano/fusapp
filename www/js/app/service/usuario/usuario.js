@@ -12,8 +12,14 @@ comunidadfusa.service.usuario = (function () {
         usuario = fusaUsuario;
     }
 
+    function esMobile(idUsuario) {
+        var url = comunidadfusa.service.baseURI + "/app/usuario/" + idUsuario + "/mobile";
+        return comunidadfusa.service.post(url);
+    }
+
     return {
         get: get,
-        set: set
+        set: set,
+        esMobile: esMobile
     };
 })();
