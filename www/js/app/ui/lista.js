@@ -9,9 +9,9 @@ comunidadfusa.ui.lista = (function () {
         if (tipo === "usuario") {
             var idLista = comunidadfusa.getUrlParameter("id");
             listaUsuario(idLista);
-        } else if (tipo === "top25") {
+        } else if (tipo === "top50") {
             var url = comunidadfusa.service.baseURI + "/audios/populares";
-            listaAutomatica(url, "Top 25", "images/listas/01.jpg");
+            listaAutomatica(url, "Top 50", "images/listas/01.jpg");
         } else if (tipo === "recomendada") {
             var idLista = comunidadfusa.getUrlParameter("id");
             var imagen = comunidadfusa.getUrlParameter("imagen");
