@@ -383,6 +383,9 @@ comunidadfusa.ui.reproductor = (function () {
                     playlist.play();
                     MusicControls.updateIsPlaying(true);
                     break;
+                case 'music-controls-headset-unplugged':
+                    playlist.pause();
+                    break;
             }
         }
         MusicControls.subscribe(events);
