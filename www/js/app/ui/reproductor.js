@@ -138,6 +138,7 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     async function reproducirAleatoreamente() {
+        comunidadfusa.ui.mostrarCargando();
         var audiosIdDescargados = [];
         var audiosAReproducir = [];
         $.each(storage, function (key, value) {
@@ -159,6 +160,7 @@ comunidadfusa.ui.reproductor = (function () {
         reemplazarPlaylist(audiosAReproducir);
         $iconoReproducir.removeClass("icon-refresh");
         $iconoReproducir.addClass("icon-control-play");
+        comunidadfusa.ui.ocultarCargando();
         comunidadfusa.util.analytics.trackEvent("reproducir", "descargados", "shuffle", 1);
     }
 

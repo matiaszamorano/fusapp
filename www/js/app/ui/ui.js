@@ -47,6 +47,15 @@ comunidadfusa.ui = (function () {
         }
 
         deshabilitarScrollHorizontal();
+        ocultarCargando();
+    }
+
+    function mostrarCargando() {
+        $("#fusa-js-cargando").show();
+    }
+
+    function ocultarCargando() {
+        $("#fusa-js-cargando").hide();
     }
 
     function ejecutarBusqueda() {
@@ -67,7 +76,9 @@ comunidadfusa.ui = (function () {
 
     return {
         init: init,
-        activoSoloDescargado: activoSoloDescargado
+        activoSoloDescargado: activoSoloDescargado,
+        ocultarCargando: ocultarCargando,
+        mostrarCargando: mostrarCargando
     };
 
 })();

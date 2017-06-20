@@ -17,6 +17,13 @@ header .navbar-header.bg-black .text-lt {
     color: #fff !important;
 }
 
+header .progress {
+    margin-bottom: -1px;
+}
+header .progress.active .progress-bar {
+    animation: progress-bar-stripes 0.5s linear infinite;
+}
+
 .navbar-header .btn-link .fa {
     color: #fff;
 }
@@ -48,7 +55,7 @@ small,
 }
 
 a:focus {
-  outline:none;
+    outline:none;
 }
 
 #login ul.error_list {

@@ -4,6 +4,7 @@ comunidadfusa.ui.misDescargas = (function () {
     var descargasActivas;
 
     function init() {
+        comunidadfusa.ui.mostrarCargando();
         var bandasStorage = JSON.parse(storage.getItem("bandasGuardadas"));
         if (bandasStorage !== null) {
             bandasStorage.sort(comunidadfusa.ordenar('nombre', false, function (a) {
@@ -17,7 +18,7 @@ comunidadfusa.ui.misDescargas = (function () {
         } else {
             $(".fusa-js-bandas-descargadas").html("<div class='m-sm'>Sin canciones descargadas</div>");
         }
-
+        comunidadfusa.ui.ocultarCargando();
         inicializarDescargasEnProgreso();
     }
 
