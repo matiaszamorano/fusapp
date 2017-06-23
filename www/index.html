@@ -28,6 +28,16 @@
 
     </head>
     <body>
+        <div id="splash">
+            <span class="hidden-nav-xs m-l-sm">Comunidad Fusa</span>
+            <span class="musicbar inline m-l-sm animate" style="width:20px;height:20px">
+                <span class="bar1 a1 bg-primary lter"></span>
+                <span class="bar2 a2 bg-info lt"></span>
+                <span class="bar3 a3 bg-success"></span>
+                <span class="bar4 a4 bg-warning dk"></span>
+                <span class="bar5 a5 bg-danger dker"></span>
+            </span>
+        </div>
         <section class="vbox">
             <header class="bg-white-only header header-md navbar navbar-fixed-top-xs">
                 <div class="navbar-header aside bg-black lter nav-xs">
@@ -45,7 +55,7 @@
                     </div>
                     <a href="bienvenida.html" rel="ajax" class="navbar-brand text-lt fusa-js-buscador-inactivo">
                         <span class="hidden-nav-xs m-l-sm">Comunidad Fusa</span>
-                        <span class="musicbar inline m-l-sm" style="width:20px;height:20px">
+                        <span class="musicbar fusa-js-music-bar inline m-l-sm" style="width:20px;height:20px">
                             <span class="bar1 a1 bg-primary lter"></span>
                             <span class="bar2 a2 bg-info lt"></span>
                             <span class="bar3 a3 bg-success"></span>
@@ -284,6 +294,7 @@
                 onReady();
             }
             document.addEventListener("deviceready", onReady, false);
+
         </script>
 
         <!-- Google Analytics -->

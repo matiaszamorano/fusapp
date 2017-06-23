@@ -24,7 +24,7 @@ comunidadfusa.ui.reproductor = (function () {
         });
         $(document).on($.jPlayer.event.ended, playlist.cssSelector.jPlayer, function (data) {
             reproduciendo = 0;
-            $('.musicbar').removeClass('animate');
+            $('.fusa-js-music-bar').removeClass('animate');
             storage.setItem("playlistCurrent", 0);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "end", data.jPlayer.status.media.id, 1);
             MusicControls.destroy();
@@ -33,7 +33,7 @@ comunidadfusa.ui.reproductor = (function () {
             checkAudioDescargado(data);
         });
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function (data) {
-            $('.musicbar').addClass('animate');
+            $('.fusa-js-music-bar').addClass('animate');
             $("#spin").addClass("hide");
             var d = new Date();
             tiempoInicioReproduccionTema = d.getTime();
@@ -43,12 +43,12 @@ comunidadfusa.ui.reproductor = (function () {
             actualizarControlesDeLaBarra(data.jPlayer.status);
         });
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
-            $('.musicbar').removeClass('animate');
+            $('.fusa-js-music-bar').removeClass('animate');
             reproduciendo = 0;
             MusicControls.updateIsPlaying(false);
         });
         $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
-            $('.musicbar').removeClass('animate');
+            $('.fusa-js-music-bar').removeClass('animate');
             MusicControls.updateIsPlaying(false);
         });
         $(document).on($.jPlayer.event.timeupdate, playlist.cssSelector.jPlayer, function (data) {
@@ -323,7 +323,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.stopPropagation();
             limpiarListaDeReproduccion();
             comunidadfusa.util.analytics.trackEvent("accion", "reproductor", "limpiar", 1);
-            $('.musicbar').removeClass('animate');
+            $('.fusa-js-music-bar').removeClass('animate');
             return false;
         });
     }
@@ -340,12 +340,12 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function play() {
-        $('.musicbar').addClass('animate');
+        $('.fusa-js-music-bar').addClass('animate');
         playlist.play();
     }
 
     function pausa() {
-        $('.musicbar').removeClass('animate');
+        $('.fusa-js-music-bar').removeClass('animate');
         playlist.pause();
     }
 

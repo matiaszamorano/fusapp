@@ -9,6 +9,32 @@ body {
     line-height: 1.40;
 }
 
+#splash
+{
+    position:fixed;
+    padding:0;
+    margin:0 auto;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90vh; 
+
+    top:0;
+    left:0;
+    font-size: 30px;
+    font-weight: 700;
+
+    width: 100%;
+    height: 100%;
+    background-color: #3b464d;
+    z-index: 1001;
+    font-family: "Raleway-Thin", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
+}
+
+.navbar-header.aside.bg-black.lter.nav-xs {
+    height: 51px !important;
+}
+
 header .navbar-header {
     font-family: "Raleway-Thin", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

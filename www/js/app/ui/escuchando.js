@@ -13,10 +13,10 @@ comunidadfusa.ui.escuchando = (function () {
             var $this = $(this);
             if ($this.hasClass("active")) { /* Pausa */
                 jPlaylist.pause();
-                $('.musicbar').removeClass('animate');
+                $('.fusa-js-music-bar').removeClass('animate');
             } else if ($this.parent().hasClass("active")) { /* Play actual */
                 jPlaylist.play();
-                $('.musicbar').addClass('animate');
+                $('.fusa-js-music-bar').addClass('animate');
             } else { /* Play otro tema */
                 var index = $this.parent().data("index");
                 jPlaylist.play(index);
@@ -52,7 +52,7 @@ comunidadfusa.ui.escuchando = (function () {
         $(document).off($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer);
         $(document).on($.jPlayer.event.pause, jPlaylist.cssSelector.jPlayer, function (data) {
             $("#escuchando-lista li a.jp-play-me-escuchando").removeClass("active");
-            $('.musicbar').removeClass('animate');
+            $('.fusa-js-music-bar').removeClass('animate');
         });
     }
 
