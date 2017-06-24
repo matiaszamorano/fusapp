@@ -3,6 +3,8 @@ comunidadfusa.ui.busqueda = (function () {
     var storage = window.localStorage;
 
     function init() {
+        comunidadfusa.ui.mostrarCargando();
+        console.log("mostrarBusqueda");
         var busqueda = storage.getItem("busqueda");
         var encontroBandas = false;
         comunidadfusa.service.busqueda.buscar(busqueda)
@@ -23,6 +25,7 @@ comunidadfusa.ui.busqueda = (function () {
                         $(".fusa-js-busqueda-bandas").empty();
                         $(".fusa-js-busqueda-bandas").append("<li class='list-group-item'><span class='clear'>No se encontraron resultados.</span></li>");
                     }
+                    comunidadfusa.ui.ocultarCargando();
                     comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
                 });
     }

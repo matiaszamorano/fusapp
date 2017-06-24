@@ -12,7 +12,6 @@ comunidadfusa.util.html5HistoryAPI = (function () {
                 return false;
             }
         }
-        comunidadfusa.ui.mostrarCargando();
         jQuery.ajax({
             type: 'GET',
             dataType: 'html',
@@ -21,7 +20,6 @@ comunidadfusa.util.html5HistoryAPI = (function () {
                 $('#contenedorInfoFusa').html(data);
                 $('#nav').removeClass("nav-off-screen");
                 $('#contenedorInfoFusa').scrollTop(0);
-                comunidadfusa.ui.ocultarCargando();
                 comunidadfusa.util.analytics.track(href);
             },
             beforeSend: function (XMLHttpRequest) {

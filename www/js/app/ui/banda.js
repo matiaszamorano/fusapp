@@ -1,6 +1,7 @@
 comunidadfusa.ui.banda = (function () {
 
     function init() {
+        comunidadfusa.ui.mostrarCargando();
         var idBanda = comunidadfusa.getUrlParameter("id");
         comunidadfusa.service.bandas.getBanda(idBanda, function (data) {
             $(document).off('click', '.fusa-js-descargar-banda');
@@ -42,6 +43,7 @@ comunidadfusa.ui.banda = (function () {
         comunidadfusa.service.bandas.getBandasRecomendadas(idBanda, function (data) {
             $(".fusa-js-bandas-recomendadas").empty();
             $(".fusa-js-bandas-recomendadas").append($("#banda-recomendada-tmpl").tmpl(data));
+            comunidadfusa.ui.ocultarCargando();
             comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
         });
 

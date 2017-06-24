@@ -1,11 +1,13 @@
 comunidadfusa.ui.perfil = (function () {
 
     function init() {
+        comunidadfusa.ui.mostrarCargando();
         comunidadfusa.service.listas.getListasUsuario(function (data) {
             if (data.length > 0) {
                 $("#listas").empty();
                 $("#listas").append($("#perfil-lista-usuario-tmpl").tmpl(data));
             }
+            comunidadfusa.ui.ocultarCargando();
         });
         var usuario = comunidadfusa.service.usuario.get();
         $(".fusa-js-avatar-usuario").attr("src", usuario.avatar);

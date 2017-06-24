@@ -21,6 +21,7 @@ comunidadfusa.ui.lista = (function () {
     }
 
     function listaGeneros(idLista, titulo, imagen) {
+        comunidadfusa.ui.mostrarCargando();
         $(".jp-play-configure").addClass("jp-play-me-list");
         $(".jp-play-configure").data("id", idLista);
         $(".fusa-js-imagen-lista").attr("src", imagen);
@@ -54,11 +55,13 @@ comunidadfusa.ui.lista = (function () {
                 }
                 comunidadfusa.util.descargas.activarDescargaCanciones();
                 activarDescargaTodos();
+                comunidadfusa.ui.ocultarCargando();
             }
         });
     }
 
     function listaAutomatica(url, titulo, imagen) {
+        comunidadfusa.ui.mostrarCargando();
         $(".jp-play-configure").addClass("fusa-js-lista-recomendada-popular");
         $(".fusa-js-imagen-lista").attr("src", imagen);
         $(".fusa-js-titulo-lista-usuario").text(titulo);
@@ -91,11 +94,13 @@ comunidadfusa.ui.lista = (function () {
                 }
                 comunidadfusa.util.descargas.activarDescargaCanciones();
                 activarDescargaTodos();
+                comunidadfusa.ui.ocultarCargando();
             }
         });
     }
 
     function listaUsuario(idLista) {
+        comunidadfusa.ui.mostrarCargando();
         $(".jp-play-configure").addClass("jp-play-me-list");
         comunidadfusa.service.listas.getListasUsuario(function (data) {
             data.forEach(function (lista) {
@@ -135,6 +140,7 @@ comunidadfusa.ui.lista = (function () {
                 }
                 comunidadfusa.util.descargas.activarDescargaCanciones();
                 activarDescargaTodos();
+                comunidadfusa.ui.ocultarCargando();
             }
         });
     }

@@ -5,6 +5,7 @@ comunidadfusa.ui.disco = (function () {
     function init() {
         var idDisco = comunidadfusa.getUrlParameter("id");
         var cantidadAudiosDescargados = 0;
+        comunidadfusa.ui.mostrarCargando();
 
         comunidadfusa.service.discos.getDisco(idDisco, function (data) {
             var algunoDescargando = false;
@@ -44,6 +45,7 @@ comunidadfusa.ui.disco = (function () {
             }
             comunidadfusa.util.descargas.activarDescargaCanciones();
             activarDescargaDisco();
+            comunidadfusa.ui.ocultarCargando();
         });
     }
 
