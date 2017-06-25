@@ -2,12 +2,52 @@ comunidadfusa.ui.login = (function () {
 
     function init() {
         initForm();
+        initFacebookLogin();
         $(".fusa-js-desplegar-menu").remove();
         $(".fusa-js-menu-usuario").remove();
         $(".fusa-js-buscar").remove();
         $("footer").remove();
         $("a.navbar-brand").attr("href", "#");
         $("a.navbar-brand").removeAttr("rel");
+    }
+
+    function initFacebookLogin() {
+        $(document).on("click", "#fusa-fb-login", function (e) {
+            comunidadfusa.ui.mostrarCargando();
+            facebookConnectPlugin.getLoginStatus(function (response) {
+                if (response.status === "connected") {
+                    facebookLoginSuccess();
+                } else {
+                    facebookConnectPlugin.login(["email", "public_profile"], facebookLoginSuccess, facebookLoginError);
+                }
+            });
+            return false;
+        });
+    }
+
+    function facebookLoginSuccess() {
+        facebookConnectPlugin.api("/v2.9/me?fields=id,name,email,gender,cover,picture", ["email", "public_profile"], function (response) {
+            var data = {
+                "email": response.email,
+                "apodo": response.name
+            };
+            console.log(data);
+            var url = comunidadfusa.service.baseURI + "/app/facebook/registro";
+
+            comunidadfusa.service.post(url, data)
+                    .done(function (data) {
+                        comunidadfusa.service.usuario.set(data["usuario"]);
+                        window.location = "index.html";
+                    })
+                    .fail(function (error) {
+                        mostrarError(error.responseJSON.error);
+                    });
+        }, facebookLoginError);
+    }
+
+    function facebookLoginError(error) {
+        console.log(error);
+        comunidadfusa.ui.ocultarCargando();
     }
 
     function initForm() {
@@ -27,7 +67,7 @@ comunidadfusa.ui.login = (function () {
                 "clave": clave,
                 "mobile": true
             };
-            
+
             comunidadfusa.service.post(url, data)
                     .done(function (data) {
                         comunidadfusa.service.usuario.set(data["usuario"]);

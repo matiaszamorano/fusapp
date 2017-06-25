@@ -16,7 +16,8 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="Orientation" value="portrait" />
-    <preference name="BackgroundColor" value="0xff3b464d"/>
+    <preference name="BackgroundColor" value="0xff3b464d" />
+    <preference name="android-build-tool" value="gradle" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon qualifier="ldpi" src="res/android/icon/ldpi.png" />
@@ -29,7 +30,11 @@
     <plugin name="cordova-plugin-dialogs" spec="^1.3.3" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
-    <plugin name="cordova-plugin-music-controls"/>
+    <plugin name="cordova-plugin-music-controls" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="cordova.plugins.diagnostic" spec="^3.6.2" />
+    <plugin name="cordova-plugin-facebook4" spec="~1.9.1">
+        <variable name="APP_ID" value="1355985631175437" />
+        <variable name="APP_NAME" value="Fusa" />
+    </plugin>
 </widget>
