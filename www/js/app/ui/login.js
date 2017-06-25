@@ -17,17 +17,12 @@ comunidadfusa.ui.login = (function () {
 
     function loginConFacebook() {
         comunidadfusa.ui.mostrarCargando();
-        facebookConnectPlugin.getLoginStatus(function (response) {
-            if (response.status === "connected") {
-                facebookLoginSuccess();
-            } else {
-                facebookConnectPlugin.login(["email", "public_profile"], facebookLoginSuccess, facebookLoginError);
-            }
-        });
+        facebookConnectPlugin.login(["email", "public_profile"], facebookLoginSuccess, facebookLoginError);
         return false;
     }
 
     function facebookLoginSuccess() {
+        $('#splash').show();
         facebookConnectPlugin.api("/v2.9/me?fields=id,name,email,gender,cover,picture", ["email", "public_profile"], function (response) {
             var data = {
                 "email": response.email,
