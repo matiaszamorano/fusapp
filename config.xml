@@ -20,6 +20,7 @@
     <preference name="android-build-tool" value="gradle" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="15" />
         <icon qualifier="ldpi" src="res/android/icon/ldpi.png" />
         <icon qualifier="mdpi" src="res/android/icon/mdpi.png" />
         <icon qualifier="hdpi" src="res/android/icon/hdpi.png" />
