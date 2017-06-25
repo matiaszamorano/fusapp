@@ -35,5 +35,8 @@ https://stackoverflow.com/questions/42949974/android-support-repo-46-0-0-with-an
 keytool -exportcert -alias androiddebugkey -keystore %HOMEPATH%\.android\debug.keystore | "D:\xampp\apache\bin\openssl.exe" sha1 -binary | "D:\xampp\apache\bin\openssl.exe" base64
 pass: bolivarvive
 
+Para prod
+keytool -exportcert -alias androidprodkey -keystore %HOMEPATH%\.android\prod.keystore | "D:\xampp\apache\bin\openssl.exe" sha1 -binary | "D:\xampp\apache\bin\openssl.exe" base64
+
 https://developers.facebook.com/quickstarts/1355985631175437/?platform=android
 para prod hay que crear tambien
