@@ -12,17 +12,19 @@ comunidadfusa.ui.login = (function () {
     }
 
     function initFacebookLogin() {
-        $(document).on("click", "#fusa-fb-login", function (e) {
-            comunidadfusa.ui.mostrarCargando();
-            facebookConnectPlugin.getLoginStatus(function (response) {
-                if (response.status === "connected") {
-                    facebookLoginSuccess();
-                } else {
-                    facebookConnectPlugin.login(["email", "public_profile"], facebookLoginSuccess, facebookLoginError);
-                }
-            });
-            return false;
+        $(document).on("click", "#fusa-fb-login", loginConFacebook);
+    }
+
+    function loginConFacebook() {
+        comunidadfusa.ui.mostrarCargando();
+        facebookConnectPlugin.getLoginStatus(function (response) {
+            if (response.status === "connected") {
+                facebookLoginSuccess();
+            } else {
+                facebookConnectPlugin.login(["email", "public_profile"], facebookLoginSuccess, facebookLoginError);
+            }
         });
+        return false;
     }
 
     function facebookLoginSuccess() {
