@@ -1,0 +1,53 @@
+<section class="hbox bg-black dker stretch">
+    <aside class="col-sm-12 no-padder" id="sidebar">
+        <section class="vbox animated fadeInUp">
+            <section class="scrollable">
+                <div class="m-t-n-xxs item pos-rlt">
+                    <div class="bottom gd bg-info wrapper-lg">
+                        <a class="h2 font-thin fusa-js-nombre-genero mayusculas"></a>
+                    </div>
+                    <img class="img-full" src="images/genero.jpg" onerror="this.src='images/default-thumbnail.jpg'">
+                </div>
+            </section>
+        </section>
+    </aside>
+</section>
+
+<section class="scrollable wrapper-lg fusa-pagina-banda">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12 thumb-btn text-center">
+                    <div class="btn-group btn-group-justified m-b">
+                        <a class="btn btn-info btn-rounded fusa-js-lista-por-genero" href="#" data-id-genero="">
+                            <i class="icon-control-play text"></i> 
+                            <i class="icon-control-pause text-active"></i>
+                            Reproducir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <h3 class="m-t">Artistas <span class="fusa-js-nombre-genero"></span></h3>
+            <div class="row fusa-js-bandas-por-genero">
+            </div>
+        </div>
+</section>
+
+<script id="banda-genero-tmpl" type="text/html">
+    <div class="col-xs-6 m-b-sm">     
+        <div class="item item-disco box-shadow">         
+            <div class="pos-rlt">             
+                <a href="banda.html?id=${Id}" rel="ajax">                 
+                    <img src="http://www.comunidadfusa.com/${Imagen}" class="r r-2x img-full" onerror="this.src='images/default-thumbnail-1x1.jpg'">
+                </a>         
+            </div>                     
+            <a href="banda.html?id=${Id}" rel="ajax" class="text-ellipsis m-l-xs">${Nombre}</a>             
+        </div> 
+    </div> 
+</script>
+
+<script type="text/javascript" src="js/app/ui/genero.js"></script>
+<script type="text/javascript">
+    comunidadfusa.ui.genero.init();
+</script>

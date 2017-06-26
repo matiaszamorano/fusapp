@@ -1,0 +1,19 @@
+<aside class="aside bg-light dk" id="sidebar">
+    <section class="vbox animated fadeInUp">
+        <section class="scrollable hover">
+            <div class="fusa-lista-generos fusa-js-lista-generos list-group no-radius no-border no-bg m-t-n-xxs m-b-none auto">
+            </div>
+        </section>
+    </section>
+</aside>
+
+<script id="item-genero-lista-tmpl" type="text/html">
+    <a href="genero.html?id=${id}&nombre=${nombre}" class="list-group-item" rel="ajax">
+        ${nombre}
+    </a>
+</script>
+
+<script type="text/javascript" src="js/app/ui/explorar.js"></script>
+<script type="text/javascript">
+    comunidadfusa.ui.explorar.init();
+</script>
