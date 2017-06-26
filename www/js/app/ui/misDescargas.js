@@ -4,6 +4,11 @@ comunidadfusa.ui.misDescargas = (function () {
     var descargasActivas;
 
     function init() {
+        mostrarBandasDescargadas();
+        inicializarDescargasEnProgreso();
+    }
+
+    function mostrarBandasDescargadas() {
         comunidadfusa.ui.mostrarCargando();
         var bandasStorage = JSON.parse(storage.getItem("bandasGuardadas"));
         if (bandasStorage !== null) {
@@ -19,7 +24,6 @@ comunidadfusa.ui.misDescargas = (function () {
             $(".fusa-js-bandas-descargadas").html("<div class='m-sm'>Sin canciones descargadas</div>");
         }
         comunidadfusa.ui.ocultarCargando();
-        inicializarDescargasEnProgreso();
     }
 
     function  inicializarDescargasEnProgreso() {
@@ -40,6 +44,7 @@ comunidadfusa.ui.misDescargas = (function () {
                     $(".fusa-js-descargas-activas .progress").removeClass("active");
                     $progress.removeClass("bg-info");
                     $progress.addClass("bg-warning");
+                    mostrarBandasDescargadas();
                     clearInterval(myVar);
                 }
             }, 2000);
