@@ -69,9 +69,6 @@ var comunidadfusa = (function () {
     }
 
     function init() {
-        $('#splash').delay(4000).fadeOut(500, function () {
-            $("header .hide").removeClass("hide");
-        });
         cordova.plugins.diagnostic.getExternalSdCardDetails(function (details) {
             details.forEach(function (detail) {
                 externalSdCardApplicationStorageDirectory = detail.filePath;

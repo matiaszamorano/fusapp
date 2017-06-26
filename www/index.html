@@ -291,6 +291,9 @@
         <script type="text/javascript">
             //Para probar en un chrome local, quitar el evento onready
             function onReady() {
+                $('#splash').delay(4000).fadeOut(500, function () {
+                    $("header .hide").removeClass("hide");
+                });
                 comunidadfusa.ui.reproductor.init();
                 comunidadfusa.util.html5HistoryAPI.init();
                 comunidadfusa.ui.index.init();
