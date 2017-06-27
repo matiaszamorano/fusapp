@@ -38,7 +38,7 @@ var comunidadfusa = (function () {
 
     function estaEnEscuchando() {
         var estoyEnEscuchando = window.location.pathname;
-        return estoyEnEscuchando.endsWith("escuchando.html");
+        return (estoyEnEscuchando.indexOf("escuchando.html") >= 0)
     }
 
     function getExternalSdCardApplicationStorageDirectory() {
