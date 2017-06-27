@@ -149,7 +149,7 @@ comunidadfusa.ui.reproductor = (function () {
         $(document).on('click', '.jp-play-shuffle-descargado', reproducirAleatoreamente);
     }
 
-    async function reproducirAleatoreamente() {
+    function reproducirAleatoreamente() {
         comunidadfusa.ui.mostrarCargando();
         var audiosIdDescargados = [];
         var audiosAReproducir = [];
@@ -168,8 +168,7 @@ comunidadfusa.ui.reproductor = (function () {
         var $iconoReproducir = $(this).find("i.icon-control-play");
         $iconoReproducir.removeClass("icon-control-play");
         $iconoReproducir.addClass("icon-refresh");
-        await comunidadfusa.util.sleep(1500);
-        reemplazarPlaylist(audiosAReproducir);
+        setTimeout(reemplazarPlaylist, 1500, audiosAReproducir);
         $iconoReproducir.removeClass("icon-refresh");
         $iconoReproducir.addClass("icon-control-play");
         comunidadfusa.ui.ocultarCargando();
