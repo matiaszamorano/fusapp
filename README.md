@@ -28,7 +28,7 @@ Checkear: adb devices
 
 # Notas de este branch
 
-instalar Android Support Repository] con el android studio
+instalar Android Support Repository con el android studio
 correr el plugin add del readme
 https://stackoverflow.com/questions/42949974/android-support-repo-46-0-0-with-android-studio-2-3 (copiar en el gradle esas lineas)
 
