@@ -4,7 +4,6 @@ comunidadfusa.ui.busqueda = (function () {
 
     function init() {
         comunidadfusa.ui.mostrarCargando();
-        console.log("mostrarBusqueda");
         var busqueda = storage.getItem("busqueda");
         var encontroBandas = false;
         comunidadfusa.service.busqueda.buscar(busqueda)

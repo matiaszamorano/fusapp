@@ -28,7 +28,6 @@ comunidadfusa.ui.login = (function () {
                 "email": response.email,
                 "apodo": response.name
             };
-            console.log(data);
             var url = comunidadfusa.service.baseURI + "/app/facebook/registro";
 
             comunidadfusa.service.post(url, data)
