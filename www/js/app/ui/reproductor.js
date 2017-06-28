@@ -12,11 +12,22 @@ comunidadfusa.ui.reproductor = (function () {
         $("#contenedorInfoFusa").css("height", altura - 110);
     }
 
+    function activarReproductor() {
+        if (playlist.playlist.length > 0) {
+            $("#contenedorInfoFusa").addClass("reproduciendo");
+            $("footer").show();
+        } else {
+            $("#contenedorInfoFusa").removeClass("reproduciendo");
+            $("footer").hide();
+        }
+    }
+
     function init() {
         inicializarPlaylist();
         inicializarEventos();
         inicializarListasRecomendadas();
         inicializarOpcionesReproductor();
+        activarReproductor();
         usuario = comunidadfusa.service.usuario.get();
         actualizarPosicion();
         $(window).resize(function () {
@@ -285,6 +296,10 @@ comunidadfusa.ui.reproductor = (function () {
     }
 
     function agregarAudios(audios) {
+        var activarPlay = false;
+        if (playlist.playlist.length == 0) {
+            activarPlay = true;
+        }
         for (var i = 0; i < audios.length; i++) {
             var audio = audios[i];
             var reproducirAhora = 0;
@@ -311,6 +326,10 @@ comunidadfusa.ui.reproductor = (function () {
             playlist.add(audioAAgregar, reproducirAhora);
             agregarAudioAStorage(audioAAgregar);
         }
+        if (activarPlay) {
+            play();
+        }
+        activarReproductor();
     }
 
     function actualizarPlaylist() {
@@ -320,7 +339,6 @@ comunidadfusa.ui.reproductor = (function () {
     function reemplazarPlaylist(audios) {
         limpiarListaDeReproduccion();
         agregarAudios(audios);
-        play();
     }
 
     function agregarAudioAStorage(audio) {
@@ -341,6 +359,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.preventDefault();
             e.stopPropagation();
             limpiarListaDeReproduccion();
+            activarReproductor();
             comunidadfusa.util.analytics.trackEvent("accion", "reproductor", "limpiar", 1);
             $('.fusa-js-music-bar').removeClass('animate');
             return false;

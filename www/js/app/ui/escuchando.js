@@ -34,8 +34,12 @@ comunidadfusa.ui.escuchando = (function () {
                     if (index === jPlaylist.current) {
                         jPlaylist.play();
                     }
+                    if (playlist.length == 0) {
+                        window.location = "index.html";
+                    }
                 }, 500);
             }
+
             $this.parent().remove();
         });
 
