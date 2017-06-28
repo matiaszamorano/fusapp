@@ -92,6 +92,10 @@ footer {
     display: none;
 }
 
+.footer {
+    padding: 0 5px;
+}
+
 a:focus {
     outline:none;
 }
@@ -221,3 +225,4 @@ a:focus {
 .fusa-lista-generos {
     padding-top: 11px;
 }
+
