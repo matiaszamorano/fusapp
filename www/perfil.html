@@ -18,27 +18,106 @@
         <section class="vbox">
             <header class="header bg-light lt">
                 <ul class="nav nav-tabs nav-white">
-                    <li class="active"><a href="#listas" data-toggle="tab">Listas</a></li>
-                    <li class=""><a href="#escuchadas" data-toggle="tab">Más escuchadas</a></li>
+                    <li class="active"><a href="#escuchadas" data-toggle="tab">Más escuchadas</a></li>
+                    <li class=""><a href="#listas" data-toggle="tab">Listas</a></li>
                     <li class=""><a href="#siguiendo" data-toggle="tab">Siguiendo</a></li>
                 </ul>
             </header>
             <section class="scrollable">
                 <div class="tab-content">
-                    <div class="tab-pane active" id="listas">
-                        <ul class="list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
-                            <li class="list-group-item">
-                                <span class="clear">
-                                    No tenés listas todavía.
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tab-pane" id="escuchadas">
+                    <div class="tab-pane active" id="escuchadas">
                         <ul class="fusa-js-perfil-mas-escuchadas list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
                             <li class="list-group-item">
                                 <span class="clear">
                                     No escuchaste bandas todavía.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="listas">
+                        <ul class="list-group no-radius m-b-none m-t-n-xxs list-group-lg no-border">
+                            <li class="list-group-item">
+                                <a href="#" id="lista-mas-escuchadas" class="thumb-sm pull-left m-r-sm">
+                                    <i class="icon-control-play i-2x"></i>
+                                </a>
+                                <span class="pull-right h2 text-muted m-l">1</span>
+                                <span class="clear">
+                                    <span>Más escuchadas</span>
+                                    <small class="text-muted clear text-ellipsis">
+                                        Las canciones que más escuchas.
+                                    </small>
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" class="thumb-sm pull-left m-r-sm fusa-js-lista-recomendada-popular">
+                                    <i class="icon-control-play i-2x"></i>
+                                </a>
+                                <span class="pull-right h2 text-muted m-l">2</span>
+                                <span class="clear">
+                                    <span>Populares</span>
+                                    <small class="text-muted clear text-ellipsis">
+                                        Lo que se está escuchando.
+                                    </small>
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" class="thumb-sm pull-left m-r-sm fusa-js-lista-recomendada-azar">
+                                    <i class="icon-control-play i-2x"></i>
+                                </a>
+                                <span class="pull-right h2 text-muted m-l">3</span>
+                                <span class="clear">
+                                    <span>Al azar</span>
+                                    <small class="text-muted clear text-ellipsis">
+                                        Lista para sorprenderse. 
+                                    </small>
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" id="lista-me-gustan" class="thumb-sm pull-left m-r-sm">
+                                    <i class="icon-control-play i-2x"></i>
+                                </a>
+                                <span class="pull-right h2 text-muted m-l">4</span>
+                                <span class="clear">
+                                    <span>Me gustan</span>
+                                    <small class="text-muted clear text-ellipsis">
+                                        Lista con temas que te gustan.
+                                    </small>
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" id="lista-nunca-escuchadas" class="thumb-sm pull-left m-r-sm">
+                                    <i class="icon-control-play i-2x"></i>
+                                </a>
+                                <span class="pull-right h2 text-muted m-l">5</span>
+                                <span class="clear">
+                                    <span>Nunca escuchadas</span>
+                                    <small class="text-muted clear text-ellipsis">
+                                        Temas que nunca pusiste.
+                                    </small>
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" class="thumb-sm pull-left m-r-sm fusa-js-lista-recomendada-nuevas">
+                                    <i class="icon-control-play i-2x"></i>
+                                </a>
+                                <span class="pull-right h2 text-muted m-l">6</span>
+                                <span class="clear">
+                                    <span>Nuevos</span>
+                                    <small class="text-muted clear text-ellipsis">
+                                        Novedades de Fusa.
+                                    </small>
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#" id="lista-ultimos-me-gustan" class="thumb-sm pull-left m-r-sm">
+                                    <i class="icon-control-play i-2x"></i>
+                                </a>
+                                <span class="pull-right h2 text-muted m-l">7</span>
+                                <span class="clear">
+                                    <span>Últimos "Me gusta"</span>
+                                    <small class="text-muted clear text-ellipsis">
+                                        Tus últimas favoritas.
+                                    </small>
                                 </span>
                             </li>
                         </ul>
@@ -63,7 +142,7 @@
         <a href="#" class="thumb-sm pull-left m-r-sm jp-play-me-list" data-id="${id}">
             <i class="icon-control-play i-2x"></i>
         </a>
-        <span class="pull-right h2 text-muted m-l">${orden}</span>
+        <span class="pull-right h2 text-muted m-l">${orden + 7}</span>
         <span class="clear">
             <a href="lista.html?id=${id}&tipo=usuario" rel="ajax">
                 <span>${nombre}</span>
