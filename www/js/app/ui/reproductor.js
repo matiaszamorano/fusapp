@@ -179,11 +179,13 @@ comunidadfusa.ui.reproductor = (function () {
         var $iconoReproducir = $(this).find("i.icon-control-play");
         $iconoReproducir.removeClass("icon-control-play");
         $iconoReproducir.addClass("icon-refresh");
-        setTimeout(reemplazarPlaylist, 1500, audiosAReproducir);
-        $iconoReproducir.removeClass("icon-refresh");
-        $iconoReproducir.addClass("icon-control-play");
-        comunidadfusa.ui.ocultarCargando();
-        comunidadfusa.util.analytics.trackEvent("reproducir", "descargados", "shuffle", 1);
+        setTimeout(function () {
+            reemplazarPlaylist(audiosAReproducir);
+            $iconoReproducir.removeClass("icon-refresh");
+            $iconoReproducir.addClass("icon-control-play");
+            comunidadfusa.ui.ocultarCargando();
+            comunidadfusa.util.analytics.trackEvent("reproducir", "descargados", "shuffle", 1);
+        }, 2000, audiosAReproducir);
     }
 
 
