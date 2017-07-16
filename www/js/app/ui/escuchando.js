@@ -50,26 +50,6 @@ comunidadfusa.ui.escuchando = (function () {
             });
         });
 
-        $("#escuchando").on('click', '.jp-remove-me-escuchando', function (e) {
-            e && e.preventDefault();
-            var $this = $(this);
-            var index = $this.parent().data("index");
-            if (jPlaylist.remove(index)) {
-                setTimeout(function () {
-                    initLista();
-                    comunidadfusa.ui.reproductor.actualizarPlaylist();
-                    if (index === jPlaylist.current) {
-                        jPlaylist.play();
-                    }
-                    if (playlist.length == 0) {
-                        window.location = "index.html";
-                    }
-                }, 500);
-            }
-
-            $this.parent().remove();
-        });
-
         $(document).off($.jPlayer.event.play, jPlaylist.cssSelector.jPlayer);
         $(document).on($.jPlayer.event.play, jPlaylist.cssSelector.jPlayer, function (data) {
             if ($("#escuchando-lista li").length == 0) {
@@ -93,10 +73,35 @@ comunidadfusa.ui.escuchando = (function () {
             playlist: playlist,
             actual: jPlaylist.current
         }));
+        activarSwipeEliminar();
         comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
         if (comunidadfusa.ui.reproductor.estaReproduciendo()) {
             activarItemActual();
         }
+    }
+
+    function activarSwipeEliminar() {
+        $(".list-group-item").swipe({
+            swipeRight: function (event, direction, distance, duration, fingerCount, fingerData) {
+                var $this = $(this);
+                var index = $this.data("index");
+                $this.css({'right': '0px', 'left': ''}).animate({
+                    'left': '350px'
+                });
+                if (jPlaylist.remove(index)) {
+                    setTimeout(function () {
+                        initLista();
+                        comunidadfusa.ui.reproductor.actualizarPlaylist();
+                        if (index === jPlaylist.current) {
+                            jPlaylist.play();
+                        }
+                        if (playlist.length == 0) {
+                            window.location = "index.html";
+                        }
+                    }, 500);
+                }
+            }
+        });
     }
 
     function activarItemActual() {
