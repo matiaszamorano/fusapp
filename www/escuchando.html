@@ -14,8 +14,8 @@
 <script id="escuchando-cancion-tmpl" type="text/html">
     {{each playlist}}
     <li class="list-group-item {{if $index == actual}}active{{/if}}" id="cancion_${$index}" data-index="${$index}" data-id="${id}">
-        <a href="#" class="jp-remove-me-escuchando pull-right m-t-sm m-l text-md">
-            <i class="icon-close text"></i></a>
+        <a href="#" class='pull-right m-t-sm m-l text-md js-cancion-me-gusta' title='Me gusta'>
+            <i class='fa {{if opinion}}text-success fa-thumbs-up{{else}}text-muted fa-thumbs-o-up {{/if}}'></i></a>
         <a href="#" class="jp-play-me-escuchando pull-left m-t-sm m-r text-md">
             <i class="icon-control-play text"></i>
             <i class="icon-control-pause text-active"></i></a>

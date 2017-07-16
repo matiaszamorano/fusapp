@@ -17,11 +17,12 @@ comunidadfusa.service = (function () {
     }
 
     function getFromStorage(uri, callback, data) {
-        if (storage.getItem(uri) == null) {
-            get(uri, callback, data);
+        var uriConUsuario = uri + "?usuario_id=" + comunidadfusa.service.usuario.get().id;
+        if (storage.getItem(uriConUsuario) == null) {
+            get(uriConUsuario, callback, data);
         } else {
-            callback(JSON.parse(storage.getItem(uri)));
-            get(uri, function () {}, data);
+            callback(JSON.parse(storage.getItem(uriConUsuario)));
+            get(uriConUsuario, function () {}, data);
         }
     }
 
