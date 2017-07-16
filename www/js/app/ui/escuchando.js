@@ -74,6 +74,7 @@ comunidadfusa.ui.escuchando = (function () {
             actual: jPlaylist.current
         }));
         activarSwipeEliminar();
+        activarSwipeNextPrev();
         comunidadfusa.util.html5HistoryAPI.setupHistoryClicks();
         if (comunidadfusa.ui.reproductor.estaReproduciendo()) {
             activarItemActual();
@@ -101,6 +102,17 @@ comunidadfusa.ui.escuchando = (function () {
                     }, 500);
                 }
             }
+        });
+    }
+
+    function activarSwipeNextPrev() {
+        $(".fusa-foto-perfil").swipe({
+            swipeRight: function (event, direction, distance, duration, fingerCount, fingerData) {
+                comunidadfusa.ui.reproductor.prev();
+            },
+            swipeLeft: function (event, direction, distance, duration, fingerCount, fingerData) {
+                comunidadfusa.ui.reproductor.next();
+            },
         });
     }
 
