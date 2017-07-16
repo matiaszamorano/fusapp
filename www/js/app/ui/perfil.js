@@ -4,8 +4,7 @@ comunidadfusa.ui.perfil = (function () {
         comunidadfusa.ui.mostrarCargando();
         comunidadfusa.service.listas.getListasUsuario(function (data) {
             if (data.length > 0) {
-                $("#listas").empty();
-                $("#listas").append($("#perfil-lista-usuario-tmpl").tmpl(data));
+                $("#listas ul").append($("#perfil-lista-usuario-tmpl").tmpl(data));
             }
             comunidadfusa.ui.ocultarCargando();
         });
@@ -18,7 +17,8 @@ comunidadfusa.ui.perfil = (function () {
 
         var dataMasEscuchadas = {
             usuario_id: usuario.id,
-            pagina: 1
+            pagina: 1,
+            cantidad: 25
         };
 
         comunidadfusa.service.bandas.getBandasMasEscuchadas(dataMasEscuchadas, function (data) {
