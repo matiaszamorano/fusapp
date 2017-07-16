@@ -31,6 +31,11 @@ comunidadfusa.service.audios = (function () {
         comunidadfusa.service.getFromStorage(url, callback);
     }
 
+    function guardarOpinionAudioUsuario(options) {
+        var url = comunidadfusa.service.baseURI + "/audio/opinion?usuario_id=" + comunidadfusa.service.usuario.get().id;
+        return comunidadfusa.service.post(url, options);
+    }
+
     function audioDescargado(idAudio, ruta) {
         storage.setItem("descargado" + idAudio, ruta);
     }
@@ -78,6 +83,7 @@ comunidadfusa.service.audios = (function () {
         getPorGenero: getPorGenero,
         audioEnDescargaEnProceso: audioEnDescargaEnProceso,
         eliminarAudioEnDescargaEnProceso: eliminarAudioEnDescargaEnProceso,
-        estaEnDescargaEnProceso: estaEnDescargaEnProceso
+        estaEnDescargaEnProceso: estaEnDescargaEnProceso,
+        guardarOpinionAudioUsuario: guardarOpinionAudioUsuario
     };
 })();
