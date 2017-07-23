@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.comunidadfusa.app" version="1.4.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.comunidadfusa.app" version="1.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Fusa</name>
     <description>
         La aplicación Android de Comunidad Fusa. En Comunidad Fusa vas a conocer a tu próxima banda favorita.
