@@ -50,6 +50,7 @@ comunidadfusa.ui.banda = (function () {
     }
 
     function activarDescarga() {
+        $(document).off('click', '.fusa-js-descargar-banda');
         $(document).on('click', '.fusa-js-descargar-banda', function (e) {
             e && e.preventDefault();
             var $this = $(e.target);
