@@ -1,5 +1,3 @@
-/* global comunidadfusa, MusicControls */
-
 comunidadfusa.ui.reproductor = (function () {
 
     var playlist;
@@ -362,6 +360,7 @@ comunidadfusa.ui.reproductor = (function () {
             e.stopPropagation();
             limpiarListaDeReproduccion();
             activarReproductor();
+            MusicControls.destroy();
             comunidadfusa.util.analytics.trackEvent("accion", "reproductor", "limpiar", 1);
             $('.fusa-js-music-bar').removeClass('animate');
             return false;
@@ -431,7 +430,6 @@ comunidadfusa.ui.reproductor = (function () {
             }
         }
         MusicControls.subscribe(events);
-        // The plugin will run the events function each time an event is fired
         MusicControls.listen();
     }
 

@@ -9,10 +9,6 @@ body {
     line-height: 1.40;
 }
 
-#content {
-    padding-top: 10px;
-}
-
 .mayusculas {
     text-transform: capitalize;
 }
@@ -228,4 +224,9 @@ a:focus {
 
 .fusa-banda-home {
     min-height: 227px;
+}
+
+.fusa-lista-generos,
+.fusa-home{
+    padding-top: 11px;
 }
