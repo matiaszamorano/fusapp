@@ -14,7 +14,7 @@ comunidadfusa.ui.banda = (function () {
             comunidadfusa.service.audios.getAudiosBanda({idBanda: idBanda}, function (data) {
                 var cantidadAudiosDescargados = comunidadfusa.service.bandas.getCantidadAudiosDescargados(idBanda);
                 var cantidadAudiosBanda = data.length;
-                if (cantidadAudiosBanda == cantidadAudiosDescargados) {
+                if (cantidadAudiosBanda <= cantidadAudiosDescargados) {
                     $(".fusa-js-descargar-banda span.text").html("<i class='icon-check'></i> Descargado");
                 } else {
                     var algunoDescargando = false;
@@ -71,7 +71,7 @@ comunidadfusa.ui.banda = (function () {
                         if (comunidadfusa.service.audios.estaDescargado(audio.id)) {
                             itemsProcessed++;
                             $botonDescarga.html("<i class='icon-clock'></i> Descargando (" + itemsProcessed + "/" + cantidadCanciones + ")");
-                            if (itemsProcessed === cantidadCanciones) {
+                            if (itemsProcessed >= cantidadCanciones) {
                                 $botonDescarga.html("<i class='icon-check'></i> Descargado");
                             }
                         } else {
