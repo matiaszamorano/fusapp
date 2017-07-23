@@ -2,11 +2,6 @@ comunidadfusa.service.bandas = (function () {
 
     var storage = window.localStorage;
 
-    function getMasEscuchadasDeLaSemana(data, callback) {
-        var url = comunidadfusa.service.baseURI + "/bandas/masEscuchadas?limite=5&dias=7";
-        comunidadfusa.service.getFromStorage(url, callback, data);
-    }
-
     function getBandasMasEscuchadas(data, callback) {
         var url = comunidadfusa.service.baseURI + "/mi-musica/masEscuchadas";
         comunidadfusa.service.getFromStorage(url, callback, data);
@@ -94,8 +89,12 @@ comunidadfusa.service.bandas = (function () {
         return parseInt(cantidadAudios);
     }
 
+    function getBandasDelTop(cantidad, callback) {
+        var url = comunidadfusa.service.baseURI + "/tops/bandas/" + cantidad;
+        comunidadfusa.service.getFromStorage(url, callback);
+    }
+
     return {
-        getMasEscuchadasDeLaSemana: getMasEscuchadasDeLaSemana,
         getBandasMasEscuchadas: getBandasMasEscuchadas,
         getSiguiendo: getSiguiendo,
         getBanda: getBanda,
@@ -105,6 +104,7 @@ comunidadfusa.service.bandas = (function () {
         getCantidadAudiosDescargados: getCantidadAudiosDescargados,
         setAudiosDescargados: setAudiosDescargados,
         decrementarAudiosDescargados: decrementarAudiosDescargados,
-        actualizarBandasDescargadas: actualizarBandasDescargadas
+        actualizarBandasDescargadas: actualizarBandasDescargadas,
+        getBandasDelTop: getBandasDelTop
     };
 })();
