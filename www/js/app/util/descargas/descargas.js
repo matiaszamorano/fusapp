@@ -213,12 +213,17 @@ comunidadfusa.util.descargas = (function () {
         comunidadfusa.util.analytics.trackEvent("error", "descarga", audioDescargado.id, 1);
     }
 
+    function incrementarDescargasActivas() {
+        descargasActivas++;
+    }
+
     return {
         descargarCancion: descargarCancion,
         eliminarCancionDescargada: eliminarCancionDescargada,
         descargarListaCanciones: descargarListaCanciones,
         activarDescargaCanciones: activarDescargaCanciones,
-        getDescargasActivas: getDescargasActivas
+        getDescargasActivas: getDescargasActivas,
+        incrementarDescargasActivas: incrementarDescargasActivas
     };
 })();
 

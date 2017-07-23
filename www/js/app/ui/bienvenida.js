@@ -6,6 +6,7 @@ comunidadfusa.ui.bienvenida = (function () {
         $(document).on('click', '.fusa-js-actualizar-bandas', function (e) {
             setTimeout(function () {
                 inicializarBandasHome();
+                comunidadfusa.util.analytics.trackEvent("accion", "home", "recargarBandas", 1);
             }, 1000);
 
         });

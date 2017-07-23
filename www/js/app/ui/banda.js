@@ -4,7 +4,6 @@ comunidadfusa.ui.banda = (function () {
         comunidadfusa.ui.mostrarCargando();
         var idBanda = comunidadfusa.getUrlParameter("id");
         comunidadfusa.service.bandas.getBanda(idBanda, function (data) {
-            $(document).off('click', '.fusa-js-descargar-banda');
             $(".fusa-js-nombre-banda").text(data.nombre);
             $(".fusa-js-ciudad-banda").text(data.ciudad);
             $("a.jp-play-me").data("id", idBanda);
@@ -75,6 +74,7 @@ comunidadfusa.ui.banda = (function () {
                                 $botonDescarga.html("<i class='icon-check'></i> Descargado");
                             }
                         } else {
+                            comunidadfusa.util.descargas.incrementarDescargasActivas();
                             comunidadfusa.service.audios.audioEnDescargaEnProceso(audio.id);
                             comunidadfusa.util.descargas.descargarCancion(audio, function (audioDescargado) {
                                 itemsProcessed++;
