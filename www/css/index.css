@@ -214,7 +214,10 @@ a:focus {
 }
 
 .item .gd.fusa-banda-home-nombre,
-.item .gd.nombre-lista-usuario{
+.item .gd.nombre-lista-usuario,
+.gd.fusa-nombre-banda,
+.gd.nombre-disco,
+.gd.fusa-tema-actual{
     background-image: linear-gradient(rgba(0,0,0,0)1%,rgba(0,0,0,1));
 }
 
