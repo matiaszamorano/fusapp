@@ -6,7 +6,10 @@ comunidadfusa.service.bandas = (function () {
         var url = comunidadfusa.service.baseURI + "/mi-musica/masEscuchadas";
         comunidadfusa.service.getFromStorage(url, callback, data);
     }
-    function getSiguiendo(data, callback) {
+    function getSiguiendo(callback) {
+        var data = {
+            usuario_id: comunidadfusa.service.usuario.get().id
+        };
         var url = comunidadfusa.service.baseURI + "/mi-musica/siguiendo";
         comunidadfusa.service.getFromStorage(url, callback, data);
     }

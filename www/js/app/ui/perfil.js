@@ -29,11 +29,7 @@ comunidadfusa.ui.perfil = (function () {
             }
         });
 
-        var dataSigiuendo = {
-            usuario_id: usuario.id
-        };
-
-        comunidadfusa.service.bandas.getSiguiendo(dataSigiuendo, function (data) {
+        comunidadfusa.service.bandas.getSiguiendo(function (data) {
             if (data.length > 0) {
                 $(".fusa-js-perfil-siguiendo").empty();
                 $(".fusa-js-perfil-siguiendo").append($("#fusa-js-banda-siguiendo-tmpl").tmpl(data));
