@@ -58,6 +58,7 @@ comunidadfusa.service = (function () {
         baseURI: BASE_URI,
         get: get,
         post: post,
+        put: put,
         getFromStorage: getFromStorage,
         getSinCache: getSinCache
     };
