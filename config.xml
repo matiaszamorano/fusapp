@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.comunidadfusa.app" version="1.5.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.comunidadfusa.app" version="1.5.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Fusa</name>
     <description>
         La aplicación Android de Comunidad Fusa. En Comunidad Fusa vas a conocer a tu próxima banda favorita.
@@ -21,6 +21,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="android-minSdkVersion" value="15" />
+        <preference name="android-targetSdkVersion"   value="25" />
         <icon qualifier="ldpi" src="res/android/icon/ldpi.png" />
         <icon qualifier="mdpi" src="res/android/icon/mdpi.png" />
         <icon qualifier="hdpi" src="res/android/icon/hdpi.png" />
@@ -39,5 +40,5 @@
         <variable name="APP_ID" value="1355985631175437" />
         <variable name="APP_NAME" value="Fusa" />
     </plugin>
-    <!--<plugin name="onesignal-cordova-plugin" spec="^2.1.2" />-->
+    <plugin name="onesignal-cordova-plugin" spec="^2.1.2" />
 </widget>
