@@ -80,7 +80,19 @@ var comunidadfusa = (function () {
             externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
             comunidadfusa.util.analytics.trackEvent("error", "init", error, 1);
         });
+        inicializarOneSignal();
         eliminarDescargasEnProgreso();
+    }
+
+    function inicializarOneSignal() {
+        var notificationOpenedCallback = function (jsonData) {
+            console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+        };
+
+        window.plugins.OneSignal
+                .startInit("70f86651-9976-455a-a14e-941dd7da6939")
+                .handleNotificationOpened(notificationOpenedCallback)
+                .endInit();
     }
 
     return {

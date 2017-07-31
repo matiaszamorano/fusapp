@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "938740701664",
+    "firebase_url": "https://fusa-1e9bf.firebaseio.com",
+    "project_id": "fusa-1e9bf",
+    "storage_bucket": "fusa-1e9bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938740701664:android:75a552a4d48ae896",
+        "android_client_info": {
+          "package_name": "com.comunidadfusa.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938740701664-4lckqtnhbg6kb02ma67itoc1e0odi5e1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhzprZsKe8jyEwi6RGqrcmJoNggIwsM-o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
