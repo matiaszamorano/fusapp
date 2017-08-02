@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.comunidadfusa.app" version="1.5.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.comunidadfusa.app" version="1.5.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Fusa</name>
     <description>
         La aplicación Android de Comunidad Fusa. En Comunidad Fusa vas a conocer a tu próxima banda favorita.
@@ -18,7 +18,6 @@
     <preference name="Orientation" value="portrait" />
     <preference name="BackgroundColor" value="0xff3b464d" />
     <preference name="android-build-tool" value="gradle" />
-    <preference name="phonegap-version" value="cli-6.5.0" />
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="android-minSdkVersion" value="15" />
@@ -43,5 +42,4 @@
     </plugin>
     <plugin name="onesignal-cordova-plugin" spec="^2.1.2" />
     
-    <gap:plugin name="onesignal-cordova-plugin" spec="^2.1.1" source="npm" />
 </widget>
