@@ -49,6 +49,7 @@ comunidadfusa.ui.reproductor = (function () {
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "play", data.jPlayer.status.media.id, 1);
+            actualiarCompartirTema(data.jPlayer.status);
             actualizarControlesDeLaBarra(data.jPlayer.status);
         });
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
@@ -321,7 +322,8 @@ comunidadfusa.ui.reproductor = (function () {
                 poster: comunidadfusa.baseURI + audio.avatar,
                 opinion: audio.opinion,
                 ciudad: audio.ciudad,
-                idBanda: audio.idBanda
+                idBanda: audio.idBanda,
+                url: comunidadfusa.baseURI + 'bandas/' + audio.url_fusa + '/' + audio.id
             };
             playlist.add(audioAAgregar, reproducirAhora);
             agregarAudioAStorage(audioAAgregar);
@@ -349,6 +351,19 @@ comunidadfusa.ui.reproductor = (function () {
         }
         audiosGuardados.push(audio);
         storage.setItem("playlist", JSON.stringify(audiosGuardados));
+    }
+
+    function actualiarCompartirTema(playerStatus) {
+        $(document).off("click", ".fusa-js-compartir-tema-actual");
+        $(document).on("click", ".fusa-js-compartir-tema-actual", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var options = {
+                url: playerStatus.media.url
+            };
+            window.plugins.socialsharing.shareWithOptions(options);
+            return false;
+        });
     }
 
     function inicializarOpcionesReproductor() {

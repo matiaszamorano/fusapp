@@ -12,7 +12,6 @@ comunidadfusa.util.parches = (function () {
                     .fail(function () {
                         comunidadfusa.util.analytics.trackEvent("error", "parche", usuario.id, 1);
                     });
-
         }
     }
 
