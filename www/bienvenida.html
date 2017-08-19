@@ -145,27 +145,29 @@
 
 <script id="banda-home-tmpl" type="text/html">
     <div class="col-xs-6 col-sm-4 fusa-alto-min-item">
-        <div class="item">
-            <div class="pos-rlt">
-                {{each generos}}
-                {{if $index == 0}}
-                <div class="bottom">
-                    <span class="badge bg-info m-l-sm m-b-sm">${generos[0]}</span>
-                </div>
-                {{/if}}
-                {{/each}}
-                <div class="item-overlay opacity r r-2x">
-                    <div class="bottom text-right m-r-sm m-b-sm">
-                        <a href="#" class="jp-play-me" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></a>
+        <a href="banda.html?id=${id}" rel="ajax">
+            <div class="item">
+                <div class="pos-rlt">
+                    {{each generos}}
+                    {{if $index == 0}}
+                    <div class="bottom">
+                        <span class="badge bg-info m-l-sm m-b-sm">${generos[0]}</span>
                     </div>
+                    {{/if}}
+                    {{/each}}
+                    <div class="item-overlay opacity r r-2x">
+                        <div class="bottom text-right m-r-sm m-b-sm">
+                            <span class="jp-play-me" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></span>
+                        </div>
+                    </div>
+                    <img src="http://www.comunidadfusa.com/${avatar}" alt="" class="r r-2x img-full">
                 </div>
-                <a href="banda.html?id=${id}" rel="ajax"><img src="http://www.comunidadfusa.com/${avatar}" alt="" class="r r-2x img-full"></a>
+                <div>
+                    <span class="text-ellipsis">${nombre}</span>
+                    <span class="text-ellipsis text-xs text-muted">${ciudad}</span>
+                </div>
             </div>
-            <div>
-                <a href="banda.html?id=${id}" rel="ajax" class="text-ellipsis">${nombre}</a>
-                <a href="banda.html?id=${id}" rel="ajax" class="text-ellipsis text-xs text-muted">${ciudad}</a>
-            </div>
-        </div>
+        </a>
     </div>
 </script>
 
