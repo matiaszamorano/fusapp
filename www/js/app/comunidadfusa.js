@@ -69,19 +69,58 @@ var comunidadfusa = (function () {
     }
 
     function init() {
+        inicializarAlmacenamiento();
+        inicializarOneSignal();
+        eliminarDescargasEnProgreso();
+    }
+
+    function inicializarAlmacenamiento() {
+        cordova.plugins.permissions.checkPermission(cordova.plugins.permissions.READ_EXTERNAL_STORAGE, function (status) {
+            if (status.hasPermission) {
+                setearExternalSDCardLocation();
+            } else {
+                cordova.plugins.diagnostic.requestRuntimePermission(function (status) {
+                    switch (status) {
+                        case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+                            setearExternalSDCardLocation();
+                            break;
+                        case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
+                            setearInternalLocation();
+                            break;
+                        case cordova.plugins.diagnostic.permissionStatus.DENIED:
+                            setearInternalLocation();
+                            break;
+                        case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
+                            setearInternalLocation();
+                            break;
+                    }
+                }, function (error) {
+                    setearInternalLocation();
+                    comunidadfusa.util.analytics.trackEvent("error", "init", "requestRuntimePermission " + error, 1);
+                }, cordova.plugins.diagnostic.permission.READ_EXTERNAL_STORAGE);
+            }
+        }, function (error) {
+            setearInternalLocation();
+            comunidadfusa.util.analytics.trackEvent("error", "init", "checkPermission " + error, 1);
+        });
+    }
+
+    function setearExternalSDCardLocation() {
         cordova.plugins.diagnostic.getExternalSdCardDetails(function (details) {
             details.forEach(function (detail) {
                 externalSdCardApplicationStorageDirectory = detail.filePath;
             });
             if (externalSdCardApplicationStorageDirectory === undefined) {
-                externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
+                setearInternalLocation();
             }
         }, function (error) {
-            externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
-            comunidadfusa.util.analytics.trackEvent("error", "init", error, 1);
+            setearInternalLocation();
+            comunidadfusa.util.analytics.trackEvent("error", "init", "setearExternalSDCardLocation " + error, 1);
         });
-        inicializarOneSignal();
-        eliminarDescargasEnProgreso();
+    }
+
+    function setearInternalLocation() {
+        externalSdCardApplicationStorageDirectory = cordova.file.externalDataDirectory;
     }
 
     function inicializarOneSignal() {
