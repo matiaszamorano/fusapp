@@ -54,7 +54,6 @@ var comunidadfusa = (function () {
     }
 
     function ordenar(field, reverse, primer) {
-
         var key = primer ?
                 function (x) {
                     return primer(x[field])
@@ -132,6 +131,7 @@ var comunidadfusa = (function () {
                 .startInit("70f86651-9976-455a-a14e-941dd7da6939")
                 .handleNotificationOpened(notificationOpenedCallback)
                 .endInit();
+        window.plugins.OneSignal.sendTags(comunidadfusa.service.usuario.get());
     }
 
     return {
