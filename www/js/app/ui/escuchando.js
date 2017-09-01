@@ -28,22 +28,25 @@ comunidadfusa.ui.escuchando = (function () {
             var $this = $(this);
             var index = $this.parent().data("index");
             var idAudio = $this.parent().data("id");
+            if (playlist[index].opinion == 1) {
+                $this.find("i").removeClass("text-success");
+                $this.find("i").removeClass("fa-thumbs-up");
+                $this.find("i").addClass("text-muted");
+                $this.find("i").addClass("fa-thumbs-o-up");
+            } else {
+                $this.find("i").removeClass("text-muted");
+                $this.find("i").removeClass("fa-thumbs-o-up");
+                $this.find("i").addClass("text-success");
+                $this.find("i").addClass("fa-thumbs-up");
+            }
             comunidadfusa.service.audios.guardarOpinionAudioUsuario({
                 audio_id: idAudio,
                 megusta: 1
             }).done(function (data) {
                 if (data == 1) {
-                    $this.find("i").removeClass("text-muted");
-                    $this.find("i").removeClass("fa-thumbs-o-up");
-                    $this.find("i").addClass("text-success");
-                    $this.find("i").addClass("fa-thumbs-up");
                     playlist[index].opinion = data;
                     comunidadfusa.util.analytics.trackEvent("meGusta", "1", idAudio, 1);
                 } else {
-                    $this.find("i").removeClass("text-success");
-                    $this.find("i").removeClass("fa-thumbs-up");
-                    $this.find("i").addClass("text-muted");
-                    $this.find("i").addClass("fa-thumbs-o-up");
                     playlist[index].opinion = null;
                     comunidadfusa.util.analytics.trackEvent("meGusta", "0", idAudio, 1);
                 }

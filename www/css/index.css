@@ -1,14 +1,11 @@
 /****Sobrescritura de estilos del tema **/
 
 body {
-    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;   
-    color: #788188;
-    background-color: transparent;
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.40;
+    font-size: 1.8rem;
 }
-
+.normal-line-height {
+    line-height: 1;
+}
 .mayusculas {
     text-transform: capitalize;
 }
@@ -24,7 +21,7 @@ body {
 
     top:0;
     left:0;
-    font-size: 30px;
+    font-size: 3rem;
     font-weight: 700;
 
     width: 100%;
@@ -60,15 +57,15 @@ header .progress.active .progress-bar {
 
 small,
 .small {
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .text-sm {
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .nav-primary.hidden-xs {
-    font-size: 20px;
+    font-size: 2rem;
 }
 
 .fusa-solapas-perfil ul .list-group-item {
@@ -76,7 +73,7 @@ small,
 }
 
 .btn {
-    font-size: 18px;    
+    font-size: 1.8rem;    
 }
 
 #contenedorInfoFusa {
@@ -179,13 +176,13 @@ a:focus {
 }
 
 .fusa-apodo-perfil {
-    font-size: 22px;
+    font-size: 2.2rem;
 }
 
 .fusa-disco i,
 .fusa-escuchando i,
 .fusa-lista-usuario i{
-    font-size: 22px;
+    font-size: 2.2rem;
 }
 
 .fusa-disco .i-3x,
@@ -194,42 +191,31 @@ a:focus {
 }
 
 .fusa-buscador {
-    width: 100vw;
-    float: right;
     display: none;
 }
 
 .fusa-buscador .input-group-btn .btn {
-    font-size: 26.5px;
+    font-size: 2.6rem;
     width: 45px;
 }
 
 .fusa-buscador input {
     height: 51px;
-    font-size: 16px;
+    font-size: 13px;
 }
 
 .btn .fusa-descargando-banda { 
-    font-size: 15px;
+    font-size: 1.5rem;
 }
 
-.item .gd.fusa-banda-home-nombre,
-.item .gd.nombre-lista-usuario,
-.gd.fusa-nombre-banda,
-.gd.nombre-disco,
-.gd.fusa-tema-actual{
-    background-image: linear-gradient(rgba(0,0,0,0)1%,rgba(0,0,0,1));
+.item .fusa-titulo-gradient{
+    background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,1));
 }
 
 .box-shadow {
     box-shadow: 0 2px 2px rgba(0,0,0,0.1), 0 1px 0 rgba(0,0,0,0.1);
 }
 
-.fusa-banda-home {
-    min-height: 227px;
-}
-
-.fusa-lista-generos,
-.fusa-home{
-    padding-top: 11px;
+.fusa-alto-min-item {
+    min-height: 222px;
 }

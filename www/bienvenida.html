@@ -1,16 +1,5 @@
 <section class="vbox">
     <section class="scrollable padder-lg w-f-md fusa-home">
-        <a href="#" class="pull-right text-muted m-t-md fusa-js-actualizar-bandas" data-toggle="class:fa-spin"><i class="icon-refresh i-lg  inline" ></i></a>
-        <h2 class="font-thin m-b">Bandas <span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
-                <span class="bar1 a1 bg-primary lter"></span>
-                <span class="bar2 a2 bg-info lt"></span>
-                <span class="bar3 a3 bg-success"></span>
-                <span class="bar4 a4 bg-warning dk"></span>
-                <span class="bar5 a5 bg-danger dker"></span>
-            </span>
-        </h2>
-        <div class="row row-sm fusa-js-bandas-recomendadas">
-        </div>
         <h2 class="font-thin m-b">Listas recomendadas <span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
                 <span class="bar1 a1 bg-primary lter"></span>
                 <span class="bar2 a2 bg-info lt"></span>
@@ -138,34 +127,46 @@
             </div>
 
         </div>
-
+        <a href="#" class="pull-right text-muted m-t-md fusa-js-actualizar-bandas" data-toggle="class:fa-spin"><i class="icon-refresh i-lg  inline" ></i></a>
+        <h2 class="font-thin m-b">Bandas <span class="musicbar animate inline m-l-sm" style="width:20px;height:20px">
+                <span class="bar1 a1 bg-primary lter"></span>
+                <span class="bar2 a2 bg-info lt"></span>
+                <span class="bar3 a3 bg-success"></span>
+                <span class="bar4 a4 bg-warning dk"></span>
+                <span class="bar5 a5 bg-danger dker"></span>
+            </span>
+        </h2>
+        <div class="row row-sm fusa-js-bandas-recomendadas">
+        </div>
 
     </section>
 </section>
 
 <script id="banda-home-tmpl" type="text/html">
-    <div class="col-xs-6 col-sm-4 fusa-banda-home">
-        <div class="item">
-            <div class="pos-rlt">
-                {{each generos}}
-                {{if $index == 0}}
-                <div class="bottom">
-                    <span class="badge bg-info m-l-sm m-b-sm">${generos[0]}</span>
-                </div>
-                {{/if}}
-                {{/each}}
-                <div class="item-overlay opacity r r-2x">
-                    <div class="bottom text-right m-r-sm m-b-sm">
-                        <a href="#" class="jp-play-me" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></a>
+    <div class="col-xs-6 col-sm-4 fusa-alto-min-item">
+        <a href="banda.html?id=${id}" rel="ajax">
+            <div class="item">
+                <div class="pos-rlt">
+                    {{each generos}}
+                    {{if $index == 0}}
+                    <div class="bottom">
+                        <span class="badge bg-info m-l-sm m-b-sm">${generos[0]}</span>
                     </div>
+                    {{/if}}
+                    {{/each}}
+                    <div class="item-overlay opacity r r-2x">
+                        <div class="bottom text-right m-r-sm m-b-sm">
+                            <span class="jp-play-me" data-id="${id}"><i class="fa fa-play-circle i-3x"></i></span>
+                        </div>
+                    </div>
+                    <img src="http://www.comunidadfusa.com/${avatar}" alt="" class="r r-2x img-full">
                 </div>
-                <a href="banda.html?id=${id}" rel="ajax"><img src="http://www.comunidadfusa.com/${avatar}" alt="" class="r r-2x img-full"></a>
+                <div>
+                    <span class="text-ellipsis">${nombre}</span>
+                    <span class="text-ellipsis text-xs text-muted">${ciudad}</span>
+                </div>
             </div>
-            <div class="padder-v">
-                <a href="banda.html?id=${id}" rel="ajax" class="text-ellipsis">${nombre}</a>
-                <a href="banda.html?id=${id}" rel="ajax" class="text-ellipsis text-xs text-muted">${ciudad}</a>
-            </div>
-        </div>
+        </a>
     </div>
 </script>
 
