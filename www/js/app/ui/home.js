@@ -1,4 +1,4 @@
-comunidadfusa.ui.bienvenida = (function () {
+comunidadfusa.ui.home = (function () {
 
     function init() {
         inicializarBandasHome();
