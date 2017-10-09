@@ -4,6 +4,16 @@ comunidadfusa.ui.index = (function () {
 
     function init() {
         if (!comunidadfusa.service.usuario.get()) {
+            $("#fusa-js-carrusel").swipe({
+                swipeRight: function (event, direction, distance, duration, fingerCount, fingerData) {
+                    var $this = $(this);
+                    $(this).carousel('prev');
+                },
+                swipeLeft: function (event, direction, distance, duration, fingerCount, fingerData) {
+                    var $this = $(this);
+                    $(this).carousel('next');
+                },
+            });
 //            comunidadfusa.util.html5HistoryAPI.cargarPagina("bienvenida.html");
         } else {
             initHome();
