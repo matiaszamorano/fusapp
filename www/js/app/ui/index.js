@@ -5,17 +5,22 @@ comunidadfusa.ui.index = (function () {
     function init() {
         if (!comunidadfusa.service.usuario.get()) {
             $("#fusa-js-carrusel").swipe({
-                swipeRight: function (event, direction, distance, duration, fingerCount, fingerData) {
-                    var $this = $(this);
+                swipeRight: function () {
                     $(this).carousel('prev');
                 },
-                swipeLeft: function (event, direction, distance, duration, fingerCount, fingerData) {
-                    var $this = $(this);
+                swipeLeft: function () {
                     $(this).carousel('next');
                 },
             });
-//            comunidadfusa.util.html5HistoryAPI.cargarPagina("bienvenida.html");
+            $(document).on("click", "#fusa-js-empezar-a-utilizar", function () {
+                comunidadfusa.util.analytics.trackEvent("empezar", "login", "empezar", 1);
+                comunidadfusa.util.html5HistoryAPI.cargarPagina("login.html");
+                $("#intro-bienvenida").hide();
+                return false;
+            });
+
         } else {
+            $("#intro-bienvenida").hide();
             initHome();
             comunidadfusa.util.parches.init();
         }

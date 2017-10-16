@@ -67,6 +67,15 @@ body {
     color: #000;
 }
 
+.fusa-bienvenida .carousel-indicators .active {
+    background-color: rgb(200, 200, 200);
+    
+}
+
+.fusa-bienvenida .carousel-control {
+    font-size: 40px;
+}
+
 .navbar-header.aside.bg-black.lter.nav-xs {
     height: 51px !important;
 }
