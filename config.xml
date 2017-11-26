@@ -43,4 +43,5 @@
         <variable name="APP_ID" value="1355985631175437" />
         <variable name="APP_NAME" value="Fusa" />
     </plugin>
+    <plugin name="cordova-plugin-background-mode" spec="~0.7.2" />
 </widget>
