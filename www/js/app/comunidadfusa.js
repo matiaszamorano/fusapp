@@ -1,3 +1,5 @@
+/* global cordova */
+
 var comunidadfusa = (function () {
     var BASE_URI = baseURI();
     var MP3_URI = mp3URI();
@@ -71,6 +73,7 @@ var comunidadfusa = (function () {
         inicializarAlmacenamiento();
         inicializarOneSignal();
         eliminarDescargasEnProgreso();
+        cordova.plugins.backgroundMode.setDefaults({silent: true});
     }
 
     function inicializarAlmacenamiento() {
