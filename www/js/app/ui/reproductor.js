@@ -63,7 +63,7 @@ comunidadfusa.ui.reproductor = (function () {
         $(document).on($.jPlayer.event.timeupdate, playlist.cssSelector.jPlayer, function (data) {
             var d = new Date();
             tiempoActual = d.getTime();
-            if (tiempoActual >= tiempoInicioReproduccionTema + 100000) {
+            if (tiempoActual >= tiempoInicioReproduccionTema + 40000) {
                 comunidadfusa.service.reproducciones.incrementarReproduccionesAudio(data.jPlayer.status.media.id);
                 tiempoInicioReproduccionTema = 999999999999999;
                 comunidadfusa.util.analytics.trackEvent("reproduccion", "playInc", data.jPlayer.status.media.id, 1);
