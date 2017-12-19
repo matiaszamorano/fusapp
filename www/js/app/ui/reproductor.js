@@ -38,6 +38,7 @@ comunidadfusa.ui.reproductor = (function () {
             $('.fusa-js-music-bar').removeClass('animate');
             storage.setItem("playlistCurrent", 0);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "end", data.jPlayer.status.media.id, 1);
+            cordova.plugins.backgroundMode.disable();
             MusicControls.destroy();
         });
         $(document).on($.jPlayer.event.loadstart, playlist.cssSelector.jPlayer, function (data) {
@@ -51,18 +52,16 @@ comunidadfusa.ui.reproductor = (function () {
             reproduciendo = 1;
             storage.setItem("playlistCurrent", playlist.current);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "play", data.jPlayer.status.media.id, 1);
-            cordova.plugins.backgroundMode.enable();
             actualizarControlesDeLaBarra(data.jPlayer.status);
         });
         $(document).on($.jPlayer.event.pause, playlist.cssSelector.jPlayer, function (data) {
             $('.fusa-js-music-bar').removeClass('animate');
             reproduciendo = 0;
-            cordova.plugins.backgroundMode.disable();
             MusicControls.updateIsPlaying(false);
         });
         $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
             $('.fusa-js-music-bar').removeClass('animate');
-            cordova.plugins.backgroundMode.disable();
+            cordova.plugins.backgroundMode.enable();
             MusicControls.updateIsPlaying(false);
         });
         $(document).on($.jPlayer.event.timeupdate, playlist.cssSelector.jPlayer, function (data) {

@@ -73,7 +73,11 @@ var comunidadfusa = (function () {
         inicializarAlmacenamiento();
         inicializarOneSignal();
         eliminarDescargasEnProgreso();
-        cordova.plugins.backgroundMode.setDefaults({silent: true});
+        cordova.plugins.backgroundMode.setDefaults({
+            title: 'Fusa está sonando',
+            text: '',
+            color: '545a5f'
+        });
     }
 
     function inicializarAlmacenamiento() {
