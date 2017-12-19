@@ -38,13 +38,18 @@ comunidadfusa.ui.reproductor = (function () {
             $('.fusa-js-music-bar').removeClass('animate');
             storage.setItem("playlistCurrent", 0);
             comunidadfusa.util.analytics.trackEvent("reproduccion", "end", data.jPlayer.status.media.id, 1);
-            cordova.plugins.backgroundMode.disable();
             MusicControls.destroy();
+            if (cordova.plugins.backgroundMode.isActive()) {
+                cordova.plugins.backgroundMode.disable();
+            }
         });
         $(document).on($.jPlayer.event.loadstart, playlist.cssSelector.jPlayer, function (data) {
             checkAudioDescargado(data);
         });
         $(document).on($.jPlayer.event.playing, playlist.cssSelector.jPlayer, function (data) {
+            if (!cordova.plugins.backgroundMode.isActive()) {
+                cordova.plugins.backgroundMode.enable();
+            }
             $('.fusa-js-music-bar').addClass('animate');
             $("#spin").addClass("hide");
             var d = new Date();
@@ -58,10 +63,12 @@ comunidadfusa.ui.reproductor = (function () {
             $('.fusa-js-music-bar').removeClass('animate');
             reproduciendo = 0;
             MusicControls.updateIsPlaying(false);
+            if (cordova.plugins.backgroundMode.isActive()) {
+                cordova.plugins.backgroundMode.disable();
+            }
         });
         $(document).on($.jPlayer.event.ready, playlist.cssSelector.jPlayer, function () {
             $('.fusa-js-music-bar').removeClass('animate');
-            cordova.plugins.backgroundMode.enable();
             MusicControls.updateIsPlaying(false);
         });
         $(document).on($.jPlayer.event.timeupdate, playlist.cssSelector.jPlayer, function (data) {
@@ -413,8 +420,7 @@ comunidadfusa.ui.reproductor = (function () {
     function actualizarControlesDeLaBarra(status) {
         MusicControls.create(obtenerDataTemaActual(status));
         function events(action) {
-            var message = JSON.parse(action).message;
-            switch (message) {
+            switch (action) {
                 case 'music-controls-next':
                     playlist.next();
                     break;
