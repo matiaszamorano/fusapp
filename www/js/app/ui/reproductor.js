@@ -420,7 +420,8 @@ comunidadfusa.ui.reproductor = (function () {
     function actualizarControlesDeLaBarra(status) {
         MusicControls.create(obtenerDataTemaActual(status));
         function events(action) {
-            switch (action) {
+            var message = JSON.parse(action).message;
+            switch (message) {
                 case 'music-controls-next':
                     playlist.next();
                     break;
