@@ -76,17 +76,13 @@
 </script>
 
 <script id="cancion-disco-tmpl" type="text/html">
-    <li class="list-group-item">
-        <a href="#" class="jp-play-me-one m-r-sm pull-left" data-id="${id}">
-            <i class="icon-control-play text"></i>
-            <i class="icon-control-pause text-active"></i>  
+    <li class="list-group-item fusa-resultado-busqueda-canciones">
+        <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${idBanda}" rel="ajax">
+            <img src="http://www.comunidadfusa.com{{if avatar}}${avatar}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${nombreBanda}" class="img-circle"/>
         </a>
-        <span class="clear">
+        <a href="#" class="jp-play-me-one clear text-ellipsis" data-id="${id}">
             <span>${nombreTema}</span>
-            <small class="text-muted clear text-ellipsis">
-                <a href="banda.html?id=${idBanda}"  class="thumb-sm pull-left m-r-sm" rel="ajax">${nombreBanda}</a>
-            </small>
-        </span>
+        </a>
     </li>
 </script>
 

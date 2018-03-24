@@ -308,16 +308,12 @@ comunidadfusa.ui.reproductor = (function () {
 
     function agregarAudios(audios) {
         var activarPlay = false;
-        if (playlist.playlist.length === 0) {
-            activarPlay = true;
-        }
+        
+        playlist.remove();
+        
         for (var i = 0; i < audios.length; i++) {
             var audio = audios[i];
-            var reproducirAhora = 0;
             var mp3;
-            if ((i === 0) && !reproduciendo) {
-                reproducirAhora = 1;
-            }
             var rutaAudioDescargado = comunidadfusa.service.audios.getDescargado(audio.id);
             if (rutaAudioDescargado === null) {
                 mp3 = comunidadfusa.MP3_URI + audio.archivo;
@@ -334,12 +330,10 @@ comunidadfusa.ui.reproductor = (function () {
                 ciudad: audio.ciudad,
                 idBanda: audio.idBanda
             };
-            playlist.add(audioAAgregar, reproducirAhora);
+            playlist.add(audioAAgregar, 0);
             agregarAudioAStorage(audioAAgregar);
         }
-        if (activarPlay) {
-            play();
-        }
+        playlist.play(0);
         activarReproductor();
     }
 

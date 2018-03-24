@@ -37,6 +37,7 @@
 </ul>
 
 <script id="cancion-disco-tmpl" type="text/html">
+    {{each canciones}}
     <li class="list-group-item">
         <div class="pull-right m-l">
             {{if descargado}}
@@ -44,25 +45,22 @@
                 <i class="icon-check text-success"></i>
             </a>
             {{else}}
-                {{if descargando}}
-                <span class="m-r-sm">
-                    <i class="icon-clock"></i>
-                </span>
-                {{else}}
-                <a href="#" class="fusa-js-descargar-cancion m-r-sm"  data-id="${id}">
-                    <i class=" icon-arrow-down "></i>
-                </a>
-                {{/if}}
+            {{if descargando}}
+            <span class="m-r-sm">
+                <i class="icon-clock"></i>
+            </span>
+            {{else}}
+            <a href="#" class="fusa-js-descargar-cancion m-r-sm"  data-id="${id}">
+                <i class=" icon-arrow-down "></i>
+            </a>
+            {{/if}}
             {{/if}}
         </div>
-        <a href="#" class="jp-play-me-one m-r-sm pull-left" data-id="${id}">
-            <i class="icon-control-play text"></i>
-            <i class="icon-control-pause text-active"></i>  
+        <a href="#" class="jp-play-me-one clear text-ellipsis" data-id="${id}">
+            ${$index + 1} - ${nombreTema}
         </a>
-        <div class="clear text-ellipsis">
-            <span>${nombreTema}</span>
-        </div>
     </li>
+    {{/each}}
 </script>
 
 <script type="text/javascript" src="js/app/ui/disco.js"></script>

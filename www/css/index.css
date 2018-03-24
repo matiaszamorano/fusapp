@@ -115,6 +115,10 @@ small,
 .fusa-solapas-perfil ul .list-group-item {
     min-height: 78px;
 }
+.fusa-js-lista-canciones-lista .list-group-item .img-circle,
+.fusa-resultado-busqueda-canciones .img-circle{
+    height: 40px;
+}
 
 .btn {
     font-size: 1.8rem;    
@@ -245,7 +249,8 @@ a:focus {
 
 .fusa-buscador input {
     height: 51px;
-    font-size: 13px;
+    font-size: 16px;
+    font-weight: 800;
 }
 
 .btn .fusa-descargando-banda { 

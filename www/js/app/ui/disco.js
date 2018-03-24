@@ -32,7 +32,7 @@ comunidadfusa.ui.disco = (function () {
 
             canciones = data.canciones;
             $(".fusa-js-lista-canciones-disco").empty();
-            $(".fusa-js-lista-canciones-disco").append($("#cancion-disco-tmpl").tmpl(data.canciones));
+            $(".fusa-js-lista-canciones-disco").append($("#cancion-disco-tmpl").tmpl(data));
             if (algunoDescargando) {
                 var $botonDescarga = $(".fusa-js-descargar-disco span.text");
                 $botonDescarga.addClass("fusa-descargando-banda");

@@ -38,6 +38,7 @@
 </ul>
 
 <script id="lista-usuario-tmpl" type="text/html">
+    {{each audios}}
     <li class="list-group-item">
         <div class="pull-right m-l">
             {{if descargado}}
@@ -45,25 +46,25 @@
                 <i class="icon-check text-success"></i>
             </a>
             {{else}} 
-                {{if descargando}}
-                <span class="m-r-sm">
-                    <i class="icon-clock"></i>
-                </span>
-                {{else}}
-                <a href="#" class="fusa-js-descargar-cancion m-r-sm"  data-id="${id}">
-                    <i class=" icon-arrow-down "></i>
-                </a>
-                {{/if}}
+            {{if descargando}}
+            <span class="m-r-sm">
+                <i class="icon-clock"></i>
+            </span>
+            {{else}}
+            <a href="#" class="fusa-js-descargar-cancion m-r-sm"  data-id="${id}">
+                <i class=" icon-arrow-down "></i>
+            </a>
+            {{/if}}
             {{/if}}
         </div>
-        <a href="#" class="jp-play-me-one m-r-sm pull-left" data-id="${id}">
-            <i class="icon-control-play text"></i>
-            <i class="icon-control-pause text-active"></i>  
+        <a class="thumb-sm pull-left m-r-sm" href="banda.html?id=${idBanda}" rel="ajax">
+            <img src="http://www.comunidadfusa.com{{if avatar}}${avatar}{{else}}/uploads/bandas/thumbnail/DEFAULT_THUMB.jpg{{/if}}"  alt="${nombreBanda}" class="img-circle"/>
         </a>
-        <div class="clear text-ellipsis">
-            <span>${nombreBanda} - ${nombreTema}</span>
-        </div>
+        <a href="#" class="jp-play-me-one clear text-ellipsis" data-id="${id}">
+            <span>${$index + 1} - ${nombreTema}</span>
+        </a>
     </li>
+    {{/each}}
 </script>
 
 
